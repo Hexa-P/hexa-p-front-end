@@ -3,7 +3,7 @@ import request from 'superagent';
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { scaleQuantize } from "d3-scale";
 import { csv } from "d3-fetch";
-const shapeData = require('./tl_2010_41_county10.json');
+const shapeData = require('./tl_2019_us_state.json');
 
 // const geoUrl = "./gadm36_USA_2.json";
 // const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
@@ -37,7 +37,7 @@ const MapChart = () => {
   return (
     <>
       <ComposableMap projection="geoMercator" >
-        <Geographies className="blah" geography={shapeData}>
+        <Geographies  geography={shapeData}>
           {
             ({ geographies }) => { 
 
@@ -48,7 +48,7 @@ const MapChart = () => {
 
                 return (
                   <Geography
-                    
+                    className="blah"
                     key={geo.rsmKey}
                     geography={geo}
                     fill={colorScale(cur ? cur.unemployment_rate : "#EEE")} 
