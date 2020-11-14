@@ -13,15 +13,31 @@ header {
 }
 
 footer {
-  padding: 20px;
-  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
   background: #1abc9c;
   color: white;
   font-size: 18px;
+}
 
+.git {
+  width: 20px;
+}
+
+.li {
+  width: 20px;
+}
+
+.cap {
+  width: 100px;
 }
 
 .blah {
   height: 1000px;
   width: 1000px;
+}
+
+.multnomah:hover {
+  cursor: pointer;
 }

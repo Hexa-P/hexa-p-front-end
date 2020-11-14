@@ -28,6 +28,7 @@ const colorScale = scaleQuantize()
 const MapChart = () => {
   const [data, setData] = useState([]);
   const [tempData, setTempData] = useState([]);
+  const [city, setCity] = useState([]);
 
   useEffect(() => {
     // https://www.bls.gov/lau/
@@ -37,6 +38,18 @@ const MapChart = () => {
   }, []);
 
 // -----------------------------------------------------------------------------------
+
+  // const getNearestCity = async (lat, lon) => {
+
+  //   const mungedLat = lat.slice(1);
+  //   const mungedLon = lon.slice(1);
+
+  //   const cityData = await request
+  //     .get(`https://app.climate.azavea.com/api/city/nearest/?lat=${mungedLat}&lon=${mungedLon}&limit=1`)
+  //     .set('Authorization', 'Token acc19420402237e817776a52aca54419dafa7dfe');
+
+  //   setCity(cityData);
+  // }
 
   return (
     <>
@@ -49,11 +62,26 @@ const MapChart = () => {
             ({ geographies }) => { 
               return geographies
               .map(geo => {
-              
+
                 const cur = data.find(datum => datum.id === geo.properties.GEOID10);
+
+                if(geo.properties.NAME10 === 'Multnomah') {
+                  console.log('Found Portland!');
+                  return (
+                    <Geography
+                      className="multnomah"
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill={colorScale(cur ? cur.unemployment_rate : "#EEE")} 
+                    />
+                  )
+                }
 
                 return (
                   <Geography                    
+
+                  <Geography
+                    className="blah"
                     key={geo.rsmKey}
                     geography={geo}
                     fill={colorScale(cur ? cur.unemployment_rate : "#EEE")} 
