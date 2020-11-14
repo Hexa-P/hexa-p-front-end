@@ -1,3 +1,4 @@
+import './App.css';
 import React, { Component } from 'react'
 import captain_planet from './assets/captain_planet.gif';
 import github from './assets/github.png';
@@ -10,33 +11,28 @@ export default class Footer extends Component {
                 <div className="footer-left">
                     <div>
                         Sam Formichella
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <img className='git' src={github} alt='github'/>
+                        <img className='li' src={linkedin} alt='linkedin'/>
                     </div>
                     <div>
                         Andrew Bray
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <img className='git' src={github} alt='github'/>
+                        <img className='li' src={linkedin} alt='linkedin'/>
                     </div>
                     <div>
                         Katie Berry
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <img className='git' src={github} alt='github'/>
+                        <img className='li' src={linkedin} alt='linkedin'/>
                     </div>
                     <div>
                         Richard Hillman
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <img className='git' src={github} alt='github'/>
+                        <img className='li' src={linkedin} alt='linkedin'/>
                     </div>
                     <div>
                         Ryan Carreras
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
-                    </div>
-                </div>
-                <div className="footer-right">
-                    <div>
-                        <img src={captain_planet} alt='captain planet'/>
+                        <img className='git' src={github} alt='github'/>
+                        <img className='li' src={linkedin} alt='linkedin'/>
                     </div>
                 </div>
             </footer>
