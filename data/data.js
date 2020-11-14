@@ -1,129 +1,133 @@
-{
-    "city": {
-        "id": 32,
-        "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [
-                -122.67621,
-                45.52345
-            ]
-        },
-        "properties": {
-            "proximity": {
-                "ocean": false
-            },
-            "name": "Portland",
-            "admin": "OR",
-            "population": 632309,
-            "datasets": [
-                "LOCA",
-                "NEX-GDDP"
-            ],
-            "region": 27
-        }
+[
+    "request": {
+        "type": "City",
+        "query": "Portland, United States of America",
+        "language": "en",
+        "unit": "f"
     },
-    "dataset": "NEX-GDDP",
-    "scenario": "historical",
-    "indicator": {
-        "name": "average_high_temperature",
-        "label": "Average High Temperature",
-        "description": "Aggregated average high temperature, generated from daily data using all requested models",
-        "valid_aggregations": [
-            "yearly",
-            "quarterly",
-            "monthly",
-            "offset_yearly",
-            "custom"
-        ],
-        "variables": [
-            "tasmax"
-        ],
-        "available_units": [
-            "F",
-            "C",
-            "K"
-        ],
-        "default_units": "F",
-        "parameters": [
-            {
-                "name": "agg",
-                "description": "A list of comma separated aggregation types to return. Valid choices are 'min', 'max', 'avg', 'median', 'stddev', 'stdev', and 'XXth'. If using 'XXth', replace the XX with a number between 1-99 to return that percentile. For example, '99th' returns the value of the 99th percentile. The 'XXth' option can be provided multiple times with different values. 'stdev' is an alias to 'stddev'. Defaults to 'min,max,avg'.",
-                "required": false,
-                "default": "min,max,avg"
-            },
-            {
-                "name": "custom_time_agg",
-                "description": "Used in conjunction with the 'custom' time_aggregation value. A list of comma separated month-day pairs defining the time intervals to aggregate within. Data points will only be assigned to one aggregation, and for overlapping intervals the interval defined first will take precedence. Dates are formmatted MM-DD and pairs are formatted 'start:end'. Examples: '3-1:5-31', '1-1:6-30,7-1:12-31'",
-                "required": false
-            },
-            {
-                "name": "dataset",
-                "description": "A single value defining which provider to use for raw climate data. If not provided, defaults to NEX-GDDP.",
-                "required": false,
-                "default": "NEX-GDDP"
-            },
-            {
-                "name": "models",
-                "description": "A list of comma separated model names to filter the indicator by. The indicator values in the response will only use the selected models. If not provided, defaults to all models.",
-                "required": false,
-                "default": "all"
-            },
-            {
-                "name": "time_aggregation",
-                "description": "Time granularity to group data by for result structure. Valid aggregations depend on indicator. Can be 'yearly', 'offset_yearly', 'quarterly', 'monthly', or 'custom'. Defaults to 'yearly'. If 'custom', 'custom_time_agg' parameter must be set.",
-                "required": false,
-                "default": "yearly"
-            },
-            {
-                "name": "units",
-                "description": "Units in which to return the data. Defaults to Imperial units (Fahrenheit for temperature indicators and inches for precipitation).",
-                "required": false,
-                "default": "F"
-            },
-            {
-                "name": "years",
-                "description": "A list of comma separated year ranges to filter the response by. Defaults to all years available. A year range is of the form 'start[:end]'. Examples: '2010', '2010:2020', '2010:2020,2030', '2010:2020,2030:2040'",
-                "required": false,
-                "default": "all"
-            }
-        ]
+    "location": {
+        "name": "Portland",
+        "country": "United States of America",
+        "region": "Oregon",
+        "lat": "45.524",
+        "lon": "-122.675",
+        "timezone_id": "America/Los_Angeles",
+        "localtime": "2020-11-13 21:58",
+        "localtime_epoch": 1605304680,
+        "utc_offset": "-8.0"
     },
-    "climate_models": [
-        "ACCESS1-0",
-        "bcc-csm1-1",
-        "BNU-ESM",
-        "CanESM2",
-        "CCSM4",
-        "CESM1-BGC",
-        "CNRM-CM5",
-        "CSIRO-Mk3-6-0",
-        "GFDL-CM3",
-        "GFDL-ESM2G",
-        "GFDL-ESM2M",
-        "inmcm4",
-        "IPSL-CM5A-LR",
-        "IPSL-CM5A-MR",
-        "MIROC5",
-        "MIROC-ESM",
-        "MIROC-ESM-CHEM",
-        "MPI-ESM-LR",
-        "MPI-ESM-MR",
-        "MRI-CGCM3",
-        "NorESM1-M"
-    ],
-    "time_aggregation": "yearly",
-    "units": "F",
-    "data": {
-        "2004": {
-            "max": 65.9481482100813,
-            "min": 61.70657990756101,
-            "avg": 64.50917053723921
+    "current": {
+        "observation_time": "05:58 AM",
+        "temperature": 43,
+        "weather_code": 122,
+        "weather_icons": [
+            "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+        ],
+        "weather_descriptions": [
+            "Overcast"
+        ],
+        "wind_speed": 7,
+        "wind_degree": 210,
+        "wind_dir": "SSW",
+        "pressure": 1014,
+        "precip": 0.1,
+        "humidity": 85,
+        "cloudcover": 100,
+        "feelslike": 36,
+        "uv_index": 1,
+        "visibility": 10,
+        "is_day": "no"
+    },
+    "historical": {
+        "2015-01-21": {
+            "date": "2015-01-21",
+            "date_epoch": 1421798400,
+            "astro": {
+                "sunrise": "07:43 AM",
+                "sunset": "05:02 PM",
+                "moonrise": "08:10 AM",
+                "moonset": "07:04 PM",
+                "moon_phase": "Waxing Crescent",
+                "moon_illumination": 3
+            },
+            "mintemp": 32,
+            "maxtemp": 48,
+            "avgtemp": 39,
+            "totalsnow": 0,
+            "sunhour": 8.7,
+            "uv_index": 2
         },
-        "2005": {
-            "max": 65.97967535985657,
-            "min": 61.97214745090431,
-            "avg": 64.65332512603578
+        "2015-01-22": {
+            "date": "2015-01-22",
+            "date_epoch": 1421884800,
+            "astro": {
+                "sunrise": "07:42 AM",
+                "sunset": "05:03 PM",
+                "moonrise": "08:49 AM",
+                "moonset": "08:19 PM",
+                "moon_phase": "Waxing Crescent",
+                "moon_illumination": 10
+            },
+            "mintemp": 37,
+            "maxtemp": 50,
+            "avgtemp": 41,
+            "totalsnow": 0,
+            "sunhour": 7,
+            "uv_index": 2
+        },
+        "2015-01-23": {
+            "date": "2015-01-23",
+            "date_epoch": 1421971200,
+            "astro": {
+                "sunrise": "07:42 AM",
+                "sunset": "05:04 PM",
+                "moonrise": "09:24 AM",
+                "moonset": "09:35 PM",
+                "moon_phase": "Waxing Crescent",
+                "moon_illumination": 18
+            },
+            "mintemp": 41,
+            "maxtemp": 48,
+            "avgtemp": 45,
+            "totalsnow": 0,
+            "sunhour": 3.6,
+            "uv_index": 3
+        },
+        "2015-01-24": {
+            "date": "2015-01-24",
+            "date_epoch": 1422057600,
+            "astro": {
+                "sunrise": "07:41 AM",
+                "sunset": "05:06 PM",
+                "moonrise": "09:57 AM",
+                "moonset": "10:48 PM",
+                "moon_phase": "Waxing Crescent",
+                "moon_illumination": 25
+            },
+            "mintemp": 43,
+            "maxtemp": 59,
+            "avgtemp": 50,
+            "totalsnow": 0,
+            "sunhour": 7,
+            "uv_index": 2
+        },
+        "2015-01-25": {
+            "date": "2015-01-25",
+            "date_epoch": 1422144000,
+            "astro": {
+                "sunrise": "07:40 AM",
+                "sunset": "05:07 PM",
+                "moonrise": "10:30 AM",
+                "moonset": "11:59 PM",
+                "moon_phase": "Waxing Crescent",
+                "moon_illumination": 32
+            },
+            "mintemp": 39,
+            "maxtemp": 57,
+            "avgtemp": 45,
+            "totalsnow": 0,
+            "sunhour": 8.7,
+            "uv_index": 3
         }
     }
-}
+]
