@@ -13894,59 +13894,5 @@
     "ave_temp": -1.261,
     "ave_temp_uncertain": 0.228,
     "Country": "United States"
-  },
-  {
-    "date": "1/1/2013",
-    "ave_temp": -2.155,
-    "ave_temp_uncertain": 0.185,
-    "Country": "United States"
-  },
-  {
-    "date": "2/1/2013",
-    "ave_temp": -1.216,
-    "ave_temp_uncertain": 0.216,
-    "Country": "United States"
-  },
-  {
-    "date": "3/1/2013",
-    "ave_temp": 2.289,
-    "ave_temp_uncertain": 0.222,
-    "Country": "United States"
-  },
-  {
-    "date": "4/1/2013",
-    "ave_temp": 6.97,
-    "ave_temp_uncertain": 0.221,
-    "Country": "United States"
-  },
-  {
-    "date": "5/1/2013",
-    "ave_temp": 14.073,
-    "ave_temp_uncertain": 0.178,
-    "Country": "United States"
-  },
-  {
-    "date": "6/1/2013",
-    "ave_temp": 20.198,
-    "ave_temp_uncertain": 0.236,
-    "Country": "United States"
-  },
-  {
-    "date": "7/1/2013",
-    "ave_temp": 22.074,
-    "ave_temp_uncertain": 0.152,
-    "Country": "United States"
-  },
-  {
-    "date": "8/1/2013",
-    "ave_temp": 21.168,
-    "ave_temp_uncertain": 0.249,
-    "Country": "United States"
-  },
-  {
-    "date": "9/1/2013",
-    "ave_temp": 18.273,
-    "ave_temp_uncertain": 1.21,
-    "Country": "United States"
   }
 ]
