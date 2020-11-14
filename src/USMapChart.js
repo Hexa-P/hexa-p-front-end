@@ -23,6 +23,8 @@ const colorScale = scaleQuantize()
     "#782618"
   ]);
 
+// -----------------------------------------------------------------------------------
+
 const MapChart = () => {
   const [data, setData] = useState([]);
   const [tempData, setTempData] = useState([]);
@@ -34,21 +36,24 @@ const MapChart = () => {
     });
   }, []);
 
+// -----------------------------------------------------------------------------------
+
   return (
     <>
       <ComposableMap projection="geoMercator" viewBox="65 150 30 30">
+
+{/* -------------------------------------------------------------------------------- */}
+
         <Geographies className="blah" geography={shapeData}>
           {
             ({ geographies }) => { 
-
               return geographies
               .map(geo => {
-
+              
                 const cur = data.find(datum => datum.id === geo.properties.GEOID10);
 
                 return (
-                  <Geography
-                    
+                  <Geography                    
                     key={geo.rsmKey}
                     geography={geo}
                     fill={colorScale(cur ? cur.unemployment_rate : "#EEE")} 
@@ -58,9 +63,14 @@ const MapChart = () => {
             }
           }
         </Geographies>
+
+{/* -------------------------------------------------------------------------------- */}
+
       </ComposableMap>
     </>
   );
 };
+
+// ------------------------------------------------------------------------------------
 
 export default MapChart;
