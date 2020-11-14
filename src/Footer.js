@@ -6,7 +6,7 @@ import linkedin from './assets/linkedin.png';
 export default class Footer extends Component {
     render() {
         return (
-            <div>
+            <footer>
                 <div className="footer-left">
                     <div>
                         Sam Formichella
@@ -39,7 +39,7 @@ export default class Footer extends Component {
                         <img src={captain_planet} alt='captain planet'/>
                     </div>
                 </div>
-            </div>
+            </footer>
         )
     }
 }
