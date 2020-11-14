@@ -36,7 +36,7 @@ const MapChart = () => {
 
   return (
     <>
-      <ComposableMap projection="geoMercator" >
+      <ComposableMap projection="geoMercator" viewBox="65 150 30 30">
         <Geographies className="blah" geography={shapeData}>
           {
             ({ geographies }) => { 
