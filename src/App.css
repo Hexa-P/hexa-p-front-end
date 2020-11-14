@@ -25,3 +25,7 @@ footer {
   height: 1000px;
   width: 1000px;
 }
+
+.multnomah:hover {
+  cursor: pointer;
+}
