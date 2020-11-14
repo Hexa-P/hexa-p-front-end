@@ -8,6 +8,9 @@ export default class Footer extends Component {
     render() {
         return (
             <footer>
+
+{/* -------------------------------------------------------------------------------- */}
+
                 <div className="footer-left">
                     <div>
                         Sam Formichella
@@ -31,6 +34,17 @@ export default class Footer extends Component {
                     </div>
                     <div>
                         Ryan Carreras
+
+                        <img src={github} alt='github'/>
+                        <img src={linkedin} alt='linkedin'/>
+                    </div>
+                </div>
+
+{/* -------------------------------------------------------------------------------- */}
+
+                <div className="footer-right">
+                    <div>
+                        <img src={captain_planet} alt='captain planet'/>
                         <img className='git' src={github} alt='github'/>
                         <img className='li' src={linkedin} alt='linkedin'/>
                     </div>

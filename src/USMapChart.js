@@ -23,6 +23,8 @@ const colorScale = scaleQuantize()
     "#782618"
   ]);
 
+// -----------------------------------------------------------------------------------
+
 const MapChart = () => {
   const [data, setData] = useState([]);
   const [tempData, setTempData] = useState([]);
@@ -35,6 +37,7 @@ const MapChart = () => {
     });
   }, []);
 
+// -----------------------------------------------------------------------------------
 
   // const getNearestCity = async (lat, lon) => {
 
@@ -48,17 +51,18 @@ const MapChart = () => {
   //   setCity(cityData);
   // }
 
-
   return (
     <>
       <ComposableMap projection="geoMercator" viewBox="65 150 30 30">
+
+{/* -------------------------------------------------------------------------------- */}
+
         <Geographies className="blah" geography={shapeData}>
           {
             ({ geographies }) => { 
-
               return geographies
               .map(geo => {
-                
+
                 const cur = data.find(datum => datum.id === geo.properties.GEOID10);
 
                 if(geo.properties.NAME10 === 'Multnomah') {
@@ -74,6 +78,8 @@ const MapChart = () => {
                 }
 
                 return (
+                  <Geography                    
+
                   <Geography
                     className="blah"
                     key={geo.rsmKey}
@@ -85,9 +91,14 @@ const MapChart = () => {
             }
           }
         </Geographies>
+
+{/* -------------------------------------------------------------------------------- */}
+
       </ComposableMap>
     </>
   );
 };
+
+// ------------------------------------------------------------------------------------
 
 export default MapChart;
