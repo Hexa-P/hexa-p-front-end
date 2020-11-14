@@ -3,7 +3,7 @@ import request from 'superagent';
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { scaleQuantize } from "d3-scale";
 import { csv } from "d3-fetch";
-const shapeData = require('./tl_2019_us_state.json');
+const shapeData = require('./tl_2010_41_county10.json');
 
 // const geoUrl = "./gadm36_USA_2.json";
 // const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
@@ -27,6 +27,8 @@ const MapChart = () => {
   const [data, setData] = useState([]);
   const [tempData, setTempData] = useState([]);
 
+  const 
+
   useEffect(() => {
     // https://www.bls.gov/lau/
     csv("/unemployment-by-county-2017.csv").then(counties => {
@@ -36,8 +38,8 @@ const MapChart = () => {
 
   return (
     <>
-      <ComposableMap projection="geoMercator" >
-        <Geographies  geography={shapeData}>
+      <ComposableMap projection="geoMercator" viewBox="65 150 30 30">
+        <Geographies className="blah" geography={shapeData}>
           {
             ({ geographies }) => { 
 
