@@ -10,9 +10,9 @@ export default class Header extends Component {
 
 {/* --------------------------------------------------------------------- */}
 
-          <h1>This is your HEXA-P header. isn't it lovely?</h1>
+          <h1>Oregon Environmental Data Initiative</h1>
           
-          <Link to="/mapchart">Check out our lovely map</Link>
+          <Link to="/mapchart">Map</Link>
 
 {/* --------------------------------------------------------------------- */}
 
