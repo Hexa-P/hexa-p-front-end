@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { Line } from 'react-chartjs-2';
+
+import React, { Component } from 'react';
+import Navigation from './Navigation.js'
 
 
 const state = {
@@ -9,11 +10,16 @@ const state = {
   avg_temp: [43.2, 45.8, 49.2, 46.8, 43.2]
 }
 
+
 export default class ChartTemplate extends Component {
 
 
   render() {
     return (
+
+      <div>
+        <Navigation />
+
       <div className="chart-container">
         <Line
           data={
@@ -45,6 +51,7 @@ export default class ChartTemplate extends Component {
             }
           }}
         />
+
       </div>
     )
   }
