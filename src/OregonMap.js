@@ -11,6 +11,21 @@ import * as oregonCountyData from './tl_2010_41_county10.json';
 const oregonData = require('./tl_2010_41_county10.json')
 
 export default class OregonMap extends Component {
+
+  componentDidMount = async() => {
+    const testData = await request
+      .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=01&year_range=2004:2005`)
+
+    console.log(testData.body);
+  }
+
+  // componentDidMount = async() => {
+  //   const testData = await request
+  //     .get(`localhost:3000/temps?month_param=01&year_range=2004:2005`)
+
+  //   console.log(testData.body);
+  // }
+
   render() {
     return (
       <div>
