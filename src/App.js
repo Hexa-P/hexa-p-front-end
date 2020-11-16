@@ -5,6 +5,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import USMapChart from './USMapChart.js';
+import OregonMap from './OregonMap.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
 import './App.css';
@@ -27,7 +28,7 @@ export default class App extends Component {
             <Route
               path="/mapchart"
               exact
-              render={(routerProps) => <USMapChart {...routerProps} />}
+              render={(routerProps) => <OregonMap {...routerProps} />}
             />
           </Switch>
 
