@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import captain_planet from './assets/captain_planet.gif';
+import captain_planet from './images/planateers.png';
 import github from './assets/github.png';
 import linkedin from './assets/linkedin.png';
 
@@ -10,38 +10,62 @@ export default class Footer extends Component {
 
 {/* -------------------------------------------------------------------------------- */}
 
-                <div className="footer-left">
-                    <div>
+                <div className="footer-left left">
+
+                    <div className="gitabove inblock">
                         Sam Formichella
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <div className="git inblock">
+                            <img src={github} alt='github'/>
+                            <img src={linkedin} alt='linkedin'/>
+                        </div>
                     </div>
-                    <div>
+
+{/* ------------- */}
+
+                    <div className="gitabove inblock">
                         Andrew Bray
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <div className="git inblock">
+                            <img src={github} alt='github'/>
+                            <img src={linkedin} alt='linkedin'/>
+                        </div>
                     </div>
-                    <div>
+
+{/* ------------- */}
+
+                    <div className="gitabove inblock">
                         Katie Berry
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <div className="git inblock">
+                            <img src={github} alt='github'/>
+                            <img src={linkedin} alt='linkedin'/>
+                        </div>
                     </div>
-                    <div>
+
+{/* ------------- */}
+
+                    <div className="gitabove inblock">
                         Richard Hillman
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <div className="git inblock">
+                            <img src={github} alt='github'/>
+                            <img src={linkedin} alt='linkedin'/>
+                        </div>
                     </div>
-                    <div>
+
+{/* ------------- */}
+
+                    <div className="gitabove inblock">
                         Ryan Carreras
-                        <img src={github} alt='github'/>
-                        <img src={linkedin} alt='linkedin'/>
+                        <div className="git inblock">
+                            <img src={github} alt='github'/>
+                            <img src={linkedin} alt='linkedin'/>
+                        </div>
                     </div>
+
                 </div>
 
 {/* -------------------------------------------------------------------------------- */}
 
-                <div className="footer-right">
-                    <div>
+                <div className="footer-right right">
+                    <div className="ohCaptainMyCaptain">
                         <img src={captain_planet} alt='captain planet'/>
                     </div>
                 </div>

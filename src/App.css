@@ -1,27 +1,89 @@
-body {
-  height: 1000px;
-  width: 1000px;
-}
+
 
 header {
   padding: 60px;
   text-align: center;
-  background: #1abc9c;
+  background-image: url('./images/pexels-brian-hackworth-3523519.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: white;
-  font-size: 20px;
+  font-size: 13px;
+  border-bottom: black 1px solid;
+  height: 5vh;
+  
   
 }
 
 footer {
   padding: 20px;
   text-align: center;
-  background: #1abc9c;
+  background-image: url('./images/pexels-brian-hackworth-3523519.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
   color: white;
   font-size: 18px;
+  position: absolute;
+  bottom: 0;
+  height: 10vh;
+  width: 100%;
+  border-top: black 1px solid;
+  position: fixed;
 
 }
 
-.blah {
-  height: 1000px;
-  width: 1000px;
+.git {
+  width: 170px;
 }
+
+.gitabove {
+  width: 170px;
+}
+
+.gitabove img {
+  height: 30px;
+  width: 30px;
+}
+
+.ohCaptainMyCaptain img {
+  height: 150px;
+  width: auto;
+  margin-right: 20px;
+  margin-top: -20px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.justify { 
+  text-align: justify;
+}
+
+.block {
+  display: block;
+}
+
+.inblock {
+  display: inline-block;
+}
+
+.gutter-right {
+  margin-right: 20px;
+}
+
+.resets {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
