@@ -4,7 +4,7 @@ export default class ChartTemplate extends Component {
   render() {
     return (
       <div>
-
+        <Navigation />
       </div>
     )
   }

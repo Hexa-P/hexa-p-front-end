@@ -12,9 +12,6 @@ export default class Header extends Component {
 
           <h1>Oregon Environmental Data Initiative</h1>
 
-          <Link to="/mapchart">Map</Link>
-          <Link to="/tempchart">Map</Link>
-
           {/* --------------------------------------------------------------------- */}
 
         </header>
