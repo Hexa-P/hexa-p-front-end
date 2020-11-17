@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './OregonMap.css';
 import request from 'superagent';
 import {
   ComposableMap,
@@ -32,7 +33,7 @@ export default class OregonMap extends Component {
         <ComposableMap
           className="oregon-map"
           projection="geoMercator"
-          viewBox="65 155 25 25"
+          viewBox="65 158 25 25"
         >
           <Geographies geography={oregonData}>
             {
@@ -54,6 +55,7 @@ export default class OregonMap extends Component {
             <circle
               r={0.3}
               fill="green"
+              className="circle-marker"
             ></circle>
           </Marker>
         </ComposableMap>
