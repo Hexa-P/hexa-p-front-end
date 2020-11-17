@@ -9,6 +9,8 @@ import {
 } from 'react-simple-maps';
 import { scaleQuantize } from "d3-scale";
 
+import SliderYear from './SliderYear.js'
+
 const oregonData = require('./tl_2010_41_county10.json')
 
 export default class OregonMap extends Component {
@@ -54,9 +56,9 @@ export default class OregonMap extends Component {
 
   handleTempType = async (e) => {
     const tempConvert = {
-      'Average High Temp': 'avg',
-      'Highest High Temp': 'max',
-      'Lowest High Temp': 'min'
+      'Average Temp': 'avg',
+      'Average High Temp': 'max',
+      'Average Low Temp': 'min'
     }
 
     const tempType = tempConvert[e.target.value]
@@ -68,6 +70,12 @@ export default class OregonMap extends Component {
 
   handleMarkerClick = (city) => {
     this.props.history.push('/tempchart')
+  }
+
+  handleYearSlider = async (e) => {
+    await this.setState({ displayedYear: String(e) })
+
+    this.setDisplayedTemp();
   }
 
   lightBlueColorScale = scaleQuantize()
@@ -112,7 +120,7 @@ export default class OregonMap extends Component {
             })
           }
         </div>
-        <div className="map flex-col flex-center">
+        <div className="map-container">
           <ComposableMap
             className="oregon-map"
             projection="geoMercator"
@@ -153,21 +161,13 @@ export default class OregonMap extends Component {
               </text>
             </Marker>
           </ComposableMap>
-          <div className="flex-row flex-center">
-            {
-              [0, 1, 2, 3, 4].map(year => {
-                return <button
-                  key={year + 1950}
-                  value={year + 1950}
-                  onClick={(e) => this.handleYearClick(e)}
-                >{year + 1950}</button>
-              })
-            }
-          </div>
+          <SliderYear 
+            handleYearSlider={this.handleYearSlider}
+          />
         </div>
         <select onChange={this.handleTempType}>
           {
-            ['Average High Temp', 'Highest High Temp', 'Lowest High Temp'].map(temp => {
+            ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
               return <option
                 key={temp}
                 value={temp}
