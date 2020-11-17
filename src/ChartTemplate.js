@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import Navigation from './Navigation.js'
+import { Line } from 'react-chartjs-2';
 
 
 const state = {
@@ -13,15 +14,20 @@ const state = {
 
 export default class ChartTemplate extends Component {
 
+  // --------------------------------------------------------------------------------------
 
   render() {
     return (
-
+    <>
       <div>
         <Navigation />
+      </div>
+
+{/* ------------------------------------------------------------------------------------- */}
 
       <div className="chart-container">
         <Line
+
           data={
             {
               labels: ['1950', '1951', '1952',
@@ -51,8 +57,11 @@ export default class ChartTemplate extends Component {
             }
           }}
         />
-
       </div>
+
+{/* --------------------------------------------------------------------------------------------------- */}
+
+      </>
     )
   }
 }
