@@ -31,14 +31,6 @@ export default class ChartTemplate extends Component {
   
   render() {
 
-    return (
-    <>
-      <div>
-        <Navigation />
-      </div>
-
-{/* ------------------------------------------------------------------------------------- */}
-
     const { 
       city,
       month,
@@ -120,10 +112,6 @@ export default class ChartTemplate extends Component {
         />
       </div>
       </>
-
-{/* --------------------------------------------------------------------------------------------------- */}
-
-     
     )
   }
 }
