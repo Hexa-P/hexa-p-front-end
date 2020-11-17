@@ -88,29 +88,25 @@ export default class App extends Component {
               exact
               render={(routerProps) => <SliderYear {...routerProps} />}
             />
-          </Switch>
 
-          <Route
-            path='/signup'
-            exact
-            render={
-              (routerProps) =>
-                <SignUpPage
-                  {...routerProps}
-                  setTokenAndName={this.setTokenAndName}
-                />
-            }
-          />
+            <Route
+              path='/signup'
+              exact
+              render={
+                (routerProps) =>
+                  <SignUpPage
+                    {...routerProps}
+                    setTokenAndName={this.setTokenAndName}
+                  />
+              }
+            />
 
-          <Route exact path='/login' render={(routerProps) =>
-            <Login {...routerProps}
-              setTokenAndName={this.setTokenAndName}
-            />}
-          />
-
-
-              
-
+            <Route exact path='/login' render={(routerProps) =>
+              <Login {...routerProps}
+                setTokenAndName={this.setTokenAndName}
+              />}
+            />
+            
           </Switch>
 
         {/* ------------------------------------------------------------------------------------------ */}

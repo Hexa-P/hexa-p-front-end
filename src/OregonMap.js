@@ -15,7 +15,8 @@ export default class OregonMap extends Component {
 
   state = {
     monthlyData: {},
-    displayedYear: "1950"
+    displayedYear: '1950',
+    tempType: 'avg'
   }
 
   componentDidMount = async() => {
@@ -31,7 +32,7 @@ export default class OregonMap extends Component {
     const displayedTempKey = Object.keys(this.state.monthlyData)
       .filter(key => key.slice(0, 4) === this.state.displayedYear)
 
-    const displayedTemp = this.state.monthlyData[displayedTempKey].avg
+    const displayedTemp = this.state.monthlyData[displayedTempKey][this.state.tempType]
 
     this.setState({ displayedTemp })
   }
@@ -51,23 +52,51 @@ export default class OregonMap extends Component {
     this.setDisplayedTemp()
   }
 
-  handleMarkerClick = (city) => {
-    console.log(`You clicked on ${city}!`);
+  handleTempType = async (e) => {
+    const tempConvert = {
+      'Average High Temp': 'avg',
+      'Highest High Temp': 'max',
+      'Lowest High Temp': 'min'
+    }
+
+    const tempType = tempConvert[e.target.value]
+
+    await this.setState({ tempType })
+
+    this.setDisplayedTemp();
   }
 
-  colorScale = scaleQuantize()
-  .domain([1, 10])
-  .range([
-    "#00B5E5",
-    "#00A3DB",
-    "#0091D1",
-    "#007FC8",
-    "#006DBE",
-    "#005BB5",
-    "#0049AB",
-    "#0037A1",
-    "#002598"
-  ]);
+  handleMarkerClick = (city) => {
+    this.props.history.push('/tempchart')
+  }
+
+  lightBlueColorScale = scaleQuantize()
+    .domain([1, 10])
+    .range([
+      "#00B5E5",
+      "#00AAD9",
+      "#009FCD",
+      "#0094C1",
+      "#008AB5",
+      "#007FA9",
+      "#00749D",
+      "#006991",
+      "#005F85"
+    ]);
+
+  redColorScale = scaleQuantize()
+    .domain([1, 10])
+    .range([
+      "#FFB3BC",
+      "#FDA5AB",
+      "#FB979B",
+      "#F98A8B",
+      "#F87C7B",
+      "#F66E6B",
+      "#F4615B",
+      "#F2534B",
+      "#F1463B"
+    ]);
 
   render() {
     return (
@@ -98,7 +127,7 @@ export default class OregonMap extends Component {
                     return <Geography 
                       key={geo.rsmKey}
                       geography={geo}
-                      fill={this.colorScale(j % 10)}
+                      fill={this.lightBlueColorScale(j % 10)}
                     />
                   })
                 }
@@ -136,6 +165,16 @@ export default class OregonMap extends Component {
             }
           </div>
         </div>
+        <select onChange={this.handleTempType}>
+          {
+            ['Average High Temp', 'Highest High Temp', 'Lowest High Temp'].map(temp => {
+              return <option
+                key={temp}
+                value={temp}
+              >{temp}</option>
+            })
+          }
+        </select>
       </div>
     )
   }
