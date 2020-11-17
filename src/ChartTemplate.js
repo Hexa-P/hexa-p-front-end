@@ -3,6 +3,8 @@ import request from 'superagent';
 import regression from 'regression';
 import { Line } from 'react-chartjs-2';
 
+import Navigation from './Navigation.js';
+
 
 export default class ChartTemplate extends Component {
 
@@ -44,6 +46,10 @@ export default class ChartTemplate extends Component {
       .map(point => point[1]);
 
     return (
+      <>
+      <div>
+        <Navigation />
+      </div>
       <div className="chart-container">
         <Line
           data={
@@ -101,7 +107,9 @@ export default class ChartTemplate extends Component {
             }
           }}
         />
+
       </div>
+      </>
     )
   }
 }
