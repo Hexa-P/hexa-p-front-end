@@ -12,6 +12,8 @@ import Home from './Home.js';
 import ChartTemplate from './ChartTemplate.js';
 import './App.css';
 import SignUpPage from './SignUpPage.js';
+import Login from './Login.js';
+import Welcome from './Welcome.js';
 
 
 // -----------------------------------------------------------------------------------
@@ -64,6 +66,11 @@ logOut = () => {
             <Route
               path="/"
               exact
+              render={(routerProps) => <Welcome {...routerProps} />}
+            />
+            <Route
+              path="/Home"
+              exact
               render={(routerProps) => <Home {...routerProps} />}
             />
             <Route
@@ -78,16 +85,24 @@ logOut = () => {
             />
 
             <Route 
-            path='/signup'
-            exact 
-            render={
-              (routerProps) =>
-                <SignUpPage
-                {...routerProps}
-                setTokenAndName={this.setTokenAndName} 
-                />
-            }
+              path='/signup'
+              exact 
+              render={
+                (routerProps) =>
+                  <SignUpPage
+                  {...routerProps}
+                  setTokenAndName={this.setTokenAndName} 
+                  />
+              }
             />    
+
+            <Route exact path='/login' render={(routerProps) => <Login {...routerProps} 
+            setTokenAndName={this.setTokenAndName}
+            />} />
+
+
+              
+
           </Switch>
 
           {/* ------------------------------------------------------------------------------------------ */}

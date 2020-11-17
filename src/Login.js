@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Navigation from './Navigation.js';
 import request from 'superagent';
 
 export default class Login extends Component {
@@ -39,6 +40,11 @@ export default class Login extends Component {
     render() {
         return (
             <div>
+
+                <div>
+                    <Navigation />
+                </div>
+
                 <form onSubmit={this.handleSubmit}>
                     <h2>Login</h2>
                     Username or Email:

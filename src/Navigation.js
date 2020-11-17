@@ -6,7 +6,7 @@ export default class Navigation extends Component {
         return (
             <div>
                 <div className="navbar">
-                    <NavLink className="link" to="/">Home</NavLink>
+                    <NavLink className="link" to="/Home">Home</NavLink>
                     <NavLink className="link" to="/signup">Sign Up</NavLink>
                     <NavLink className="link" to="/login">Login</NavLink>
                     <NavLink className="link" to="/mapchart">Map</NavLink>
