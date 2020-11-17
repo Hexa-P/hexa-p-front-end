@@ -7,6 +7,7 @@ import {
   Geography,
   Marker
 } from 'react-simple-maps';
+import { scaleQuantize } from "d3-scale";
 
 const oregonData = require('./tl_2010_41_county10.json')
 
@@ -23,6 +24,10 @@ export default class OregonMap extends Component {
 
     await this.setState({ monthlyData: data.body.month });
 
+    this.setDisplayedTemp();
+  }
+
+  setDisplayedTemp = () => {
     const displayedTempKey = Object.keys(this.state.monthlyData)
       .filter(key => key.slice(0, 4) === this.state.displayedYear)
 
@@ -30,6 +35,26 @@ export default class OregonMap extends Component {
 
     this.setState({ displayedTemp })
   }
+
+  handleYearClick = async (e) => {
+    this.setState({ displayedYear: e.target.value })
+
+    this.setDisplayedTemp()
+  }
+
+  colorScale = scaleQuantize()
+  .domain([1, 10])
+  .range([
+    "#00B5E5",
+    "#00A3DB",
+    "#0091D1",
+    "#007FC8",
+    "#006DBE",
+    "#005BB5",
+    "#0049AB",
+    "#0037A1",
+    "#002598"
+  ]);
 
   render() {
     return (
@@ -42,11 +67,13 @@ export default class OregonMap extends Component {
           <Geographies geography={oregonData}>
             {
               ({ geographies }) => {
+                let j = -1
                 return geographies.map(geo => {
+                  j += 1;
                   return <Geography 
                     key={geo.rsmKey}
                     geography={geo}
-                    fill="#AAA"
+                    fill={this.colorScale(j % 10)}
                   />
                 })
               }
@@ -54,22 +81,33 @@ export default class OregonMap extends Component {
           </Geographies>
           <Marker
             coordinates={[-122.675, 45.45]}
-            fill="blue"
           >
             <circle
               r={0.3}
               fill="green"
               className="circle-marker"
             ></circle>
-            <text className="displayed-temp">
-              {Math.floor(this.state.displayedTemp)}
+            <text
+              className="displayed-temp"
+              textAnchor="middle"
+              x="1.9"
+              y="0.168"
+              fill="black"
+            >
+              Portland: {Math.floor(this.state.displayedTemp)}
             </text>
           </Marker>
         </ComposableMap>
         <div className="flex-row flex-center">
-          <button>1950</button>
-          <button>1951</button>
-          <button>1952</button>
+          {
+            [0, 1, 2].map(year => {
+              return <button
+                key={year + 1950}
+                value={year + 1950}
+                onClick={(e) => this.handleYearClick(e)}
+              >{year + 1950}</button>
+            })
+          }
         </div>
       </div>
     )
