@@ -7,7 +7,8 @@ import './Footer.css';
 export default class Footer extends Component {
     render() {
         return (
-            <footer>
+            <>
+            <footer className="footerFun">
 
 {/* -------------------------------------------------------------------------------- */}
 
@@ -70,7 +71,9 @@ export default class Footer extends Component {
                         <img src={captain_planet} alt='captain planet'/>
                     </div>
                 </div>
+
             </footer>
+            </>
         )
     }
 }
