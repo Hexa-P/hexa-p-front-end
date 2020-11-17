@@ -1,5 +1,4 @@
 import './App.css';
-import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 
 export default class Header extends Component {
@@ -11,8 +10,6 @@ export default class Header extends Component {
           {/* --------------------------------------------------------------------- */}
 
           <h1>Oregon Environmental Data Initiative</h1>
-
-
 
           {/* --------------------------------------------------------------------- */}
 

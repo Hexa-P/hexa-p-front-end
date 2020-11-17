@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { Line } from 'react-chartjs-2';
 import request from 'superagent';
 import regression from 'regression';
-import { Line } from 'react-chartjs-2';
-
 import Navigation from './Navigation.js';
 
 
 export default class ChartTemplate extends Component {
 
+
+  // --------------------------------------------------------------------------------------
   state = {
     city: 'Portland',
     temp_type: 'Average High',
@@ -30,6 +31,14 @@ export default class ChartTemplate extends Component {
   
   render() {
 
+    return (
+    <>
+      <div>
+        <Navigation />
+      </div>
+
+{/* ------------------------------------------------------------------------------------- */}
+
     const { 
       city,
       month,
@@ -50,8 +59,10 @@ export default class ChartTemplate extends Component {
       <div>
         <Navigation />
       </div>
+
       <div className="chart-container">
         <Line
+
           data={
             {
               labels: [...Array(55).keys()].map(num => num + 1950),
@@ -107,9 +118,12 @@ export default class ChartTemplate extends Component {
             }
           }}
         />
-
       </div>
       </>
+
+{/* --------------------------------------------------------------------------------------------------- */}
+
+     
     )
   }
 }
