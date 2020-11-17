@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import captain_planet from './images/planateers.png';
 import github from './assets/github.png';
 import linkedin from './assets/linkedin.png';
+import './Footer.css';
 
 export default class Footer extends Component {
     render() {

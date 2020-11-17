@@ -1,4 +1,6 @@
-
+* {
+  box-sizing: border-box;
+}
 
 header {
   padding: 60px;
@@ -29,14 +31,17 @@ footer {
 }
 
 .navbar {
-  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.75);
   position: fixed;
   top: 0;
   width: 100%;
   transition: top 0.3s;
+  height: 60px;
+  line-height: 2em;
 }
 
 .link {
+  margin-left: 33px;
   float: left;
   display: block;
   color: white;
