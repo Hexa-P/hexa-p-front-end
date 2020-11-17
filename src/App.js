@@ -13,7 +13,7 @@ import SignUpPage from './SignUpPage.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
 
-
+<header />  
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
