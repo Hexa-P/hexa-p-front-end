@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import captain_planet from './images/planateers.png';
 import github from './assets/github.png';
 import linkedin from './assets/linkedin.png';
+import './Footer.css';
 
 export default class Footer extends Component {
     render() {
         return (
-            <footer>
+            <>
+            <footer className="footerFun">
 
 {/* -------------------------------------------------------------------------------- */}
 
@@ -69,7 +71,9 @@ export default class Footer extends Component {
                         <img src={captain_planet} alt='captain planet'/>
                     </div>
                 </div>
+
             </footer>
+            </>
         )
     }
 }

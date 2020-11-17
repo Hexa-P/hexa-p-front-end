@@ -1,0 +1,14 @@
+.footerFun {
+    padding: 20px;
+    text-align: center;
+    background-image: url('./images/pexels-brian-hackworth-3523519.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    color: white;
+    font-size: 18px;
+    bottom: 0;
+    height: 200px;
+    width: 100%;
+    border-top: black 1px solid;
+}
