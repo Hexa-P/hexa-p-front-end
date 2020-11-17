@@ -1,0 +1,35 @@
+.slider-container {
+  width: 100%;
+  margin: 0;
+  border: 1px solid pink;
+}
+.horizontal-slider {
+  height: 20px;
+  cursor: pointer;
+  cursor: -webkit-grab;
+  margin-top: -11px;
+  /* cursor: grab; */
+
+}
+.example-track {
+ height: 3px;
+
+}
+
+.example-thumb {
+    width: 40px;
+    height: 24px;
+    border: 1px inset rgb(216, 115, 154);
+    background-color: rgb(192, 232, 255);
+    position: absolute;
+
+
+}
+/* .example-track {
+  top: 1px;
+    width: 50px;
+    height: 48px;
+    line-height: 38px;
+    border: 20px solid black;
+} */
+
