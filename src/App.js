@@ -6,8 +6,6 @@ import {
 } from 'react-router-dom';
 
 import OregonMap from './OregonMap.js';
-import Header from './Header.js';
-import Footer from './Footer.js';
 import Home from './Home.js';
 import ChartTemplate from './ChartTemplate.js';
 import './App.css';
@@ -58,26 +56,27 @@ logOut = () => {
 
           {/* ----------------------------------------------------------------------------------------- */}
 
-          <Header />
-
-          {/* ----------------------------------------------------------------------------------------- */}
 
           <Switch>
+
             <Route
               path="/"
               exact
               render={(routerProps) => <Welcome {...routerProps} />}
             />
+
             <Route
               path="/Home"
               exact
               render={(routerProps) => <Home {...routerProps} />}
             />
+
             <Route
               path="/mapchart"
               exact
               render={(routerProps) => <OregonMap {...routerProps} />}
             />
+
             <Route
               path="/tempchart"
               exact
@@ -96,18 +95,16 @@ logOut = () => {
               }
             />    
 
-            <Route exact path='/login' render={(routerProps) => <Login {...routerProps} 
-            setTokenAndName={this.setTokenAndName}
-            />} />
+            <Route exact path='/login' render={(routerProps) => 
+              <Login {...routerProps} 
+              setTokenAndName={this.setTokenAndName}
+              />} 
+            />
 
 
               
 
           </Switch>
-
-          {/* ------------------------------------------------------------------------------------------ */}
-
-          <Footer />
 
           {/* ------------------------------------------------------------------------------------------ */}
 

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from './Navigation.js';
 import request from 'superagent';
+import Header from './Header.js';
+import Footer from './Footer.js';
+
 
 export default class Login extends Component {
     state = { 
@@ -45,6 +48,8 @@ export default class Login extends Component {
                     <Navigation />
                 </div>
 
+                <Header />
+
                 <form onSubmit={this.handleSubmit}>
                     <h2>Login</h2>
                     Username or Email:
@@ -71,6 +76,8 @@ export default class Login extends Component {
                         : <button>Submit</button>
                     }
                 </form>
+
+                <Footer />
             </div>
         )
     }
