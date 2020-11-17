@@ -1,0 +1,4 @@
+.circle-marker:hover {
+    fill: blue;
+    cursor: pointer;
+}
