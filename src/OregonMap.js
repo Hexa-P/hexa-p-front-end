@@ -18,8 +18,7 @@ export default class OregonMap extends Component {
   state = {
     monthlyData: {},
     displayedYear: '1950',
-    tempType: 'avg',
-    sliderYear: '1950'
+    tempType: 'avg'
   }
 
   componentDidMount = async() => {
