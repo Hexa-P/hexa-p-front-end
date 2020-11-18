@@ -3,7 +3,7 @@ import Navigation from './Navigation.js';
 import './reset.css';
 import './Welcome.css';
 import forest from './assets/slowforest.mp4';
-import { useHistory } from 'react-router-dom';
+
 
 
 export default class Welcome extends Component {

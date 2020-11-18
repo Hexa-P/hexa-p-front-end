@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation.js';
 import request from 'superagent';
-import Header from './Header.js';
-import Footer from './Footer.js';
 import { NavLink } from 'react-router-dom';
+import './reset.css' 
 import './SignLogin.css';
-
+import bridge from './images/signlog.jpg';
 
 export default class Login extends Component {
     state = { 
@@ -48,51 +47,47 @@ export default class Login extends Component {
                     <Navigation />
                 </div>
 
-    {/* ----------------------------------------------------------------------- */}
-
-                <Header />
+                <img className="earth" src={bridge} type='image' alt="forest bridge" />
 
     {/* ----------------------------------------------------------------------- */}
+                <div className="main-container"> 
+                    <div className="container center">
 
-                <div className="container">
+                    <NavLink className="signup" to="/signup">SignUp</NavLink> 
+                    <NavLink className="login" to="/login">Login</NavLink> 
 
-                <NavLink className="signup" to="/signup">SignUp</NavLink> 
-                <NavLink className="login" to="/login">Login</NavLink> 
+                    <div className="login-form">
+                        <form onSubmit={this.handleSubmit}>
+                            <h2>Login</h2>
+                            Username or Email:
+                            <label> 
+                                {this.state.err && <div>
+                                    {this.state.err}
+                                    </div>}
+                                <input
+                                value={this.state.email}
+                                onChange={(e) => this.setState({ email: e.target.value})}
+                                />
+                            </label>
+                            Password
+                            <label> 
+                                <input
+                                type="password"
+                                value={this.state.password}
+                                onChange={(e) => this.setState({ password: e.target.value})}
+                                />
+                            </label>
 
-                <div className="login-form">
-                    <form onSubmit={this.handleSubmit}>
-                        <h2>Login</h2>
-                        Username or Email:
-                        <label> 
-                            {this.state.err && <div>
-                                {this.state.err}
-                                </div>}
-                            <input
-                            value={this.state.email}
-                            onChange={(e) => this.setState({ email: e.target.value})}
-                            />
-                        </label>
-                        Password
-                        <label> 
-                            <input
-                            type="password"
-                            value={this.state.password}
-                            onChange={(e) => this.setState({ password: e.target.value})}
-                            />
-                        </label>
-
-                        {
-                            this.state.loading
-                            ? 'spins'
-                            : <button>Submit</button>
-                        }
-                    </form>
+                            {
+                                this.state.loading
+                                ? 'spins'
+                                : <button>Submit</button>
+                            }
+                        </form>
+                    </div>
                 </div>
             </div>
-
 {/* -------------------------------------------------------------------------------------- */}
-
-                    <Footer />
 
                 </div>
 

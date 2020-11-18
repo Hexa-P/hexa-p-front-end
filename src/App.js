@@ -12,8 +12,6 @@ import SliderYear from './SliderYear.js'
 import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
-
-<header />
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
