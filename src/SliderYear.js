@@ -8,11 +8,11 @@ export default class SliderYear extends Component {
 
     return (
       <>
-        <div className="slider-container">
+        <div className="year-slider-container">
           <ReactSlider
-            className="horizontal-slider"
-            thumbClassName="example-thumb"
-            trackClassName="example-track"
+            className="year-slider"
+            thumbClassName="year-thumb"
+            trackClassName="year-track"
             defaultValue={1950} //replace with lowermost year in the year array
             min={1950} //replace with lowermost year in the year array
             max={2005} //replace with uppermost year in the year array

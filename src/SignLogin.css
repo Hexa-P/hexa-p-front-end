@@ -20,7 +20,7 @@ input:focus {
     border: 2px solid rgba(4, 80, 4, 0.733);
 }
 
-button {
+.button-sign {
     width: 100%;
     background: rgba(241, 255, 47, 0.425);
     height: 60px;

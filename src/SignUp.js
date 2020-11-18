@@ -103,7 +103,7 @@ export default class SignUp extends Component {
                             {
                                 this.state.loading
                                 ? 'spins'
-                                : <button>Submit</button>
+                                : <button className="button-sign">Submit</button>
                             }
                         </form>
                     </div>
