@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Article.css';
+import { ReactTinyLink } from "react-tiny-link";
 import { Link } from 'react-router-dom';
 // import 'LinkPreview' from 'react-link-preview';
 
@@ -18,7 +19,7 @@ export default class Article extends Component {
                     <div className="gallery">
 
                         <figure className="gallery__item gallery__item--1">
-                            <img src="trees.png" class="gallery__img" alt="Image 1" />
+                            <img src="trees.png" className="tall_gallery__img" alt="Image 1" />
                         </figure>
 
                         <figure className="gallery__item gallery__item--2">
@@ -30,7 +31,13 @@ export default class Article extends Component {
                         </figure>
 
                         <figure className="gallery__item gallery__item--4">
-                            <img src="trees.png" className="gallery__img" alt="Image 4" />
+                            <ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={6}
+                                minLine={5}
+                                url="https://www.cnn.com/world/live-news/coronavirus-pandemic-11-17-20-intl/index.html" />
+        "
                         </figure>
 
                     </div>
