@@ -14,6 +14,7 @@ export default class Article1 extends Component {
                     <div className="gallery">
 
                         <article className="art1 border">
+
                             <img src="fire-australia.jpg" className="gallery__img" alt="animals-effected-by-wildfire" />
                             <span className="floater">
                                 <h3><Link
@@ -35,6 +36,7 @@ export default class Article1 extends Component {
                                     </p>
                                 </div>
                             </span>
+
                         </article>
 
                         <article className="art2 border">
