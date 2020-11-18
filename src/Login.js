@@ -47,7 +47,7 @@ export default class Login extends Component {
                     <Navigation />
                 </div>
 
-                <img className="earth" src={bridge} type='image' alt="forest bridge" />
+                <img className="bridged" src={bridge} type='image' alt="forest bridge" />
 
     {/* ----------------------------------------------------------------------- */}
                 <div className="main-container"> 

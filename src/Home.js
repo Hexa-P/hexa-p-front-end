@@ -14,7 +14,7 @@ export default class Home extends Component {
                 <Navigation />
                 <Header />
                 <h1>Welcome home</h1>
-                <Article />
+                
                 <Footer />
             </div>
         )

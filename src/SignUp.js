@@ -64,7 +64,7 @@ export default class SignUp extends Component {
     render() {
         return (
             <section className="background">
-                <img className="earth" src={bridge} type='image' alt="forest bridge" />
+                <img className="bridged" src={bridge} type='image' alt="forest bridge" />
 
                 <div>
                     <Navigation />
