@@ -138,82 +138,96 @@ export default class OregonMap extends Component {
     return (
      <>
     <Navigation />
-    <Header /> 
-    <div className="flex-row flex-center">
-        <div className="month-slider flex-col">
-          {/* {
-            ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map(month => {
-              return <button
-                key={month}
-                  value={month}
-                onClick={this.handleMonthClick}
-              >{month}</button>
-            })
-          } */}
+    
+    <div>
+      <Header /> 
+    </div>
 
-          <SliderMonth 
-            handleMonthSlider={this.handleMonthSlider}
-          />
+{/* --------------------------------------------------------------------------------------------------------------- */}
 
-        </div>
-        <div className="map-container">
-          <ComposableMap
-            className="oregon-map"
-            projection="geoMercator"
-            viewBox="69 159 18 18"
-          >
-            <Geographies geography={oregonData}>
-              {
-                ({ geographies }) => {
-                  let j = -1
-                  return geographies.map(geo => {
-                    j += 1;
-                    return <Geography 
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill={this.lightBlueColorScale(j % 10)}
-                    />
-                  })
-                }
-              }
-            </Geographies>
-            <Marker
-              coordinates={[-122.675, 45.45]}
+    <div className="map-wrapper">
+      <div className="flex-row flex-center">
+          <div className="month-slider flex-col">
+            {/* {
+              ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map(month => {
+                return <button
+                  key={month}
+                    value={month}
+                  onClick={this.handleMonthClick}
+                >{month}</button>
+              })
+            } */}
+
+            <SliderMonth 
+              handleMonthSlider={this.handleMonthSlider}
+            />
+
+          </div>
+
+          <div className="map-container">
+            <ComposableMap
+              className="oregon-map"
+              projection="geoMercator"
+              viewBox="69 159 18 18"
             >
-              <circle
-                r={0.3}
-                fill="green"
-                className="circle-marker"
-                onClick={() => this.handleMarkerClick('Portland')}
-              ></circle>
-              <text
-                className="displayed-temp"
-                textAnchor="middle"
-                x="2.3"
-                y="0.168"
-                fill="black"
+              <Geographies geography={oregonData}>
+                {
+                  ({ geographies }) => {
+                    let j = -1
+                    return geographies.map(geo => {
+                      j += 1;
+                      return <Geography 
+                        key={geo.rsmKey}
+                        geography={geo}
+                        fill={this.lightBlueColorScale(j % 10)}
+                      />
+                    })
+                  }
+                }
+              </Geographies>
+              <Marker
+                coordinates={[-122.675, 45.45]}
               >
-                Portland: {`${Math.floor(this.state.displayedTemp * 10) / 10} ${String.fromCharCode(176)}F`}
-              </text>
-            </Marker>
-          </ComposableMap>
-          <SliderYear 
-            handleYearSlider={this.handleYearSlider}
-          />
-        </div>
-        <select onChange={this.handleTempType}>
-          {
-            ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
-              return <option
-                key={temp}
-                value={temp}
-              >{temp}</option>
-            })
-          }
-        </select>
+                <circle
+                  r={0.3}
+                  fill="green"
+                  className="circle-marker"
+                  onClick={() => this.handleMarkerClick('Portland')}
+                ></circle>
+                <text
+                  className="displayed-temp"
+                  textAnchor="middle"
+                  x="2.3"
+                  y="0.168"
+                  fill="black"
+                >
+                  Portland: {`${Math.floor(this.state.displayedTemp * 10) / 10} ${String.fromCharCode(176)}F`}
+                </text>
+              </Marker>
+            </ComposableMap>
+            <SliderYear 
+              handleYearSlider={this.handleYearSlider}
+            />
+          </div>
+          <select onChange={this.handleTempType}>
+            {
+              ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
+                return <option
+                  key={temp}
+                  value={temp}
+                >{temp}</option>
+              })
+            }
+          </select>
       </div>
 
+    </div>
+
+{/* ------------------------------------------------------------------------------------- */}
+
+    <div>
       <Footer />
+    </div>
       </>
     )
   }
