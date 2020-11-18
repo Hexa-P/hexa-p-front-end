@@ -7,7 +7,8 @@ import {
   Geography,
   Marker
 } from 'react-simple-maps';
-import { scaleQuantize } from "d3-scale";
+import { scaleQuantize } from 'd3-scale';
+
 import Navigation from './Navigation.js';
 import SliderYear from './SliderYear.js';
 import SliderMonth from './SliderMonth.js';
@@ -135,7 +136,7 @@ export default class OregonMap extends Component {
 
   render() {
     return (
-     <>
+    <>
     <Navigation />
     
     <div>
@@ -143,84 +144,86 @@ export default class OregonMap extends Component {
     </div>
 
 {/* --------------------------------------------------------------------------------------------------------------- */}
-
+  <div className="oregon-map-container">
     <div className="map-wrapper">
-      <div className="flex-row flex-center">
-          <div className="month-slider flex-col">
-            {/* {
-              ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map(month => {
-                return <button
-                  key={month}
-                    value={month}
-                  onClick={this.handleMonthClick}
-                >{month}</button>
-              })
-            } */}
 
-            <SliderMonth 
-              handleMonthSlider={this.handleMonthSlider}
-            />
+      <div className="month-slider-grid">
+        <SliderMonth 
+          handleMonthSlider={this.handleMonthSlider}
+        />
+      </div>
 
-          </div>
+      <div className="map-container">
+        <ComposableMap
+          projection="geoMercator"
+          viewBox="69 159.5 18 18"
+        >
 
-          <div className="map-container">
-            <ComposableMap
-              className="oregon-map"
-              projection="geoMercator"
-              viewBox="69 159 18 18"
-            >
-              <Geographies geography={oregonData}>
-                {
-                  ({ geographies }) => {
-                    let j = -1
-                    return geographies.map(geo => {
-                      j += 1;
-                      return <Geography 
-                        key={geo.rsmKey}
-                        geography={geo}
-                        fill={this.lightBlueColorScale(j % 10)}
-                      />
-                    })
-                  }
-                }
-              </Geographies>
-              <Marker
-                coordinates={[-122.675, 45.45]}
-              >
-                <circle
-                  r={0.3}
-                  fill="green"
-                  className="circle-marker"
-                  onClick={() => this.handleMarkerClick('Portland')}
-                ></circle>
-                <text
-                  className="displayed-temp"
-                  textAnchor="middle"
-                  x="2.3"
-                  y="0.168"
-                  fill="black"
-                >
-                  Portland: {`${Math.floor(this.state.displayedTemp * 10) / 10} ${String.fromCharCode(176)}F`}
-                </text>
-              </Marker>
-            </ComposableMap>
-            <SliderYear 
-              handleYearSlider={this.handleYearSlider}
-            />
-          </div>
-          <select onChange={this.handleTempType}>
+          <Geographies geography={oregonData}>
             {
-              ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
-                return <option
-                  key={temp}
-                  value={temp}
-                >{temp}</option>
-              })
+              ({ geographies }) => {
+                let j = -1
+                return geographies.map(geo => {
+                  j += 1;
+                  return <Geography 
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={this.lightBlueColorScale(j % 10)}
+                  />
+                })
+              }
             }
-          </select>
+          </Geographies>
+
+          <Marker
+            coordinates={[-122.675, 45.45]}
+          >
+            <circle
+              r={0.3}
+              fill="green"
+              className="circle-marker"
+              onClick={() => this.handleMarkerClick('Portland')}
+            ></circle>
+
+            <text
+              className="displayed-temp"
+              textAnchor="middle"
+              x="2.3"
+              y="0.168"
+              fill="black"
+            >
+              Portland: {`${Math.floor(this.state.displayedTemp * 10) / 10} ${String.fromCharCode(176)}F`}
+            </text>
+
+          </Marker>
+
+        </ComposableMap>
+      </div>
+
+      <div className="year-slider-grid">
+        <SliderYear
+          handleYearSlider={this.handleYearSlider}
+        />
+      </div>
+
+      <div className="temp-dropdown-container">
+        <select 
+          onChange={this.handleTempType}
+          className="temp-dropdown"
+        >
+          {
+            ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
+              return <option
+                key={temp}
+                value={temp}
+              >{temp}</option>
+            })
+          }
+        </select>
       </div>
 
     </div>
+  </div>
 
 {/* ------------------------------------------------------------------------------------- */}
 

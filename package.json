@@ -22,6 +22,7 @@
     "react-simple-maps": "^2.3.0",
     "react-slider": "^1.1.2",
     "react-tiny-link": "^3.6.0",
+    "reactjs-popup": "^2.0.4",
     "regression": "^2.0.1",
     "styled-components": "^5.2.1",
     "superagent": "^6.1.0",
