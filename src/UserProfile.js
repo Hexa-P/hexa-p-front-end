@@ -12,7 +12,7 @@ export default class UserProfile extends Component {
         const response = await request.get(`https://serene-temple-06405.herokuapp.com/api/userprofile/${searchedId}`)
         .set('Authorization', this.props.token)
 
-        this.setState({ todos: response.body })
+        this.setState({ favorites: response.body })
     } 
 
     componentDidMount = async () => {

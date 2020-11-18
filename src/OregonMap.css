@@ -21,7 +21,26 @@
     align-items: center;
 }
 
+<<<<<<< HEAD
 /* .oregon-map {
+=======
+.map-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: auto;
+}
+
+.map-container:after {
+    content: "";
+    display: block;
+    height: 200px;
+}
+
+.oregon-map {
+>>>>>>> ce4758efea21a655fca4afacab0cdd7856517a13
     width: 500px;
     height: 425px;
 } */
