@@ -21,9 +21,9 @@
 }
 
 .year-track {
-  border: solid 1px black;
-  height: 3px;
-  background-color: black;
+  border-radius: 5px;
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .year-thumb {
@@ -60,7 +60,6 @@
   width: 10px;
   height: 100%;
   cursor: pointer;
-  cursor: -webkit-grab;
 
   display: flex;
   flex-direction: row;
@@ -68,9 +67,9 @@
 }
 
 .month-track {
-  border: solid 1px black;
-  width: 3px;
-  background-color: black;
+  border-radius: 5px;
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .month-thumb {

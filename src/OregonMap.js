@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './OregonMap.css';
 import request from 'superagent';
+import { NavLink } from 'react-router-dom';
 import {
   ComposableMap,
   Geographies,
@@ -82,7 +83,7 @@ export default class OregonMap extends Component {
     this.setDisplayedTemp();
   }
 
-  handleMarkerClick = (city) => {
+  handleHistoricalButton = (city) => {
     this.props.history.push('/tempchart')
   }
 
@@ -134,6 +135,8 @@ export default class OregonMap extends Component {
       "#F1463B"
     ]);
 
+// --------------------------------------------------------------------------------------
+
   render() {
     return (
     <>
@@ -143,7 +146,7 @@ export default class OregonMap extends Component {
       <Header /> 
     </div>
 
-{/* --------------------------------------------------------------------------------------------------------------- */}
+{/* --------------------------------------------------------------------------------------*/}
   <div className="oregon-map-container">
     <div className="map-wrapper">
 
@@ -175,39 +178,54 @@ export default class OregonMap extends Component {
             }
           </Geographies>
 
-          <Marker
-            coordinates={[-122.675, 45.45]}
-          >
-          <Popup
-            trigger={<circle
-              r={0.3}
-              fill="green"
-              className="circle-marker"
-            ></circle>}
-            position="left"
-          >
-            <div className="portland-popup">
-              <button
-                className="historical-data-button"
-                onClick={() => this.handleMarkerClick('Portland')}
-              >View Historical Data</button>
-              <button className="predictions-button">View Predictions</button>
-            </div>
-          </Popup>
+          <Marker coordinates={[-122.675, 45.45]}>
+            <Popup
+              trigger={<circle
+                r={0.3}
+                fill="red"
+                className="circle-marker"
+              ></circle>}
+              position="left"
+            >
+              <div className="portland-popup">
 
-          <text
-            className="displayed-temp"
-            textAnchor="left"
-            x="0.5"
-            y="0.25"
-            fill="black"
-          >
-            Portland: {
-              this.state.displayedTemp
-              ? `${Math.floor(this.state.displayedTemp * 10) / 10} ${String.fromCharCode(176)}F`
-              : ''
-            }
-          </text>
+                <button
+                  className="historical-data-button"
+                  // onClick={() => this.handleHistoricalButton('Portland')}
+                >
+                  <NavLink
+                    to={{
+                      pathname: "/tempchart",
+                      search: "?city=portland",
+                      state: {
+                        monthlyData: this.state.monthlyData
+                      }
+                    }}>View Historical Data</NavLink>
+                </button>
+
+                <button
+                  className="predictions-button"
+                  onClick={() => this.handlePredictionsButton('Portland')}
+                >
+                  View Predictions
+                </button>
+
+              </div>
+            </Popup>
+
+            <text
+              className="displayed-temp"
+              textAnchor="left"
+              x="0.5"
+              y="0.25"
+              fill="black"
+            >
+              Portland: {
+                this.state.displayedTemp
+                ? `${Math.floor(this.state.displayedTemp * 10) / 10}${String.fromCharCode(176)}F`
+                : ''
+              }
+            </text>
 
           </Marker>
 
@@ -235,15 +253,12 @@ export default class OregonMap extends Component {
           }
         </select>
       </div>
-
     </div>
   </div>
 
 {/* ------------------------------------------------------------------------------------- */}
 
-    <div>
       <Footer />
-    </div>
       </>
     )
   }

@@ -28,7 +28,7 @@
 }
 
 .circle-marker:hover {
-    fill: red;
+    fill: rgb(181, 255, 10);
     cursor: pointer;
 }
 
