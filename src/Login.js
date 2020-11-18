@@ -59,7 +59,7 @@ export default class Login extends Component {
                     <div className="login-form">
                         <form onSubmit={this.handleSubmit}>
                             <h2>Login</h2>
-                            Username or Email:
+                            Email:
                             <label> 
                                 {this.state.err && <div>
                                     {this.state.err}

@@ -81,7 +81,7 @@ export default class SignUp extends Component {
                     <div className="signup-form">
                         <form onSubmit={this.handleSubmitSignUp}>
                             <h2>Sign Up</h2>
-                            Username or Email:
+                            Email:
                             <label> 
                                 <input
                                 value={this.state.email}

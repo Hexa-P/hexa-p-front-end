@@ -3,6 +3,8 @@ import { Line } from 'react-chartjs-2';
 import request from 'superagent';
 import regression from 'regression';
 import Navigation from './Navigation.js';
+import Header from './Header.js';
+import Footer from './Footer.js';
 
 
 export default class ChartTemplate extends Component {
@@ -48,9 +50,12 @@ export default class ChartTemplate extends Component {
 
     return (
       <>
+
       <div>
         <Navigation />
       </div>
+
+      <Header />
 
       <div className="chart-container">
         <Line
@@ -111,6 +116,9 @@ export default class ChartTemplate extends Component {
           }}
         />
       </div>
+
+      <Footer />
+
       </>
     )
   }
