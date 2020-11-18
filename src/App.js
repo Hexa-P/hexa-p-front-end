@@ -9,8 +9,7 @@ import OregonMap from './OregonMap.js';
 import Home from './Home.js';
 import ChartTemplate from './ChartTemplate.js';
 import SliderYear from './SliderYear.js'
-import './App.css';
-import SignUpPage from './SignUpPage.js';
+import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
 
@@ -94,9 +93,9 @@ export default class App extends Component {
               exact
               render={
                 (routerProps) =>
-                  <SignUpPage
-                    {...routerProps}
-                    setTokenAndName={this.setTokenAndName}
+                  <SignUp
+                  {...routerProps}
+                  setTokenAndName={this.setTokenAndName} 
                   />
               }
             />

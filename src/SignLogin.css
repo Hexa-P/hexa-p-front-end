@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-image: url('./images/signlog.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+input {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border: 2px solid #e9eaea;
+    color: #3e3e40;
+    font-size: 14px;
+    outline: none;
+    transform: all 0.5s ease;
+}
+
+input:focus {
+    border: 2px solid #34b3a0;
+}
+button {
+    width: 100%;
+    background: #34b3a0;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+
+
+/* CLASSES ------------------------------ */
+    
+.main-container{
+    background: #e9eaea;
+    font-family: roboto;
+    user-select: none;
+    background-size: cover;
+    height: 100%;
+    width: 450px;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.container{
+    width: 450px;
+    margin: 30px auto;
+    margin-top: 20%;
+    align-content: center;
+}
+
+.signup,
+.login{
+    width: 50%;
+    background: #fff;
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue';
+    border: 1px solid black;
+    
+}
+
+.signup-form,
+.login-form{
+    background: #fff;
+    padding: 40px;
+    clear: both;
+    width: 100%;
+    box-sizing: border-box;
+    height: 400px;
+    border-bottom: 1px solid black;
+    
+}
+
+.blank1 {
+    background-color: white;
+}
+
+.blank2 {
+    background-color: white;
+}

@@ -2,34 +2,6 @@
   box-sizing: border-box;
 }
 
-header {
-  padding: 60px;
-  text-align: center;
-  background-image: url('./images/pexels-brian-hackworth-3523519.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-  font-size: 13px;
-  border-bottom: black 1px solid;
-  height: 5vh;
-}
-
-footer {
-  padding: 20px;
-  text-align: center;
-  background-image: url('./images/pexels-brian-hackworth-3523519.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  color: white;
-  font-size: 18px;
-  bottom: 0;
-  height: 10vh;
-  width: 100%;
-  border-top: black 1px solid;
-}
-
 .navbar {
   background-color: rgba(0, 0, 0, 0.75);
   position: fixed;
