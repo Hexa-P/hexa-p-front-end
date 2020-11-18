@@ -12,3 +12,18 @@
     border-top: black 1px solid;
 
 }
+
+.git {
+    width: 170px;
+}
+
+.gitabove {
+    width: 170px;
+}
+
+.gitabove img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    
+}

@@ -8,9 +8,11 @@ import {
   Marker
 } from 'react-simple-maps';
 import { scaleQuantize } from "d3-scale";
-
-import SliderYear from './SliderYear.js'
-import SliderMonth from './SliderMonth.js'
+import Navigation from './Navigation.js';
+import SliderYear from './SliderYear.js';
+import SliderMonth from './SliderMonth.js';
+import Header from './Header.js';
+import Footer from './Footer.js';
 
 const oregonData = require('./tl_2010_41_county10.json')
 
@@ -134,7 +136,10 @@ export default class OregonMap extends Component {
 
   render() {
     return (
-      <div className="flex-row flex-center">
+     <>
+    <Navigation />
+    <Header /> 
+    <div className="flex-row flex-center">
         <div className="month-slider flex-col">
           {/* {
             ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map(month => {
@@ -207,6 +212,9 @@ export default class OregonMap extends Component {
           }
         </select>
       </div>
+
+      <Footer />
+      </>
     )
   }
 }
