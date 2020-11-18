@@ -1,4 +1,8 @@
 
+* {
+    box-sizing: border-box;
+}
+
 h2 {
     font-family: 'Bebas Neue';
     font-size: 100px;
@@ -19,12 +23,13 @@ li {
 
 .main-div {
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .container-fun {
-    margin: 50px;
+    
     /* width: 1000px; */
     width: 100%;
     min-height: 100%;
@@ -33,12 +38,14 @@ li {
     flex-direction: column;
     justify-content: center;
     border: solid 3px green;
+    
 }
 
 .container-fun:after {
     content: "";
     display: block;
     height: 200px;
+    width: 100%;
 }
 
 /* .floater {
@@ -55,15 +62,16 @@ li {
 }
 
 .gallery {
-    height: auto;
-    width: 90%;
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
     grid-template-rows: 25% 25% 50%;
     grid-gap: 10px;
-    margin: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 15px;
+    width:80%;
+    height:80%;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
 }
 
 .art1 {
@@ -106,4 +114,5 @@ li {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     /* background-image: './action-center.jpg'; */
     border: solid 1px red;
+    
 }

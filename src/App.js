@@ -100,11 +100,16 @@ export default class App extends Component {
               exact
               render={(routerProps) => <ArticleTester {...routerProps} />}
 <<<<<<< HEAD
+<<<<<<< HEAD
             />
 
 =======
             /> */}
 >>>>>>> 9c10024a25e41245594534bba86fa14373868584
+=======
+            />
+
+>>>>>>> 8d64c0f1af634bed7dc129ddf42d3936ab7943eb
             <Route
               path='/signup'
               exact
