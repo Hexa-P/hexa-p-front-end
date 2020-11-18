@@ -8,45 +8,46 @@ import {
 import OregonMap from './OregonMap.js';
 import Home from './Home.js';
 import ChartTemplate from './ChartTemplate.js';
+import SliderYear from './SliderYear.js'
 import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
 
-
+<header />
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
-state= {
-  username: localStorage.getItem('USERNAME') || '',
-  token: localStorage.getItem('TOKEN') || '',
-}
+  state = {
+    username: localStorage.getItem('USERNAME') || '',
+    token: localStorage.getItem('TOKEN') || '',
+  }
 
-// -----------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------
 
-setTokenAndName=(username, token) => {
-  localStorage.setItem('TOKEN', token);
-  localStorage.setItem('USERNAME', username);
+  setTokenAndName = (username, token) => {
+    localStorage.setItem('TOKEN', token);
+    localStorage.setItem('USERNAME', username);
 
-  this.setState({
-    username: username,
-    token: token
-  })
-}
+    this.setState({
+      username: username,
+      token: token
+    })
+  }
 
-// -----------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------
 
-logOut = () => {
-  localStorage.setItem('TOKEN', '');
-  localStorage.setItem('USERNAME', '');
+  logOut = () => {
+    localStorage.setItem('TOKEN', '');
+    localStorage.setItem('USERNAME', '');
 
-  this.setState({
-    username: '',
-    token: ''
-  })
+    this.setState({
+      username: '',
+      token: ''
+    })
 
-}
+  }
 
-// -----------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------
 
   render() {
     return (
@@ -81,10 +82,15 @@ logOut = () => {
               exact
               render={(routerProps) => <ChartTemplate {...routerProps} />}
             />
+            <Route
+              path="/slider"
+              exact
+              render={(routerProps) => <SliderYear {...routerProps} />}
+            />
 
-            <Route 
+            <Route
               path='/signup'
-              exact 
+              exact
               render={
                 (routerProps) =>
                   <SignUp
@@ -92,23 +98,20 @@ logOut = () => {
                   setTokenAndName={this.setTokenAndName} 
                   />
               }
-            />    
-
-            <Route exact path='/login' render={(routerProps) => 
-              <Login {...routerProps} 
-              setTokenAndName={this.setTokenAndName}
-              />} 
             />
 
-
-              
-
+            <Route exact path='/login' render={(routerProps) =>
+              <Login {...routerProps}
+                setTokenAndName={this.setTokenAndName}
+              />}
+            />
+            
           </Switch>
 
-          {/* ------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------ */}
 
         </Router>
-      </div>
+      </div >
     )
   }
 }

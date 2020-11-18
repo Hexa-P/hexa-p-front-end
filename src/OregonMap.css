@@ -13,21 +13,26 @@
     align-items: center;
 }
 
-.map {
+.map-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     width: 500px;
+    height: auto;
 }
 
 .oregon-map {
     width: 500px;
-    height: 400px;
+    height: 425px;
 }
 
 .circle-marker:hover {
-    fill: blue;
+    fill: red;
     cursor: pointer;
 }
 
 .displayed-temp {
-    position: absolute;
     font-size: 0.03em;
 }
