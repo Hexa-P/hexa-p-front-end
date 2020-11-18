@@ -13,8 +13,7 @@ export default class ArticleTester extends Component {
               showGraphic={true}
               maxLine={6}
               minLine={5}
-              url="https://www.cnn.com/world/live-news/coronavirus-pandemic-11-17-20-intl/index.html
-        "
+              url="https://www.wired.com/story/is-it-better-to-plant-trees-or-let-forests-regrow-naturally/"
             />
             <h3>Small </h3>
             <ReactTinyLink
