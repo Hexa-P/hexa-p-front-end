@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Article1.css';
 import Iframe from 'react-iframe';
+import { ReactTinyLink } from "react-tiny-link";
+import LinkPrevue from 'link-prevue';
 
 export default class Article1 extends Component {
     render() {
@@ -100,29 +102,43 @@ export default class Article1 extends Component {
 
                         <h2>Action Center</h2>
                         <ul>
-                            <li><Link
-                                to={"//support.worldwildlife.org/site/Advocacy?cmd=display&page=UserAction&id=1036"}
-                                target="_blank">
-                                Help stop deforestation and wildfires in the Amazon and Pantanal</Link></li>
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={2}
+                                minLine={1}
+                                url="https://support.worldwildlife.org/site/Advocacy?cmd=display&page=UserAction&id=1036" />
+                            </li>
 
-                            <li><Link
-                                to={"//www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/"}
-                                target="_blank">
-                                Reducing Your Carbon Footprint</Link></li>
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={2}
+                                minLine={1}
+                                url="https://www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/"
+                            />
+                            </li>
 
-                            <li><Link
-                                to={"//www.4ocean.com/"}
-                                target="_blank">
-                                Directly fund the removal of trash from the ocean, rivers, and coastlines</Link></li>
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={2}
+                                minLine={1}
+                                url="https://www.4ocean.com/pages/our-impact"
+                            />
+                            </li>
 
-                            <li><Link
-                                to={"//www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/"}
-                                target="_blank">
-                                Reducing Your Carbon Footprint</Link></li>
+                            {/* <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={2}
+                                minLine={1}
+                                url="https://www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/" />
+                            </li> */}
                         </ul>
 
                         <div>
-                            <h6>A Plastic Ocean</h6>
+                            {/* <h6>A Plastic Ocean</h6>
                             <Iframe
                                 url={"//www.youtube.com/watch?v=6zrn4-FfbXw"}
                                 width="450px"
@@ -130,11 +146,11 @@ export default class Article1 extends Component {
                                 id="myId"
                                 className="myClassname"
                                 display="initial"
-                                position="relative"
-                            // frameborder="0"
+                                position="relative" */}
+                            {/* // frameborder="0"
                             // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             // allowfullscreen
-                            />
+                            /> */}
 
                         </div>
                     </div>
