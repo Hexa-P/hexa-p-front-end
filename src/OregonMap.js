@@ -10,8 +10,19 @@ import {
 import { scaleQuantize } from "d3-scale";
 
 import SliderYear from './SliderYear.js'
+import SliderMonth from './SliderMonth.js'
 
 const oregonData = require('./tl_2010_41_county10.json')
+
+const debounce = (func, delay) => {
+  let inDebounce
+  return function() {
+    const context = this
+    const args = arguments
+    clearTimeout(inDebounce)
+    inDebounce = setTimeout(() => func.apply(context, args), delay)
+  }
+}
 
 export default class OregonMap extends Component {
 
@@ -21,7 +32,7 @@ export default class OregonMap extends Component {
     tempType: 'avg'
   }
 
-  componentDidMount = async() => {
+  componentDidMount = async() => {     
     const data = await request
       .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=01&year_range=1950:2005`);
 
@@ -30,13 +41,13 @@ export default class OregonMap extends Component {
     this.setDisplayedTemp();
   }
 
-  setDisplayedTemp = () => {
+  setDisplayedTemp = async () => {
     const displayedTempKey = Object.keys(this.state.monthlyData)
       .filter(key => key.slice(0, 4) === this.state.displayedYear)
 
     const displayedTemp = this.state.monthlyData[displayedTempKey][this.state.tempType]
 
-    this.setState({ displayedTemp })
+    await this.setState({ displayedTemp })
   }
 
   handleYearClick = async (e) => {
@@ -78,6 +89,21 @@ export default class OregonMap extends Component {
     this.setDisplayedTemp();
   }
 
+  handleMonthSlider = debounce(async (e) => {
+    console.log(e);
+    let monthNumber = e
+
+    if (monthNumber > 9) monthNumber = String(monthNumber)
+    else monthNumber = '0' + String(monthNumber)
+
+    const data = await request
+      .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${monthNumber}&year_range=1950:2005`);
+
+    await this.setState({ monthlyData: data.body.month });
+
+    this.setDisplayedTemp()
+  }, 500)
+
   lightBlueColorScale = scaleQuantize()
     .domain([1, 10])
     .range([
@@ -110,7 +136,7 @@ export default class OregonMap extends Component {
     return (
       <div className="flex-row flex-center">
         <div className="month-slider flex-col">
-          {
+          {/* {
             ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map(month => {
               return <button
                 key={month}
@@ -118,7 +144,12 @@ export default class OregonMap extends Component {
                 onClick={this.handleMonthClick}
               >{month}</button>
             })
-          }
+          } */}
+
+          <SliderMonth 
+            handleMonthSlider={this.handleMonthSlider}
+          />
+
         </div>
         <div className="map-container">
           <ComposableMap
