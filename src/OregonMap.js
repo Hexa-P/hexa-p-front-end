@@ -45,9 +45,9 @@ export default class OregonMap extends Component {
     const displayedTempKey = Object.keys(this.state.monthlyData)
       .filter(key => key.slice(0, 4) === this.state.displayedYear)
 
-    const displayedTemp = this.state.monthlyData[displayedTempKey][this.state.tempType]
+    const displayedTemp = await this.state.monthlyData[displayedTempKey][this.state.tempType]
 
-    await this.setState({ displayedTemp })
+    this.setState({ displayedTemp })
   }
 
   handleYearClick = async (e) => {
@@ -90,7 +90,6 @@ export default class OregonMap extends Component {
   }
 
   handleMonthSlider = debounce(async (e) => {
-    console.log(e);
     let monthNumber = e
 
     if (monthNumber > 9) monthNumber = String(monthNumber)
