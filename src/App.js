@@ -12,7 +12,6 @@ import SliderYear from './SliderYear.js'
 import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
-import ArticleTester from './ArticleTester.js'
 import UserProfile from './UserProfile.js';
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
@@ -54,9 +53,6 @@ export default class App extends Component {
       <div className="body">
         <Router>
 
-          {/* ----------------------------------------------------------------------------------------- */}
-
-
           <Switch>
 
             <Route
@@ -95,12 +91,6 @@ export default class App extends Component {
               render={(routerProps) => <SliderYear {...routerProps} />}
             />
 
-            {/* <Route
-              path="/articletest"
-              exact
-              render={(routerProps) => <ArticleTester {...routerProps} />}
-            />
-
             <Route
               path='/signup'
               exact
@@ -120,9 +110,6 @@ export default class App extends Component {
             />
 
           </Switch>
-
-          {/* ------------------------------------------------------------------------------------------ */}
-
         </Router>
       </div >
     )

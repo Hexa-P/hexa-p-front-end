@@ -13,7 +13,6 @@ export default class Home extends Component {
             <div className="main-div">
                 <Navigation />
                 <Header />
-
                 <Article1 />
                 <Footer />
             </div>

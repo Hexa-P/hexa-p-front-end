@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+import TinyLinkContainer from './TinyLinkContainer.js';
 import './Article1.css';
 import Iframe from 'react-iframe';
 
@@ -95,9 +97,10 @@ export default class Article1 extends Component {
                             </span>
                         </article>
                     </div>
-
+                    <div className="tiny-link-container">
+                        <TinyLinkContainer />
+                    </div>
                     <div className="action-center">
-
                         <h2>Action Center</h2>
                         <ul>
                             <li><Link
