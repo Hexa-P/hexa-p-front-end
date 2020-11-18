@@ -1,77 +1,42 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './Article.css';
+import { Link } from 'react-router-dom';
+// import 'LinkPreview' from 'react-link-preview';
 
 export default class Article extends Component {
     render() {
         return (
-            <div>
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu. <p>
+            <>
+                <div className="container">
 
-                    Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-                </p>
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
-                <p>
-                    Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
-                </p>
-                Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-                <p>
-                    Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
-                </p>
+                    {/* <article className="article1">
+                        <Link to={"//www.weforum.org/agenda/2020/11/ocean-climate-change-solutions?utm_source=facebook&utm_medium=social_scheduler&utm_term=Restoring+ocean+life&utm_content=15/11/2020+02:00&fbclid=IwAR1pKsF3OMNtdFUYyCF_EyWfDwUETlhYe8UlNtCJz64lYbqJNJTwwK5Xivs"} target="_blank">Why our ocean could hold the best solutions to climate change</Link>
+                        <div ><img className='trees' src="trees.png" alt='trees' /></div>
+                        <div>Lorem Ipsum</div>
+                    </article> */}
 
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
-                <p>
-                    Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-                </p>
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
+                    <div className="gallery">
 
+                        <figure className="gallery__item gallery__item--1">
+                            <img src="trees.png" class="gallery__img" alt="Image 1" />
+                        </figure>
 
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
+                        <figure className="gallery__item gallery__item--2">
+                            <img src="trees.png" className="gallery__img" alt="Image 2" />
+                        </figure>
 
-                Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
+                        <figure className="gallery__item gallery__item--3">
+                            <img src="trees.png" className="gallery__img" alt="Image 3" />
+                        </figure>
 
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
+                        <figure className="gallery__item gallery__item--4">
+                            <img src="trees.png" className="gallery__img" alt="Image 4" />
+                        </figure>
 
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
+                    </div>
 
-                Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
-
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
-
-                Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
-
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
-
-                Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
-
-
-
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
-
-                Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
-
-
-
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
-
-                Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
-
-
-                Lorem ipsum dolor sit amet, no ius ullum soluta assentior, usu id mucius salutandi. Graeco vidisse perpetua vis ne, sonet equidem indoctum ad eum. Sit at saepe timeam iudicabit. An sonet semper usu.
-
-                Honestatis voluptatibus per no, an iudico tincidunt usu, nam novum voluptua expetendis ne. Audiam volutpat neglegentur pro te, no autem congue mentitum vel, eu porro tamquam duo. Ut suas cibo vituperatoribus vim. Sonet soleat te quo, ut habeo facete verterem usu. At vide animal mea, nulla graeco consetetur ad vix. Id mei vivendum insolens, vero apeirian sed id. Sea iusto debitis at, ne vel alii erant aliquam.
-
-                Cu blandit ocurreret cum, cu error quaerendum eam. Et sit alia agam laboramus. His habeo mollis consetetur ne. Usu tota invidunt definitiones eu.
-
-            </div>
+                </div>
+            </>
         )
     }
 }
