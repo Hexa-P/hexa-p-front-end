@@ -12,6 +12,7 @@ import SliderYear from './SliderYear.js'
 import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
+import ArticleTester from './ArticleTester.js'
 
 <header />
 // -----------------------------------------------------------------------------------
@@ -89,6 +90,11 @@ export default class App extends Component {
             />
 
             <Route
+              path="/articletest"
+              exact
+              render={(routerProps) => <ArticleTester {...routerProps} />}
+            />
+            <Route
               path='/signup'
               exact
               render={
@@ -105,10 +111,10 @@ export default class App extends Component {
                 setTokenAndName={this.setTokenAndName}
               />}
             />
-            
+
           </Switch>
 
-        {/* ------------------------------------------------------------------------------------------ */}
+          {/* ------------------------------------------------------------------------------------------ */}
 
         </Router>
       </div >
