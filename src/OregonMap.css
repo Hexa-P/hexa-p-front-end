@@ -1,6 +1,9 @@
 .flex-row {
     display: flex;
     flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: rgba(192, 192, 84, 0.185);
 }
 
 .flex-col {
@@ -18,9 +21,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     width: 500px;
     height: auto;
+}
+
+.map-container:after {
+    content: "";
+    display: block;
+    height: 200px;
 }
 
 .oregon-map {
@@ -36,3 +44,4 @@
 .displayed-temp {
     font-size: 0.03em;
 }
+

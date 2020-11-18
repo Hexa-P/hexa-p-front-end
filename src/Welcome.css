@@ -29,6 +29,10 @@
     border-radius: 25px;
 }
 
+.welcome-message {
+font-size: 30px;
+}
+
 .nav {
     position: fixed;
 } 
@@ -36,4 +40,16 @@
 .title { 
     font-size: 50px;
     padding: 20px;
+}
+
+.button-fun {
+    display: grid;
+    justify-content: space-around;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.button-presser {
+    width: 200px;
+    border-radius: 5px;
 }
