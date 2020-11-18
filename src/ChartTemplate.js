@@ -24,17 +24,6 @@ export default class ChartTemplate extends Component {
   }
 
   componentDidMount = async() => {
-    // const data = await request
-    //   .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=01&year_range=1950:2005`)
-
-    // const avgTemps = Object.keys(data.body.month)
-    //   .reduce((arr, key) => {
-    //     arr[Number(key.slice(0, 4)) - 1950] = data.body.month[key].avg;
-    //     return arr;
-    //   }, [])
-
-    // this.setState({ monthlyData: avgTemps })
-
     const data = this.props.location.state ?
       this.props.location.state.monthlyData
       : [];
@@ -42,7 +31,15 @@ export default class ChartTemplate extends Component {
     const monthlyData = this.getTwoDimData(data);
     const regressionData =  this.makeRegressionLineData(data);
 
-    this.setState({ monthlyData, regressionData })
+    const city = this.props.location.state ?
+      this.props.location.state.city
+      : '';
+
+    const month = this.props.location.state ?
+    this.props.location.state.month
+    : '';
+
+    this.setState({ monthlyData, regressionData, city, month })
   }
 
   getTwoDimData = (data) => {
@@ -60,11 +57,7 @@ export default class ChartTemplate extends Component {
   makeRegressionLineData = (data) => {
     const twoDimTempsData = this.getTwoDimData(data)
 
-    console.log(twoDimTempsData);
-
-    return regression.linear(twoDimTempsData)
-      .points
-      .map(point => point[1]);
+    return regression.linear(twoDimTempsData).points
   }
   
   render() {
@@ -73,7 +66,8 @@ export default class ChartTemplate extends Component {
       city,
       month,
       temp_type,
-      monthlyData 
+      monthlyData,
+      regressionData
     } = this.state;
 
     return (
@@ -112,7 +106,7 @@ export default class ChartTemplate extends Component {
                     backgroundColor: 'rgba(75,192,192,1)',
                     borderColor: 'rgba(0,0,0,1)',
                     borderWidth: 2,
-                    data: this.state.regressionData,
+                    data: regressionData.map(pair => pair[1]),
                     yAxisID: 'y-axis-1'
                   },
                 ]

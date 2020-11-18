@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './OregonMap.css';
 import request from 'superagent';
+import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import {
   ComposableMap,
@@ -32,6 +33,7 @@ export default class OregonMap extends Component {
 
   state = {
     monthlyData: {},
+    month: 'January',
     displayedYear: '1950',
     tempType: 'avg'
   }
@@ -94,7 +96,8 @@ export default class OregonMap extends Component {
   }
 
   handleMonthSlider = debounce(async (e) => {
-    let monthNumber = e
+    let monthNumber = e;
+    const month = moment.months()[e];
 
     if (monthNumber > 9) monthNumber = String(monthNumber)
     else monthNumber = '0' + String(monthNumber)
@@ -102,7 +105,7 @@ export default class OregonMap extends Component {
     const data = await request
       .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${monthNumber}&year_range=1950:2005`);
 
-    await this.setState({ monthlyData: data.body.month });
+    await this.setState({ monthlyData: data.body.month, month });
 
     this.setDisplayedTemp()
   }, 500)
@@ -198,7 +201,9 @@ export default class OregonMap extends Component {
                       pathname: "/tempchart",
                       search: "?city=portland",
                       state: {
-                        monthlyData: this.state.monthlyData
+                        monthlyData: this.state.monthlyData,
+                        city: 'Portland',
+                        month: this.state.month
                       }
                     }}>View Historical Data</NavLink>
                 </button>
