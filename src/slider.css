@@ -4,11 +4,11 @@
   border: 1px solid pink;
 }
 
-.slider-container-vertical {
+/* .slider-container-vertical {
   height: 100%;
   margin: 0;
   border: 1px solid pink;
-}
+} */
 
 .horizontal-slider {
   height: 20px;
@@ -17,13 +17,13 @@
   margin-top: -11px;
 }
 
-.vertical-slider {
+/* .vertical-slider {
   width: 20px;
   height: 300px;
   cursor: pointer;
   cursor: -webkit-grab;
   margin-top: -11px;
-}
+} */
 
 .example-track {
   height: 3px;

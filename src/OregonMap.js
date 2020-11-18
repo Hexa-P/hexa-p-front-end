@@ -135,20 +135,11 @@ export default class OregonMap extends Component {
 
   render() {
     return (
-     <>
-    <Navigation />
-    <Header /> 
-    <div className="flex-row flex-center">
-        <div className="month-slider flex-col">
-          {/* {
-            ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map(month => {
-              return <button
-                key={month}
-                  value={month}
-                onClick={this.handleMonthClick}
-              >{month}</button>
-            })
-          } */}
+    <div className="big-container">
+    {/* <Navigation />
+    <Header />  */}
+    <div className="container">
+        <div className="month-slider">
 
           <SliderMonth 
             handleMonthSlider={this.handleMonthSlider}
@@ -196,24 +187,25 @@ export default class OregonMap extends Component {
               </text>
             </Marker>
           </ComposableMap>
+        </div>
+        <div className="year-slider">
           <SliderYear 
             handleYearSlider={this.handleYearSlider}
           />
         </div>
-        <select onChange={this.handleTempType}>
-          {
-            ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
-              return <option
-                key={temp}
-                value={temp}
-              >{temp}</option>
-            })
-          }
-        </select>
+          <select onChange={this.handleTempType}>
+            {
+              ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
+                return <option
+                  key={temp}
+                  value={temp}
+                >{temp}</option>
+              })
+            }
+          </select>
+        </div>
+      {/* <Footer /> */}
       </div>
-
-      <Footer />
-      </>
     )
   }
 }
