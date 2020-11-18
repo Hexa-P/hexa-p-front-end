@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
-import request from 'superagent';
 import regression from 'regression';
 import Navigation from './Navigation.js';
 import Header from './Header.js';
@@ -9,13 +8,19 @@ import Footer from './Footer.js';
 
 export default class ChartTemplate extends Component {
 
-
+  // Data is intended to be in this format for the functions below:
+  // {
+  //   "1950": {
+  //     avg: 49.20298345290
+  //   }
+  // }
   // --------------------------------------------------------------------------------------
   state = {
     city: 'Portland',
     temp_type: 'Average High',
     month: 'January',
-    monthlyData: []
+    monthlyData: [],
+    regressionData: []
   }
 
   componentDidMount = async() => {
@@ -30,11 +35,36 @@ export default class ChartTemplate extends Component {
 
     // this.setState({ monthlyData: avgTemps })
 
-    const data = this.props.location.state
-      ?  this.props.location.state.monthlyData
+    const data = this.props.location.state ?
+      this.props.location.state.monthlyData
       : [];
 
-    this.setState({ monthlyData: data })
+    const monthlyData = this.getTwoDimData(data);
+    const regressionData =  this.makeRegressionLineData(data);
+
+    this.setState({ monthlyData, regressionData })
+  }
+
+  getTwoDimData = (data) => {
+    return Object.keys(data)
+      .reduce((dataArr, year) => {
+        dataArr.push([
+          year.slice(0, 4),
+          data[year].avg
+        ]);
+        
+        return dataArr;
+      }, [])
+  }
+
+  makeRegressionLineData = (data) => {
+    const twoDimTempsData = this.getTwoDimData(data)
+
+    console.log(twoDimTempsData);
+
+    return regression.linear(twoDimTempsData)
+      .points
+      .map(point => point[1]);
   }
   
   render() {
@@ -46,28 +76,9 @@ export default class ChartTemplate extends Component {
       monthlyData 
     } = this.state;
 
-    console.log(this.props.location.state
-      ?  this.props.location.state.monthlyData
-      : [])
-
-    let myRegressionData = [];
-
-    if (this.state.monthlyData.length > 0) {
-      const twoDimTempsData = this.state.monthlyData.map(temp => {
-        return [this.state.monthlyData.indexOf(temp) + 1950, temp]
-      })
-
-      myRegressionData = regression.linear(twoDimTempsData)
-        .points
-        .map(point => point[1]);
-    } 
-
-
     return (
-
-      
+  
       <>
-
       <div>
         <Navigation />
       </div>
@@ -91,7 +102,7 @@ export default class ChartTemplate extends Component {
                     backgroundColor: 'rgba(75,192,192,1)',
                     borderColor: 'rgba(0,0,0,1)',
                     borderWidth: 2,
-                    data: monthlyData,
+                    data: monthlyData.map(pair => pair[1]),
                     yAxisID: 'y-axis-1'
                   },
                   {
@@ -101,7 +112,7 @@ export default class ChartTemplate extends Component {
                     backgroundColor: 'rgba(75,192,192,1)',
                     borderColor: 'rgba(0,0,0,1)',
                     borderWidth: 2,
-                    data: myRegressionData,
+                    data: this.state.regressionData,
                     yAxisID: 'y-axis-1'
                   },
                 ]
