@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import Navigation from './Navigation.js';
 import request from 'superagent';
 import Header from './Header.js';
 import Footer from './Footer.js';
+import { NavLink } from 'react-router-dom';
+import './SignLogin.css';
 
 
 export default class Login extends Component {
@@ -43,42 +44,58 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-
                 <div>
                     <Navigation />
                 </div>
 
+    {/* ----------------------------------------------------------------------- */}
+
                 <Header />
 
-                <form onSubmit={this.handleSubmit}>
-                    <h2>Login</h2>
-                    Username or Email:
-                    <label> 
-                        {this.state.err && <div>
-                            {this.state.err}
-                            </div>}
-                        <input
-                        value={this.state.email}
-                        onChange={(e) => this.setState({ email: e.target.value})}
-                        />
-                    </label>
-                    Password
-                    <label type="password"> 
-                        <input
-                        value={this.state.password}
-                        onChange={(e) => this.setState({ password: e.target.value})}
-                        />
-                    </label>
+    {/* ----------------------------------------------------------------------- */}
 
-                    {
-                        this.state.loading
-                        ? 'spins'
-                        : <button>Submit</button>
-                    }
-                </form>
+                <div className="container">
 
-                <Footer />
+                <NavLink className="signup" to="/signup">SignUp</NavLink> 
+                <NavLink className="login" to="/login">Login</NavLink> 
+
+                <div className="login-form">
+                    <form onSubmit={this.handleSubmit}>
+                        <h2>Login</h2>
+                        Username or Email:
+                        <label> 
+                            {this.state.err && <div>
+                                {this.state.err}
+                                </div>}
+                            <input
+                            value={this.state.email}
+                            onChange={(e) => this.setState({ email: e.target.value})}
+                            />
+                        </label>
+                        Password
+                        <label> 
+                            <input
+                            type="password"
+                            value={this.state.password}
+                            onChange={(e) => this.setState({ password: e.target.value})}
+                            />
+                        </label>
+
+                        {
+                            this.state.loading
+                            ? 'spins'
+                            : <button>Submit</button>
+                        }
+                    </form>
+                </div>
             </div>
+
+{/* -------------------------------------------------------------------------------------- */}
+
+                    <Footer />
+
+                </div>
+
         )
     }
 }

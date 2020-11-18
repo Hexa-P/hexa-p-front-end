@@ -8,12 +8,11 @@ import {
 import OregonMap from './OregonMap.js';
 import Home from './Home.js';
 import ChartTemplate from './ChartTemplate.js';
-import './App.css';
-import SignUpPage from './SignUpPage.js';
+import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
 
-<header />  
+
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
@@ -88,7 +87,7 @@ logOut = () => {
               exact 
               render={
                 (routerProps) =>
-                  <SignUpPage
+                  <SignUp
                   {...routerProps}
                   setTokenAndName={this.setTokenAndName} 
                   />
