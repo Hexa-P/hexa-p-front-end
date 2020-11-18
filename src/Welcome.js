@@ -34,7 +34,7 @@ export default class Welcome extends Component {
                         </div>
                         
                         <div className="button-fun">
-                            <button className="button-presser" onClick={this.handleClick}>Enter</button>
+                            <button className="button-presser button-sign" onClick={this.handleClick}>Enter</button>
                         </div>
 
                     </div>

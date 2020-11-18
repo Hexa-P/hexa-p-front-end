@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 
 .oregon-map-container {
     width: 100%;
@@ -30,7 +33,8 @@
 }
 
 .displayed-temp {
-    font-size: 0.03em;
+    text-align: left;
+    font-size: 0.05em;
 }
 
 .month-slider-grid {
@@ -78,4 +82,46 @@
 .rsm-svg {
     width: 100%;
     height: 100%;
+}
+
+.portland-popup {
+    background: rgba(56, 0, 58, 0.233);
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 5px black;
+
+    min-height: 50px;
+    min-width: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.historical-data-button {
+    font-style: normal;
+    font-size: 1em;
+    line-height: normal;
+
+    background-color: rgba(255, 255, 255, 0.800);
+    border-radius: 5%;
+
+    width: 90%;
+    height: 25%;
+
+    margin: 3px;
+}
+
+.predictions-button {
+    font-style: normal;
+    font-size: 1em;
+    line-height: normal;
+
+    background-color: rgba(255, 255, 255, 0.800);
+    border-radius: 5%;
+
+    width: 90%;
+    height: 25%;
+
+    margin: 3px;
 }

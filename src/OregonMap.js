@@ -8,7 +8,7 @@ import {
   Marker
 } from 'react-simple-maps';
 import { scaleQuantize } from 'd3-scale';
-
+import Popup from 'reactjs-popup';
 import Navigation from './Navigation.js';
 import SliderYear from './SliderYear.js';
 import SliderMonth from './SliderMonth.js';
@@ -178,22 +178,36 @@ export default class OregonMap extends Component {
           <Marker
             coordinates={[-122.675, 45.45]}
           >
-            <circle
+          <Popup
+            trigger={<circle
               r={0.3}
               fill="green"
               className="circle-marker"
-              onClick={() => this.handleMarkerClick('Portland')}
-            ></circle>
+            ></circle>}
+            position="left"
+          >
+            <div className="portland-popup">
+              <button
+                className="historical-data-button"
+                onClick={() => this.handleMarkerClick('Portland')}
+              >View Historical Data</button>
+              <button className="predictions-button">View Predictions</button>
+            </div>
+          </Popup>
 
-            <text
-              className="displayed-temp"
-              textAnchor="middle"
-              x="2.3"
-              y="0.168"
-              fill="black"
-            >
-              Portland: {`${Math.floor(this.state.displayedTemp * 10) / 10} ${String.fromCharCode(176)}F`}
-            </text>
+          <text
+            className="displayed-temp"
+            textAnchor="left"
+            x="0.5"
+            y="0.25"
+            fill="black"
+          >
+            Portland: {
+              this.state.displayedTemp
+              ? `${Math.floor(this.state.displayedTemp * 10) / 10} ${String.fromCharCode(176)}F`
+              : ''
+            }
+          </text>
 
           </Marker>
 
