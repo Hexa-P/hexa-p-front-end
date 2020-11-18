@@ -12,6 +12,7 @@ export default class Navigation extends Component {
                     <NavLink className="link" to="/login">Login</NavLink>
                     <NavLink className="link" to="/mapchart">Map</NavLink>
                     <NavLink className="link" to="/tempchart">Your Chart</NavLink>
+                    <NavLink className="link" to="/userprofile">User Profile</NavLink>
 
                 </div>
             </div>

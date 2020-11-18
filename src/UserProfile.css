@@ -1,0 +1,22 @@
+
+
+.left-wrapper {
+    border: black 2px solid; 
+    border-radius: 5px;
+    height: 80%;
+    width: 40%;
+    float: left;
+}
+
+.includes{
+    height: 70px;
+    width: auto;
+}
+
+.right-wrapper {
+    border: black 2px solid; 
+    border-radius: 5px;
+    height: 80%;
+    width: 40%;
+    float: left;
+}

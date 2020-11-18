@@ -13,6 +13,7 @@ import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
 import ArticleTester from './ArticleTester.js'
+import UserProfile from './UserProfile.js';
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
@@ -71,6 +72,12 @@ export default class App extends Component {
             />
 
             <Route
+              path="/userprofile"
+              exact
+              render={(routerProps) => <UserProfile {...routerProps} />}
+            />
+
+            <Route
               path="/mapchart"
               exact
               render={(routerProps) => <OregonMap {...routerProps} />}
@@ -81,6 +88,7 @@ export default class App extends Component {
               exact
               render={(routerProps) => <ChartTemplate {...routerProps} />}
             />
+
             <Route
               path="/slider"
               exact
@@ -92,6 +100,7 @@ export default class App extends Component {
               exact
               render={(routerProps) => <ArticleTester {...routerProps} />}
             />
+
             <Route
               path='/signup'
               exact
