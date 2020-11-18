@@ -4,6 +4,7 @@ import Navigation from './Navigation.js';
 import { NavLink } from 'react-router-dom';
 import './reset.css' 
 import './SignLogin.css';
+import bridge from './images/signlog.jpg';
 
 export default class SignUp extends Component {
 
@@ -62,7 +63,9 @@ export default class SignUp extends Component {
 
     render() {
         return (
-            <>
+            <section className="background">
+                <img className="bridged" src={bridge} type='image' alt="forest bridge" />
+
                 <div>
                     <Navigation />
                 </div>       
@@ -70,11 +73,10 @@ export default class SignUp extends Component {
                 
                 <div className="main-container">
                 
-                <div className="container">
+                    <div className="container center">
 
                     <NavLink className="signup" to="/signup">SignUp</NavLink> 
                     <NavLink className="login" to="/login">Login</NavLink> 
-
 
                     <div className="signup-form">
                         <form onSubmit={this.handleSubmitSignUp}>
@@ -111,7 +113,7 @@ export default class SignUp extends Component {
     {/* ---------------------------------------------------------------------------------- */}
 
                 </div>
-            </>
+            </section>
         )
     }
 }

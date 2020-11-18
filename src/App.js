@@ -12,9 +12,7 @@ import SliderYear from './SliderYear.js'
 import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
-import ArticleTester from './ArticleTester.js'
-
-<header />
+// import ArticleTester from './ArticleTester.js'
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
