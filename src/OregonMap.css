@@ -25,6 +25,12 @@
     height: auto;
 }
 
+.map-container:after {
+    content: "";
+    display: block;
+    height: 200px;
+}
+
 .oregon-map {
     width: 500px;
     height: 425px;
