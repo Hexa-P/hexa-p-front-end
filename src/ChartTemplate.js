@@ -21,18 +21,21 @@ export default class ChartTemplate extends Component {
     city: 'Portland',
     temp_type: 'Average High',
     month: 'January',
+    month_param: '01',
+    city_api_id: '32',
     monthlyData: [],
-    regressionData: []
+    regressionData: [],
+    dataIsSaved: false
   }
 
   componentDidMount = async() => {
-    const data = await this.props.location.state ?
-      this.props.location.state.monthlyData
-      : request
-        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=01&year_range=1950:2005`)
+    const month_param = this.props.location.state ?
+      this.props.location.state.month_param
+      : '01';
 
-    const monthlyData = this.getTwoDimData(data);
-    const regressionData =  this.makeRegressionLineData(monthlyData);
+    const city_api_id = this.props.location.state ?
+      this.props.location.state.city_api_id
+      : '32';
 
     const city = this.props.location.state ?
       this.props.location.state.city
@@ -42,7 +45,19 @@ export default class ChartTemplate extends Component {
       this.props.location.state.month
       : 'January';
 
-    this.setState({ monthlyData, regressionData, city, month })
+    const unMungedData = await this.getAPIData();
+
+    const monthlyData = this.getTwoDimData(unMungedData);
+    const regressionData =  this.makeRegressionLineData(monthlyData);
+
+    this.setState({ monthlyData, regressionData, city, month, month_param, city_api_id })
+  }
+
+  getAPIData = async () => {
+    const data = await request
+      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.city_api_id}&month_param=${this.state.month_param}&year_range=1950:2005`);
+
+    return data.body.month;
   }
 
   getTwoDimData = (data) => {
@@ -60,6 +75,14 @@ export default class ChartTemplate extends Component {
   makeRegressionLineData = (data) => {
     return regression.linear(data).points
   }
+
+  handleSaveButton = () => {
+    return this.state.dataIsSaved ?
+    'Saved!'
+    : localStorage.getItem('TOKEN') && this.state.monthlyData.length !== 0 ?
+    <button onClick={this.saveData}>Save This Data!</button>
+    : '';
+  }
   
   saveData = async () => {
     const monthNumber = moment().month(this.state.month).format('MM');
@@ -67,10 +90,13 @@ export default class ChartTemplate extends Component {
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
       .set('Authorization', localStorage.getItem('TOKEN'))
-      .send({ 
+      .send({
+        city: this.state.city,
         month_param: monthNumber,
         city_api_id: 32
       })
+
+    this.setState({ dataIsSaved: true })
   }
 
   render() {
@@ -156,9 +182,7 @@ export default class ChartTemplate extends Component {
         }
 
         {
-          localStorage.getItem('TOKEN') && this.state.monthlyData.length !== 0 ?
-          <button onClick={this.saveData}>Save This Data!</button>
-          : ''
+          this.handleSaveButton()
         }
 
       </div>

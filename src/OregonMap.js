@@ -195,7 +195,6 @@ export default class OregonMap extends Component {
                   <NavLink
                     to={{
                       pathname: "/tempchart",
-                      search: "?city=portland",
                       state: {
                         monthlyData: this.state.monthlyData,
                         city: 'Portland',
