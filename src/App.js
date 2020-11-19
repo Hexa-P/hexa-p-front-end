@@ -13,6 +13,7 @@ import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
 import UserProfile from './UserProfile.js';
+import FactPopUp from './FactPopUp.js';
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
@@ -89,6 +90,11 @@ export default class App extends Component {
               path="/slider"
               exact
               render={(routerProps) => <SliderYear {...routerProps} />}
+            />
+            <Route
+              path="/factpopup"
+              exact
+              render={(routerProps) => <FactPopUp {...routerProps} />}
             />
 
             <Route
