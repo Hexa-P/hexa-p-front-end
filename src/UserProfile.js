@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import include from './images/genderN.jpg';
 import './UserProfile.css';
-import forestb from './images/tomas-anunziata.jpg';
 import Navigation from './Navigation.js';
-import Header from './Header.js';
-import Footer from './Footer.js';
+import FooterTwo from './FooterTwo';
 
 export default class UserProfile extends Component {
 
@@ -77,7 +75,7 @@ export default class UserProfile extends Component {
                             </section>
 
                         </div>
-                        
+
                     </div>
 
         {/* ----------------------------------------------------------------------------------- */}
@@ -99,7 +97,7 @@ export default class UserProfile extends Component {
 
                 </div>
 
-<Footer />
+<FooterTwo />
 
             </>
         )

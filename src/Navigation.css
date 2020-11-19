@@ -6,6 +6,7 @@
     transition: top 0.3s;
     height: 50px;
     line-height: 2em;
+    z-index: 2;
 }
 
 .link {
@@ -29,3 +30,9 @@
     /* border-bottom: green solid 20px; */
 }
 
+.ohCaptainMyCaptain img {
+    height: 150px;
+    width: auto;
+    margin-right: 20px;
+    margin-top: -20px;
+}

@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import TinyLinkContainer from './TinyLinkContainer.js';
 import './Article1.css';
-import Iframe from 'react-iframe';
+
 
 export default class Article1 extends Component {
     render() {
         return (
             <>
-                <h2>Stay Informed</h2>
+                <div className="information">
+                    <h2>Welcome to the Oregon Environmental Data Initiative</h2>
+                    <div className="roof">Climate Data Matters And So Does Our Home</div>
+                    {"\n"}
+                    <div className="house">“As the earth dies your spirit will bloom; as the world fades your soul will rise and glisten. Amongst the dehydrated crevices of a desert earth you will stumble upon your diamonds; in between the dry skulls and cracked bones you will find your sapphires.”</div> 
+                </div>
 
                 <div className="container-fun">
 
                     <div className="gallery">
 
+{/* ---------------------------------------------------------------------------------------------------------------------------------- */}
+                    
                         <article className="art1 border">
 
                             <img src="fire-australia.jpg" className="gallery__img" alt="animals-effected-by-wildfire" />
@@ -39,6 +45,8 @@ export default class Article1 extends Component {
                                 </div>
                             </span>
 
+{/* ------------------------------------------------------ */}
+
                         </article>
 
                         <article className="art2 border">
@@ -48,10 +56,10 @@ export default class Article1 extends Component {
                                     to={"//www.weforum.org/agenda/2020/11/ocean-climate-change-solutions?utm_source=facebook&utm_medium=social_scheduler&utm_term=Restoring+ocean+life&utm_content=15/11/2020+02:00&fbclid=IwAR1pKsF3OMNtdFUYyCF_EyWfDwUETlhYe8UlNtCJz64lYbqJNJTwwK5Xivs"}
                                     target="_blank">
                                     Why our ocean could hold the best solutions to climate change</Link></h3>
-
-                                ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ullamcorp a lacus vestibulum sed arcu non odio euismod lacinia. Turpis nunc eget lorem dolor sed viverra ipsum nunc. Tortor dignissim convallis aenean et tortor. Sed viverra tellus in hac. Consectetur a erat nam at lectus urna. Tellus elementum sagittis vitae et leo duis. Est placerat in egestas erat imperdiet. Pharetra massa massa ultricies mi quis hendrerit dolor. Et tortor consequat id porta.
                             </span>
                         </article>
+
+{/* ------------------------------------------------------ */}
 
                         <article className="art3 border">
                             <img src="plastics.jpg" className="gallery__img" alt="plastic-bottle-on-beach" />
@@ -78,6 +86,8 @@ export default class Article1 extends Component {
 
                         </article>
 
+{/* ------------------------------------------------------ */}
+
                         <article className="art4 border">
                             <img src="drought.jpg" className="gallery__img" alt="drought-ridden-land" />
                             <span className="floater">
@@ -96,10 +106,19 @@ export default class Article1 extends Component {
 
                             </span>
                         </article>
+
+{/* ------------------------------------------------------ */}
+
                     </div>
+
+{/* ----------------------------------------------------------------------------------------------------------------------- */}
+
                     <div className="tiny-link-container">
                         <TinyLinkContainer />
                     </div>
+
+{/* ----------------------------------------------------------------------------------------------------------------------- */}
+
                     <div className="action-center">
                         <h2>Action Center</h2>
                         <ul>

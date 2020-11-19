@@ -6,12 +6,12 @@
 h2 {
     font-family: 'Bebas Neue';
     font-size: 100px;
-    width: 100%;
     display: flex;
     flex-direction: row;
     text-align: center;
     margin-top: 20px;
 }
+
 
 ul {
     list-style: none;
@@ -21,6 +21,10 @@ li {
     margin: 20px;
 }
 
+
+/* -------------------------------------------------------------------------------------------------- */
+
+
 .main-div {
     display: flex;
     width: 100%;
@@ -29,22 +33,20 @@ li {
 }
 
 .container-fun {
-    
-    /* width: 1000px; */
+    padding-top: 40px;
     width: 100%;
     min-height: 100%;
-    margin-bottom: 120px;
+    margin-bottom: 20pxpx;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: solid 3px green;
-    
+    background-color: #7cb891; 
 }
 
 .container-fun:after {
     content: "";
     display: block;
-    height: 200px;
+    height: 50px;
     width: 100%;
 }
 
@@ -109,7 +111,7 @@ li {
 
 
 .flex-link-container {
-    border: solid 4px yellowgreen;
+    border: solid 1px black;
     width: 100%;
     min-height: 200px;
     display: flex;
@@ -127,11 +129,34 @@ li {
 }
 
 .action-center {
-    width: 100%;
+    margin-top: 50px;
+    width: 80%;
     display: grid;
     justify-content: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     /* background-image: './action-center.jpg'; */
     border: solid 1px red;
     
+}
+
+.information {
+    font-size: 40px;
+    margin: 60px;
+}
+
+.roof {
+    font-family: 'Bebas Neue';
+    font-size: 33px;
+    display: flex;
+    
+}
+
+.house {
+    margin-top: 50px;
+    font-family: 'Bebas Neue';
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    width: 80%;
 }
