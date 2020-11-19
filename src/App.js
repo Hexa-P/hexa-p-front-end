@@ -13,6 +13,7 @@ import SignUp from './SignUp.js';
 import Login from './Login.js';
 import Welcome from './Welcome.js';
 import UserProfile from './UserProfile.js';
+import FactPopUp from './FactPopUp.js';
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
@@ -90,16 +91,12 @@ export default class App extends Component {
               exact
               render={(routerProps) => <SliderYear {...routerProps} />}
             />
-
-<<<<<<< HEAD
             <Route
-              path="/articletest"
+              path="/factpopup"
               exact
-              render={(routerProps) => <ArticleTester {...routerProps} />}
+              render={(routerProps) => <FactPopUp {...routerProps} />}
             />
 
-=======
->>>>>>> c3a0f354951f7355ef1242c81f3c188bd897c814
             <Route
               path='/signup'
               exact
@@ -119,10 +116,6 @@ export default class App extends Component {
             />
 
           </Switch>
-<<<<<<< HEAD
-
-=======
->>>>>>> c3a0f354951f7355ef1242c81f3c188bd897c814
         </Router>
       </div >
     )

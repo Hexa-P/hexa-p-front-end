@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './OregonMap.css';
 import request from 'superagent';
+import moment from 'moment';
+import { NavLink } from 'react-router-dom';
 import {
   ComposableMap,
   Geographies,
@@ -31,13 +33,15 @@ export default class OregonMap extends Component {
 
   state = {
     monthlyData: {},
+    api_city_id: 32, 
+    displayedMonth: 'January',
     displayedYear: '1950',
     tempType: 'avg'
   }
 
   componentDidMount = async() => {     
     const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=01&year_range=1950:2005`);
+      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.api_city_id}&month_param=01&year_range=1950:2005`);
 
     await this.setState({ monthlyData: data.body.month });
 
@@ -48,25 +52,25 @@ export default class OregonMap extends Component {
     const displayedTempKey = Object.keys(this.state.monthlyData)
       .filter(key => key.slice(0, 4) === this.state.displayedYear)
 
-    const displayedTemp = await this.state.monthlyData[displayedTempKey][this.state.tempType]
+    const displayedTemp = this.state.monthlyData[displayedTempKey][this.state.tempType]
 
     this.setState({ displayedTemp })
   }
 
-  handleYearClick = async (e) => {
-    await this.setState({ displayedYear: e.target.value })
+  // handleYearClick = async (e) => {
+  //   await this.setState({ displayedYear: e.target.value })
 
-    this.setDisplayedTemp()
-  }
+  //   this.setDisplayedTemp()
+  // }
 
-  handleMonthClick = async (e) => {
-    const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${e.target.value}&year_range=1950:2005`);
+  // handleMonthClick = async (e) => {
+  //   const data = await request
+  //     .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${e.target.value}&year_range=1950:2005`);
 
-    await this.setState({ monthlyData: data.body.month });
+  //   await this.setState({ monthlyData: data.body.month });
 
-    this.setDisplayedTemp()
-  }
+  //   this.setDisplayedTemp()
+  // }
 
   handleTempType = async (e) => {
     const tempConvert = {
@@ -82,7 +86,7 @@ export default class OregonMap extends Component {
     this.setDisplayedTemp();
   }
 
-  handleMarkerClick = (city) => {
+  handleHistoricalButton = (city) => {
     this.props.history.push('/tempchart')
   }
 
@@ -93,15 +97,16 @@ export default class OregonMap extends Component {
   }
 
   handleMonthSlider = debounce(async (e) => {
-    let monthNumber = e
+    let monthNumber = e + 1;
+    const month = moment.months()[e];
 
     if (monthNumber > 9) monthNumber = String(monthNumber)
     else monthNumber = '0' + String(monthNumber)
 
     const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${monthNumber}&year_range=1950:2005`);
+      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=${monthNumber}&year_range=1950:2005`);
 
-    await this.setState({ monthlyData: data.body.month });
+    await this.setState({ monthlyData: data.body.month, displayedMonth: month });
 
     this.setDisplayedTemp()
   }, 500)
@@ -134,6 +139,8 @@ export default class OregonMap extends Component {
       "#F1463B"
     ]);
 
+// --------------------------------------------------------------------------------------
+
   render() {
     return (
     <>
@@ -143,7 +150,7 @@ export default class OregonMap extends Component {
       <Header /> 
     </div>
 
-{/* --------------------------------------------------------------------------------------------------------------- */}
+{/* --------------------------------------------------------------------------------------*/}
   <div className="oregon-map-container">
     <div className="map-wrapper">
 
@@ -175,39 +182,57 @@ export default class OregonMap extends Component {
             }
           </Geographies>
 
-          <Marker
-            coordinates={[-122.675, 45.45]}
-          >
-          <Popup
-            trigger={<circle
-              r={0.3}
-              fill="green"
-              className="circle-marker"
-            ></circle>}
-            position="left"
-          >
-            <div className="portland-popup">
-              <button
-                className="historical-data-button"
-                onClick={() => this.handleMarkerClick('Portland')}
-              >View Historical Data</button>
-              <button className="predictions-button">View Predictions</button>
-            </div>
-          </Popup>
+          <Marker coordinates={[-122.675, 45.45]}>
+            <Popup
+              trigger={<circle
+                r={0.3}
+                fill="red"
+                className="circle-marker"
+              ></circle>}
+              position="left"
+            >
+              <div className="portland-popup">
 
-          <text
-            className="displayed-temp"
-            textAnchor="left"
-            x="0.5"
-            y="0.25"
-            fill="black"
-          >
-            Portland: {
-              this.state.displayedTemp
-              ? `${Math.floor(this.state.displayedTemp * 10) / 10} ${String.fromCharCode(176)}F`
-              : ''
-            }
-          </text>
+                <button
+                  className="historical-data-button"
+                  // onClick={() => this.handleHistoricalButton('Portland')}
+                >
+                  <NavLink
+                    to={{
+                      pathname: "/tempchart",
+                      search: "?city=portland",
+                      state: {
+                        monthlyData: this.state.monthlyData,
+                        city: 'Portland',
+                        api_city_id: 32,
+                        month: this.state.displayedMonth
+                      }
+                    }}>View Historical Data</NavLink>
+                </button>
+
+                <button
+                  className="predictions-button"
+                  onClick={() => this.handlePredictionsButton('Portland')}
+                >
+                  View Predictions
+                </button>
+
+              </div>
+            </Popup>
+
+            <text
+              className="displayed-temp"
+              textAnchor="left"
+              x="0.5"
+              y="0.25"
+              fill="black"
+            >
+              Portland: {
+                this.state.displayedTemp
+                ? `${Math.floor(this.state.displayedTemp * 10) / 10}${String.fromCharCode(176)}F`
+                : ''
+              }
+            </text>
 
           </Marker>
 
@@ -235,15 +260,12 @@ export default class OregonMap extends Component {
           }
         </select>
       </div>
-
     </div>
   </div>
 
 {/* ------------------------------------------------------------------------------------- */}
 
-    <div>
       <Footer />
-    </div>
       </>
     )
   }

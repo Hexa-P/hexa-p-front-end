@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import request from 'superagent';
-//import articleUrls from './ArticleUrls.js'
 import LinkItem from './LinkItem';
+import request from 'superagent';
+import './Tiny.css';
+
+//import articleUrls from './ArticleUrls.js'
 
 
 export default class TinyLinkContainer extends Component {
@@ -22,9 +24,10 @@ export default class TinyLinkContainer extends Component {
   render() {
 
     return (
-      <div>
-        <section>
-          <h2>The Articles of your choosing</h2>
+      <>
+
+        <section className="choice-content">
+
           <div className="flex-link-container">
             {
               this.state.article_urls.map(url =>
@@ -86,7 +89,9 @@ export default class TinyLinkContainer extends Component {
           </div>
 
         </section>
-      </div >
+
+
+      </>
     )
   }
 }

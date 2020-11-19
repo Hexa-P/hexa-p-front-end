@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import include from './images/genderN.jpg';
 import './UserProfile.css';
-import forestb from './images/tomas-anunziata.jpg';
+import Navigation from './Navigation.js';
+import FooterTwo from './FooterTwo';
 
 export default class UserProfile extends Component {
 
@@ -32,46 +33,57 @@ export default class UserProfile extends Component {
     render() {
         return (
             <>
-                <img className="back-one" src={forestb} type='image' alt="forestlooking up" />
+
+<Navigation />
+
+{/* ------------------------------------------------ */}
+
+                {/* <img className="back-one" src={forestb} type='image' alt="forestlooking up" /> */}
                 <div className="overall-wrap"> 
 
                     <div className="left-wrapper">
 
+                        <div className="text-area">
 
-                        <section className="topper">
 
-                            <div className="profile-img">
-                                <img className="includes" src={include} type='image' alt="gender neutral default" />
-                            </div>
+                            <section className="topper">
 
-                        </section>
+                                <div className="profile-img">
+                                    <img className="includes" src={include} type='image' alt="gender neutral default" />
+                                </div>
 
-                        <section className="bopper">
+                            </section>
 
-                            <div className="name-fun">
-                                Name: 
-                            </div>
+                            <section className="bopper">
 
-                            <div className="email-fun">
-                                Email:
-                            </div>
+                                <div className="name-fun">
+                                    Name: 
+                                </div>
 
-                            <div className="about"> 
-                                <about>
+                                <div className="email-fun">
+                                    Email:
+                                </div>
 
-                                </about>
-                            </div>
+                                <div className="about"> 
 
-                        </section>
+                                    <about>
+
+                                    </about>
+
+                                </div>
+
+                            </section>
+
+                        </div>
 
                     </div>
 
         {/* ----------------------------------------------------------------------------------- */}
 
                     <div className="right-wrapper">
-                        <div>
+                        <div className="text-area">
                             
-                            <div>
+                            <div className="new-york">
                                 {/* IMPORT FAVORITES  */}
                                 <h2>Cities:</h2>
 
@@ -84,6 +96,9 @@ export default class UserProfile extends Component {
 
 
                 </div>
+
+<FooterTwo />
+
             </>
         )
     }
