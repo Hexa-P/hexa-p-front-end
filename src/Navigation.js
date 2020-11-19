@@ -20,8 +20,11 @@ export default class Navigation extends Component {
                             <NavLink className="link" to="/Home">Home</NavLink>
                             <NavLink className="link" to="/mapchart">Map</NavLink>
                             <NavLink className="link" to="/tempchart">Your Chart</NavLink>
+                            <NavLink className="link" to="/aboutUs">About the Developers</NavLink>
                             <NavLink className="link" to="/userprofile">User Profile</NavLink>
-                            <button onClick={this.handleLogOut}>Log out</button>
+                            <div className="logout">
+                                <button onClick={this.handleLogOut}>Log out</button>
+                            </div>
                         </div>
                         :
                         <div className="navbar">
