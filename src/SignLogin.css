@@ -1,3 +1,18 @@
+
+  @media (max-width: 600px) {
+    .signup-form,
+    .login-form {
+        width: 350px !important;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .signup-form,
+    .login-form {
+        width: 300px !important;
+    }
+  }
+
 *{
     margin: 0;
     padding: 0;

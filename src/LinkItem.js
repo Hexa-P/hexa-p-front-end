@@ -1,7 +1,39 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import request from 'superagent';
 import { ReactTinyLink } from "react-tiny-link";
 
 export default class LinkItem extends Component {
+
+  state = {
+    fav_url: [],
+  }
+  // ON COMPONENT LOAD...
+  componentDidMount = async () => {
+    await this.fetchFavorites()
+  }
+
+  //FETCH FAVORITE ARTICLES
+  fetchFavorites = async () => {
+    const response = await request
+      .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+      .set('Authorization', this.props.token)
+
+    this.setState({ fav_url: response.fav_url.body })
+  }
+
+  handleFavorite = async (fav_url) => {
+    const favorite = {
+      url: fav_url
+    };
+
+    await request
+      .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+      .set('Authorization', this.props.token)
+      .send(favorite);
+
+    await this.fetchFavorites();
+  }
+
   render() {
     return (
       <div className="my-tiny-link-wrapper">
@@ -13,7 +45,11 @@ export default class LinkItem extends Component {
           width={"45vw"}
           url={this.props.url}
         />
-        <p className="fave-link-wrapper"><button className="fav-button">Favorite</button></p>
+        {
+          this.state.fav_url.find(favorite => favorite.url === this.props.url)
+            ? <div>it's your favorite!</div>
+            : <div style={{ cursor: 'pointer' }} onClick={() => this.handleFavorite(this.props.url)}>click to favorite this</div>
+        }
       </div>
     )
   }
