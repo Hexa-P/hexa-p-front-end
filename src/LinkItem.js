@@ -13,7 +13,7 @@ export default class LinkItem extends Component {
           width={"45vw"}
           url={this.props.url}
         />
-        <p className="fave-link-wrapper">FAVE ME!</p>
+        <p className="fave-link-wrapper"><button className="fav-button">Favorite</button></p>
       </div>
     )
   }

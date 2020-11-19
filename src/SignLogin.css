@@ -65,7 +65,7 @@ input:focus {
     cursor: pointer;
     text-transform: uppercase;
     font-family: 'Bebas Neue';
-    border: 2px solid black;
+    border: 1px solid white;
     border-radius: 2px;
 }
 
@@ -79,7 +79,7 @@ input:focus {
     clear: both;
     box-sizing: border-box;
     height: 400px;
-    border: 2px solid black;
+    border: 1px solid white;
     background: rgba(255, 255, 255, 0.712);
     border-radius: 2px;
     border-top: none;
