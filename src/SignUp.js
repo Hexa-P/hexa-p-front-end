@@ -11,7 +11,6 @@ export default class SignUp extends Component {
     // -----------------------------------------------------------------------------
 
     state = { 
-        name: '',
         email: '',
         password: '',
         loading: false,
@@ -82,14 +81,6 @@ export default class SignUp extends Component {
                     <div className="signup-form">
                         <form onSubmit={this.handleSubmitSignUp}>
                             <h2>Sign Up</h2>
-                            Name:
-                            <label> 
-                                <input
-                                value={this.state.name} 
-                                required
-                                onChange={(e) => this.setState({ name: e.target.value})}
-                                />
-                            </label>
                             Email:
                             <label> 
                                 <input
