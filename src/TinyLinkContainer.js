@@ -25,10 +25,9 @@ export default class TinyLinkContainer extends Component {
 
     return (
       <>
-      
+
         <section className="choice-content">
 
-          <h2>The Articles of your choosing</h2>
           <div className="flex-link-container">
             {
               this.state.article_urls.map(url =>
@@ -90,7 +89,7 @@ export default class TinyLinkContainer extends Component {
           </div>
 
         </section>
-      
+
 
       </>
     )
