@@ -1,3 +1,58 @@
+/* media queries */
+@media (max-width: 900px) {
+    .title {
+        font-size: 50px !important;
+    }
+
+    .welcome-message {
+        font-size: 30px !important; 
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .title {
+          font-size: 30px !important;
+      }
+
+    .welcome-message {
+        font-size: 20px !important;
+    }
+
+    .navbar {
+        height: 40px !important;
+    }
+
+    .link {
+        font-size: 12px !important;
+        margin-left: 5px !important;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .title {
+        font-size: 20px !important;
+    }
+
+    .welcome-message {
+        font-size: 15px !important;
+    }
+
+    .navbar {
+        height: 40px !important;
+    }
+
+    .link {
+        font-size: 8px !important;
+        margin-left: 1px !important;
+    }
+    .content {
+        bottom: 10% !important;
+    }
+    
+    .button-presser {
+        width: 100px !important;
+    }
+  }
 
 .earth {
     position: fixed;
