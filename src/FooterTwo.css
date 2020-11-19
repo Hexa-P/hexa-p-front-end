@@ -1,0 +1,29 @@
+.footerBun {
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(19, 18, 18, 0.945); 
+    background-position: bottom;
+    color: white;
+    font-size: 18px;
+    height: 120px;
+    width: 100%;
+    border-top: black 1px solid;
+    font-family: 'Bebas Neue';
+
+}
+
+.git {
+    width: 170px;
+}
+
+.gitabove {
+    width: 170px;
+}
+
+.gitabove img {
+    border: grey 1px solid;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    
+}

@@ -1,20 +1,44 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
 import TinyLinkContainer from './TinyLinkContainer.js';
 import './Article1.css';
-import Iframe from 'react-iframe';
+
 
 export default class Article1 extends Component {
     render() {
         return (
             <>
-                <h2>Stay Informed</h2>
+                <div className="information">
+                    <div className="chimney">Welcome to the Oregon Environmental Data Initiative</div>
+                    <div className="roof">Climate Data Matters And So Does Our Home</div>
+                    {"\n"}
+                    <div className="house"><i>“As the earth dies your spirit will bloom; as the world fades your soul will rise and glisten. Amongst the dehydrated crevices of a desert earth you will stumble upon your diamonds; in between the dry skulls and cracked bones you will find your sapphires.”</i></div> 
+
+                    <article className="goods"> 
+                        <div className="arty-farty">
+                            We here at Hexa_p are a group of environmental activists and developers who are dedicated to a cleaner, healthier environment for ourselves, our families, our children and all of our futures. We believe that the world needs to be on board with a collective movement towards a more sustainable environment and lifestyles. We need everyone to be pushing at every corner, fighting against this invisible foe. We are losing our companion species at the rapid rate and bearing witness to a mass extinction. Our own species is suffering at an abominable rate from the already irreversible damage that has been caused by global warming. The future holds even more peril and unknowns to our survival due to simply not listening to the early warning signs we have been given. 
+                        </div>   
+
+                        <div className="arty-farty">
+                            We have developed the Oregon Environmental Data Initiative to help spread awareness of our alarming situation on this planet. We have provided current articles for environmental data and concerns to help you can become a better informed global citizen. 
+                        </div> 
+
+                        <div className="arty-farty">
+                            We have also created a tool that will help to expand your insight on the weather temperature changes directly affecting areas in and around Oregon. We believe this is vital information for people to grasp onto at an individual level. Global warming will eventually affect all of our families and lives. To use our temp. mapping application please head over to our map located here:<NavLink className="navy-link" to="/mapchart">Map</NavLink>
+                        </div>  
+                        <div className="arty-farty">
+                            For more information on what this map and where the data is coming from please visit our documentation. To save this data for later reference or to pass along to other people, please create an account with our site <NavLink className="navy-link" to="/signup">here</NavLink>. 
+                        </div>
+                    </article>
+                </div>
 
                 <div className="container-fun">
 
                     <div className="gallery">
 
+{/* ---------------------------------------------------------------------------------------------------------------------------------- */}
+                    
                         <article className="art1 border">
 
                             <img src="fire-australia.jpg" className="gallery__img" alt="animals-effected-by-wildfire" />
@@ -39,6 +63,8 @@ export default class Article1 extends Component {
                                 </div>
                             </span>
 
+{/* ------------------------------------------------------ */}
+
                         </article>
 
                         <article className="art2 border">
@@ -48,10 +74,10 @@ export default class Article1 extends Component {
                                     to={"//www.weforum.org/agenda/2020/11/ocean-climate-change-solutions?utm_source=facebook&utm_medium=social_scheduler&utm_term=Restoring+ocean+life&utm_content=15/11/2020+02:00&fbclid=IwAR1pKsF3OMNtdFUYyCF_EyWfDwUETlhYe8UlNtCJz64lYbqJNJTwwK5Xivs"}
                                     target="_blank">
                                     Why our ocean could hold the best solutions to climate change</Link></h3>
-
-                                ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore etdolore magna aliqua. Ullamcorp a lacus vestibulum sed arcu non odio euismod lacinia. Turpis nunc eget lorem dolor sed viverra ipsum nunc. Tortor dignissim convallis aenean et tortor. Sed viverra tellus in hac. Consectetur a erat nam at lectus urna. Tellus elementum sagittis vitae et leo duis. Est placerat in egestas erat imperdiet. Pharetra massa massa ultricies mi quis hendrerit dolor. Et tortor consequat id porta.
                             </span>
                         </article>
+
+{/* ------------------------------------------------------ */}
 
                         <article className="art3 border">
                             <img src="plastics.jpg" className="gallery__img" alt="plastic-bottle-on-beach" />
@@ -78,6 +104,8 @@ export default class Article1 extends Component {
 
                         </article>
 
+{/* ------------------------------------------------------ */}
+
                         <article className="art4 border">
                             <img src="drought.jpg" className="gallery__img" alt="drought-ridden-land" />
                             <span className="floater">
@@ -96,10 +124,19 @@ export default class Article1 extends Component {
 
                             </span>
                         </article>
+
+{/* ------------------------------------------------------ */}
+
                     </div>
+
+{/* ----------------------------------------------------------------------------------------------------------------------- */}
+
                     <div className="tiny-link-container">
                         <TinyLinkContainer />
                     </div>
+
+{/* ----------------------------------------------------------------------------------------------------------------------- */}
+
                     <div className="action-center">
                         <h2>Action Center</h2>
                         <ul>

@@ -1,0 +1,11 @@
+.headerCrumb {
+    padding: 60px;
+    text-align: center;
+    background-image: url('./images/pexels-brian-hackworth-3523519.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: black 1px solid;
+    height: 430px;
+    margin-top: 75px;
+}
