@@ -1,0 +1,35 @@
+.fact-page {
+  width: 100%;
+  min-height:1000px;
+  background-color: rgba(49, 78, 46, 0.875);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fact-popup-container {
+  color: rgb(179, 255, 251);
+  text-shadow: 1px 3px 0 #1d1b1b, 1px 13px 5px #222020a1;;
+  font-size: 4rem;
+  width: 70%;
+  height: 100%;
+  animation: factscroll 15s ease-in-out;
+}
+
+@keyframes factscroll {
+  0%   {opacity:0%;}
+  15%  {opacity:100%;}
+  90%  {opacity:100%;}
+  100% {opacity: 0%;}
+};
+
+@keyframes pushin {
+  0% {
+    transform: scale(0.8);
+
+}
+100% {
+  transform: scale(1.0);
+}
+}
