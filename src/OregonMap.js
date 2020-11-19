@@ -213,8 +213,7 @@ export default class OregonMap extends Component {
                         onClick={() => this.handlePredictionsButton('Portland')}
                       >
                         View Predictions
-                </button>
-
+                      </button>
                     </div>
                   </Popup>
 
