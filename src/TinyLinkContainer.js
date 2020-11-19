@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
+import request from 'superagent';
 //import articleUrls from './ArticleUrls.js'
 import LinkItem from './LinkItem';
 
 
 export default class TinyLinkContainer extends Component {
   state = {
-    article_urls: [
-      "https://www.climatecentral.org/news/2020-Heat-and-Seniors",
-      "https://climate.nasa.gov/news/3038/the-anatomy-of-glacial-ice-loss/",
-      "https://climate.nasa.gov/news/3030/rising-waters/",
-      "https://climate.nasa.gov/news/3039/changing-pacific-conditions-raise-sea-level-along-us-west-coast/"
-    ],
+    article_urls: [],
   }
+
+  componentDidMount = async () => {
+    const response = await request
+      .get(`https://serene-temple-06405.herokuapp.com/articles`);
+    await this.setState({ article_urls: response.body.map(item => item.url) });
+
+
+  }
+  //
 
   render() {
 
