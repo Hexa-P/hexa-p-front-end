@@ -33,14 +33,15 @@ export default class OregonMap extends Component {
 
   state = {
     monthlyData: {},
-    month: 'January',
+    api_city_id: 32, 
+    displayedMonth: 'January',
     displayedYear: '1950',
     tempType: 'avg'
   }
 
   componentDidMount = async() => {     
     const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=01&year_range=1950:2005`);
+      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.api_city_id}&month_param=01&year_range=1950:2005`);
 
     await this.setState({ monthlyData: data.body.month });
 
@@ -51,25 +52,25 @@ export default class OregonMap extends Component {
     const displayedTempKey = Object.keys(this.state.monthlyData)
       .filter(key => key.slice(0, 4) === this.state.displayedYear)
 
-    const displayedTemp = await this.state.monthlyData[displayedTempKey][this.state.tempType]
+    const displayedTemp = this.state.monthlyData[displayedTempKey][this.state.tempType]
 
     this.setState({ displayedTemp })
   }
 
-  handleYearClick = async (e) => {
-    await this.setState({ displayedYear: e.target.value })
+  // handleYearClick = async (e) => {
+  //   await this.setState({ displayedYear: e.target.value })
 
-    this.setDisplayedTemp()
-  }
+  //   this.setDisplayedTemp()
+  // }
 
-  handleMonthClick = async (e) => {
-    const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${e.target.value}&year_range=1950:2005`);
+  // handleMonthClick = async (e) => {
+  //   const data = await request
+  //     .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${e.target.value}&year_range=1950:2005`);
 
-    await this.setState({ monthlyData: data.body.month });
+  //   await this.setState({ monthlyData: data.body.month });
 
-    this.setDisplayedTemp()
-  }
+  //   this.setDisplayedTemp()
+  // }
 
   handleTempType = async (e) => {
     const tempConvert = {
@@ -96,7 +97,7 @@ export default class OregonMap extends Component {
   }
 
   handleMonthSlider = debounce(async (e) => {
-    let monthNumber = e;
+    let monthNumber = e + 1;
     const month = moment.months()[e];
 
     if (monthNumber > 9) monthNumber = String(monthNumber)
@@ -105,7 +106,7 @@ export default class OregonMap extends Component {
     const data = await request
       .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=${monthNumber}&year_range=1950:2005`);
 
-    await this.setState({ monthlyData: data.body.month, month });
+    await this.setState({ monthlyData: data.body.month, displayedMonth: month });
 
     this.setDisplayedTemp()
   }, 500)
@@ -204,7 +205,7 @@ export default class OregonMap extends Component {
                         monthlyData: this.state.monthlyData,
                         city: 'Portland',
                         api_city_id: 32,
-                        month: this.state.month
+                        month: this.state.displayedMonth
                       }
                     }}>View Historical Data</NavLink>
                 </button>

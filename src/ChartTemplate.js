@@ -65,14 +65,24 @@ export default class ChartTemplate extends Component {
 
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
-      .set('Authorization', localStorage.get('TOKEN'))
+      .set('Authorization', localStorage.getItem('TOKEN'))
       .send({ 
-        month_param: this.state.month,
+        month_param: monthNumber,
         city_api_id: 32
       })
   }
 
+  feauxRequest = async () => {
+    const blah = await request
+      .get(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
+      .set('Authorization', localStorage.getItem('TOKEN'))
+
+    return blah
+  }
+
   render() {
+
+    console.log(this.feauxRequest());
 
     const { 
       city,
@@ -154,7 +164,11 @@ export default class ChartTemplate extends Component {
           /> 
         }
 
-        <button onClick={this.saveData}>Save This Data!</button>
+        {
+          localStorage.getItem('TOKEN') ?
+          <button onClick={this.saveData}>Save This Data!</button>
+          : ''
+        }
 
       </div>
 
