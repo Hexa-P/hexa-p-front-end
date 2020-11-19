@@ -36,7 +36,8 @@ export default class UserProfile extends Component {
 
                 <Navigation token={this.props.token}
                     username={this.props.username}
-                    logOut={this.props.logOut} />
+                    logOut={this.props.logOut}
+                    history={this.props.history} />
 
                 {/* ------------------------------------------------ */}
 
