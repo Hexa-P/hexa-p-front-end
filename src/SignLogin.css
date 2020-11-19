@@ -1,8 +1,22 @@
+@media (max-width: 900px) {
+    .signup-form,
+    .login-form {
+        width: 350px !important;
+    }
+    .bridged {
+        margin-top: 100px;
+        height: 80%;
+  }
+}
 
   @media (max-width: 600px) {
     .signup-form,
     .login-form {
         width: 350px !important;
+    }
+    .bridged {
+        margin-top: 72px;
+        height: 80%;
     }
   }
 
@@ -10,6 +24,10 @@
     .signup-form,
     .login-form {
         width: 300px !important;
+    }
+    .bridged {
+        margin-top: 72px;
+        height: 80%;
     }
   }
 
