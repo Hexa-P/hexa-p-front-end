@@ -29,12 +29,14 @@ export default class Login extends Component {
             console.log(user.body,'Logging You In')
             this.setState({ loading: false })
 
-            this.props.changerTN(user.body.email,
+            this.props.setTokenAndName(user.body.email,
             user.body.token);
             this.props.history.push('/userProfile')
         }
         catch(err) {
             this.setState({ err: 'ERROR, Please enter a valid EMAIL'})
+
+            this.setState({ loading: false })
         } 
 
     }   
