@@ -36,10 +36,20 @@ export default class OregonMap extends Component {
     api_city_id: 32,
     displayedMonth: 'January',
     displayedYear: '1950',
-    tempType: 'avg'
+    tempType: 'avg',
+    cities: [32, 167, 213, 233],
+    citiesData: []
   }
 
   componentDidMount = async() => {     
+
+    try {
+      const data = await request
+        .get(`localhost:3000/many_temps`)
+        .send(this.state.cities)
+    } catch (e) {
+      console.log(e);
+    }
 
     try {
       const data = await request
@@ -180,58 +190,62 @@ export default class OregonMap extends Component {
                   }
                 </Geographies>
 
-                <Marker coordinates={[-122.675, 45.45]}>
-                  <Popup
-                    trigger={<circle
-                      r={0.3}
-                      fill="red"
-                      className="circle-marker"
-                    ></circle>}
-                    position="left"
-                  >
-                    <div className="portland-popup">
-
-                      <button
-                        className="historical-data-button"
-                      // onClick={() => this.handleHistoricalButton('Portland')}
-                      >
-                        <NavLink
-                          to={{
-                            pathname: "/tempchart",
-                            search: "?city=portland",
-                            state: {
-                              monthlyData: this.state.monthlyData,
-                              city: 'Portland',
-                              api_city_id: 32,
-                              month: this.state.displayedMonth
-                            }
-                          }}>View Historical Data</NavLink>
-                      </button>
-
-                      <button
-                        className="predictions-button"
-                        onClick={() => this.handlePredictionsButton('Portland')}
-                      >
-                        View Predictions
-                      </button>
-                    </div>
-                  </Popup>
-
-                  <text
-                    className="displayed-temp"
-                    textAnchor="left"
-                    x="0.5"
-                    y="0.25"
-                    fill="black"
-                  >
-                    Portland: {
-                      this.state.displayedTemp
-                        ? `${Math.floor(this.state.displayedTemp * 10) / 10}${String.fromCharCode(176)}F`
-                        : ''
-                    }
-                  </text>
-
-                </Marker>
+                {
+                  this.state.cities.map(city => {
+                    return <Marker
+                      key={city.city_api_id}
+                      coordinates={[city.longitude, city.latitude]}>
+                    <Popup
+                      trigger={<circle
+                        r={0.3}
+                        fill="red"
+                        className="circle-marker"
+                      ></circle>}
+                      position="left"
+                    >
+                      <div className="portland-popup">
+  
+                        <button
+                          className="historical-data-button"
+                        // onClick={() => this.handleHistoricalButton('Portland')}
+                        >
+                          <NavLink
+                            to={{
+                              pathname: "/tempchart",
+                              state: {
+                                city: city.name,
+                                api_city_id: city.city_api_id,
+                                month: this.state.displayedMonth
+                              }
+                            }}>View Historical Data</NavLink>
+                        </button>
+  
+                        <button
+                          className="predictions-button"
+                          onClick={() => this.handlePredictionsButton(city.name)}
+                        >
+                          View Predictions
+                        </button>
+                      </div>
+                    </Popup>
+  
+                    <text
+                      className="displayed-temp"
+                      textAnchor="left"
+                      x="0.5"
+                      y="0.25"
+                      fill="black"
+                    >
+                      {city.name}: {
+                        this.state.displayedTemp
+                          ? `${Math.floor(this.state.displayedTemp * 10) / 10}${String.fromCharCode(176)}F`
+                          : ''
+                      }
+                    </text>
+  
+                  </Marker>
+                  })
+                }
 
               </ComposableMap>
             </div>
