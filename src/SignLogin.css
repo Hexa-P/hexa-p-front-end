@@ -20,7 +20,7 @@ input:focus {
     border: 2px solid rgba(4, 80, 4, 0.733);
 }
 
-button {
+.button-sign {
     width: 100%;
     background: rgba(241, 255, 47, 0.425);
     height: 60px;
@@ -65,7 +65,7 @@ button {
     cursor: pointer;
     text-transform: uppercase;
     font-family: 'Bebas Neue';
-    border: 2px solid black;
+    border: 1px solid white;
     border-radius: 2px;
 }
 
@@ -79,7 +79,7 @@ button {
     clear: both;
     box-sizing: border-box;
     height: 400px;
-    border: 2px solid black;
+    border: 1px solid white;
     background: rgba(255, 255, 255, 0.712);
     border-radius: 2px;
     border-top: none;
