@@ -3,6 +3,13 @@ import { NavLink } from 'react-router-dom';
 import './Navigation.css'
 
 export default class Navigation extends Component {
+
+    handleLogOut = async () => {
+        console.log(this.props);
+        await this.props.logOut();
+        this.props.history.push('/');
+    }
+
     render() {
         return (
             <div>
@@ -14,7 +21,7 @@ export default class Navigation extends Component {
                             <NavLink className="link" to="/mapchart">Map</NavLink>
                             <NavLink className="link" to="/tempchart">Your Chart</NavLink>
                             <NavLink className="link" to="/userprofile">User Profile</NavLink>
-                            <button onClick={this.props.logOut}>Log out</button>
+                            <button onClick={this.handleLogOut}>Log out</button>
                         </div>
                         :
                         <div className="navbar">
@@ -31,3 +38,4 @@ export default class Navigation extends Component {
         )
     }
 }
+

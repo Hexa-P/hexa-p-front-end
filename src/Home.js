@@ -15,7 +15,8 @@ export default class Home extends Component {
                     <Navigation
                         token={this.props.token}
                         username={this.props.username}
-                        logOut={this.props.logOut} />
+                        logOut={this.props.logOut}
+                        history={this.props.history} />
                     <HeaderHome />
                     <Article1
                         token={this.props.token} />
