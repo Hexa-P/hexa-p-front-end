@@ -6,7 +6,7 @@ import FooterTwo from './FooterTwo';
 
 export default class UserProfile extends Component {
 
-    state = { 
+    state = {
         city: '',
         temp_type: '',
         month: '',
@@ -27,19 +27,21 @@ export default class UserProfile extends Component {
     // }
 
 
-    
-// -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
 
     render() {
         return (
             <>
 
-<Navigation />
+                <Navigation token={this.props.token}
+                    username={this.props.username}
+                    logOut={this.props.logOut} />
 
-{/* ------------------------------------------------ */}
+                {/* ------------------------------------------------ */}
 
                 {/* <img className="back-one" src={forestb} type='image' alt="forestlooking up" /> */}
-                <div className="overall-wrap"> 
+                <div className="overall-wrap">
 
                     <div className="left-wrapper">
 
@@ -57,14 +59,14 @@ export default class UserProfile extends Component {
                             <section className="bopper">
 
                                 <div className="name-fun">
-                                    Name: 
+                                    Name:
                                 </div>
 
                                 <div className="email-fun">
                                     Email:
                                 </div>
 
-                                <div className="about"> 
+                                <div className="about">
 
                                     <about>
 
@@ -78,17 +80,17 @@ export default class UserProfile extends Component {
 
                     </div>
 
-        {/* ----------------------------------------------------------------------------------- */}
+                    {/* ----------------------------------------------------------------------------------- */}
 
                     <div className="right-wrapper">
                         <div className="text-area">
-                            
+
                             <div className="new-york">
                                 {/* IMPORT FAVORITES  */}
                                 <h2>Cities:</h2>
 
-        
-            
+
+
                             </div>
 
                         </div>
@@ -97,7 +99,7 @@ export default class UserProfile extends Component {
 
                 </div>
 
-<FooterTwo />
+                <FooterTwo />
 
             </>
         )

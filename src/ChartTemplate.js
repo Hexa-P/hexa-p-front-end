@@ -25,13 +25,13 @@ export default class ChartTemplate extends Component {
     regressionData: []
   }
 
-  componentDidMount = async() => {
+  componentDidMount = async () => {
     const data = this.props.location.state ?
       this.props.location.state.monthlyData
       : [];
 
     const monthlyData = this.getTwoDimData(data);
-    const regressionData =  this.makeRegressionLineData(monthlyData);
+    const regressionData = this.makeRegressionLineData(monthlyData);
 
     const city = this.props.location.state ?
       this.props.location.state.city
@@ -51,7 +51,7 @@ export default class ChartTemplate extends Component {
           Number(year.slice(0, 4)),
           data[year].avg
         ]);
-        
+
         return dataArr;
       }, [])
   }
@@ -59,14 +59,14 @@ export default class ChartTemplate extends Component {
   makeRegressionLineData = (data) => {
     return regression.linear(data).points
   }
-  
+
   saveData = async () => {
     const monthNumber = moment().month(this.state.month).format('MM');
 
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
       .set('Authorization', localStorage.getItem('TOKEN'))
-      .send({ 
+      .send({
         month_param: monthNumber,
         city_api_id: 32
       })
@@ -84,7 +84,7 @@ export default class ChartTemplate extends Component {
 
     console.log(this.feauxRequest());
 
-    const { 
+    const {
       city,
       month,
       temp_type,
@@ -93,86 +93,88 @@ export default class ChartTemplate extends Component {
     } = this.state;
 
     return (
-  
+
       <>
-      <div>
-        <Navigation />
-      </div>
+        <div>
+          <Navigation token={this.props.token}
+            username={this.props.username}
+            logOut={this.props.logOut} />
+        </div>
 
-      <Header />
+        <Header />
 
-      <div className="chart-container">
+        <div className="chart-container">
 
-        {
-          this.state.monthlyData.length === 0
-          ? 'Select some data to look at on the Map page!'
-          : <Line
-            data={
-              {
-                labels: [...Array(55).keys()].map(num => num + 1950),
-                datasets: [
+          {
+            this.state.monthlyData.length === 0
+              ? 'Select some data to look at on the Map page!'
+              : <Line
+                data={
                   {
-                    label: '°F',
-                    fill: false,
-                    lineTension: 0.5,
-                    backgroundColor: 'rgba(75,192,192,1)',
-                    borderColor: 'rgba(0,0,0,1)',
-                    borderWidth: 2,
-                    data: monthlyData.map(pair => pair[1]),
-                    yAxisID: 'y-axis-1'
-                  },
-                  {
-                    label: 'regression-line',
-                    fill: false,
-                    lineTension: 0.5,
-                    backgroundColor: 'rgba(75,192,192,1)',
-                    borderColor: 'rgba(0,0,0,1)',
-                    borderWidth: 2,
-                    data: regressionData.map(pair => pair[1]),
-                    yAxisID: 'y-axis-1'
-                  },
-                ]
-              }
-            }
-            options={{
-              title: {
-                display: true,
-                text: `${city}'s ${temp_type} temperature for ${month}`,
-                fontSize: 20
-              },
-              legend: {
-                display: false,
-                position: 'right'
-              },
-              scales: {
-                yAxes: [
-                  {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    id: 'y-axis-1',
-                  },
-                ],
-                xAxes: [{
-                  ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 10
+                    labels: [...Array(55).keys()].map(num => num + 1950),
+                    datasets: [
+                      {
+                        label: '°F',
+                        fill: false,
+                        lineTension: 0.5,
+                        backgroundColor: 'rgba(75,192,192,1)',
+                        borderColor: 'rgba(0,0,0,1)',
+                        borderWidth: 2,
+                        data: monthlyData.map(pair => pair[1]),
+                        yAxisID: 'y-axis-1'
+                      },
+                      {
+                        label: 'regression-line',
+                        fill: false,
+                        lineTension: 0.5,
+                        backgroundColor: 'rgba(75,192,192,1)',
+                        borderColor: 'rgba(0,0,0,1)',
+                        borderWidth: 2,
+                        data: regressionData.map(pair => pair[1]),
+                        yAxisID: 'y-axis-1'
+                      },
+                    ]
                   }
-                }]
-              }
-            }}
-          /> 
-        }
+                }
+                options={{
+                  title: {
+                    display: true,
+                    text: `${city}'s ${temp_type} temperature for ${month}`,
+                    fontSize: 20
+                  },
+                  legend: {
+                    display: false,
+                    position: 'right'
+                  },
+                  scales: {
+                    yAxes: [
+                      {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-axis-1',
+                      },
+                    ],
+                    xAxes: [{
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10
+                      }
+                    }]
+                  }
+                }}
+              />
+          }
 
-        {
-          localStorage.getItem('TOKEN') ?
-          <button onClick={this.saveData}>Save This Data!</button>
-          : ''
-        }
+          {
+            localStorage.getItem('TOKEN') ?
+              <button onClick={this.saveData}>Save This Data!</button>
+              : ''
+          }
 
-      </div>
+        </div>
 
-      <Footer />
+        <Footer />
 
       </>
     )

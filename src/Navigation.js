@@ -6,15 +6,27 @@ export default class Navigation extends Component {
     render() {
         return (
             <div>
-                <div className="navbar">
-                    <NavLink className="link" to="/Home">Home</NavLink>
-                    <NavLink className="link" to="/signup">Sign Up</NavLink>
-                    <NavLink className="link" to="/login">Login</NavLink>
-                    <NavLink className="link" to="/mapchart">Map</NavLink>
-                    <NavLink className="link" to="/tempchart">Your Chart</NavLink>
-                    <NavLink className="link" to="/userprofile">User Profile</NavLink>
+                {
+                    this.props.token
+                        ?
+                        <div className="navbar">
+                            <NavLink className="link" to="/Home">Home</NavLink>
+                            <NavLink className="link" to="/mapchart">Map</NavLink>
+                            <NavLink className="link" to="/tempchart">Your Chart</NavLink>
+                            <NavLink className="link" to="/userprofile">User Profile</NavLink>
+                            <button onClick={this.props.logOut}>Log out</button>
+                        </div>
+                        :
+                        <div className="navbar">
+                            <NavLink className="link" to="/Home">Home</NavLink>
+                            <NavLink className="link" to="/signup">Sign Up</NavLink>
+                            <NavLink className="link" to="/login">Login</NavLink>
+                            <NavLink className="link" to="/mapchart">Map</NavLink>
+                            <NavLink className="link" to="/tempchart">Your Chart</NavLink>
+                        </div>
 
-                </div>
+                }
+
             </div>
         )
     }
