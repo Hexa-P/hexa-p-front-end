@@ -28,7 +28,7 @@ export default class ChartTemplate extends Component {
     dataIsSaved: false
   }
 
-  componentDidMount = async() => {
+  componentDidMount = async () => {
     const month_param = this.props.location.state ?
       this.props.location.state.month_param
       : '01';
@@ -48,7 +48,7 @@ export default class ChartTemplate extends Component {
     const unMungedData = await this.getAPIData();
 
     const monthlyData = this.getTwoDimData(unMungedData);
-    const regressionData =  this.makeRegressionLineData(monthlyData);
+    const regressionData = this.makeRegressionLineData(monthlyData);
 
     this.setState({ monthlyData, regressionData, city, month, month_param, city_api_id })
   }
@@ -78,12 +78,12 @@ export default class ChartTemplate extends Component {
 
   handleSaveButton = () => {
     return this.state.dataIsSaved ?
-    'Saved!'
-    : localStorage.getItem('TOKEN') && this.state.monthlyData.length !== 0 ?
-    <button onClick={this.saveData}>Save This Data!</button>
-    : '';
+      'Saved!'
+      : localStorage.getItem('TOKEN') && this.state.monthlyData.length !== 0 ?
+        <button onClick={this.saveData}>Save This Data!</button>
+        : '';
   }
-  
+
   saveData = async () => {
     const monthNumber = moment().month(this.state.month).format('MM');
 
@@ -101,7 +101,7 @@ export default class ChartTemplate extends Component {
 
   render() {
 
-    const { 
+    const {
       city,
       month,
       temp_type,
@@ -183,9 +183,9 @@ export default class ChartTemplate extends Component {
               />
           }
 
-        {
-          this.handleSaveButton()
-        }
+          {
+            this.handleSaveButton()
+          }
 
         </div>
 
