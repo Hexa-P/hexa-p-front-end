@@ -21,7 +21,7 @@ const oregonData = require('./tl_2010_41_county10.json')
 
 const debounce = (func, delay) => {
   let inDebounce
-  return function() {
+  return function () {
     const context = this
     const args = arguments
     clearTimeout(inDebounce)
@@ -33,11 +33,12 @@ export default class OregonMap extends Component {
 
   state = {
     monthlyData: {},
-    api_city_id: 32, 
+    api_city_id: 32,
     displayedMonth: 'January',
     displayedYear: '1950',
     tempType: 'avg'
   }
+
 
   componentDidMount = async() => {     
 
@@ -134,132 +135,137 @@ export default class OregonMap extends Component {
       "#F1463B"
     ]);
 
-// --------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------
 
   render() {
     return (
-    <>
-    <Navigation />
-    
-    <div>
-      <Header /> 
-    </div>
 
-{/* --------------------------------------------------------------------------------------*/}
-  <div className="oregon-map-container">
-    <div className="map-wrapper">
+      <>
+        <Navigation
+          token={this.props.token}
+          username={this.props.username}
+          logOut={this.props.logOut} />
 
-      <div className="month-slider-grid">
-        <SliderMonth 
-          handleMonthSlider={this.handleMonthSlider}
-        />
-      </div>
+        <div>
+          <Header />
+        </div>
 
-      <div className="map-container">
-        <ComposableMap
-          projection="geoMercator"
-          viewBox="69 159.5 18 18"
-        >
+        {/* --------------------------------------------------------------------------------------*/}
+        <div className="oregon-map-container">
+          <div className="map-wrapper">
 
-          <Geographies geography={oregonData}>
-            {
-              ({ geographies }) => {
-                let j = -1
-                return geographies.map(geo => {
-                  j += 1;
-                  return <Geography 
-                    key={geo.rsmKey}
-                    geography={geo}
-                    fill={this.lightBlueColorScale(j % 10)}
-                  />
-                })
-              }
-            }
-          </Geographies>
+            <div className="month-slider-grid">
+              <SliderMonth
+                handleMonthSlider={this.handleMonthSlider}
+              />
+            </div>
 
-          <Marker coordinates={[-122.675, 45.45]}>
-            <Popup
-              trigger={<circle
-                r={0.3}
-                fill="red"
-                className="circle-marker"
-              ></circle>}
-              position="left"
-            >
-              <div className="portland-popup">
+            <div className="map-container">
+              <ComposableMap
+                projection="geoMercator"
+                viewBox="69 159.5 18 18"
+              >
 
-                <button
-                  className="historical-data-button"
-                  // onClick={() => this.handleHistoricalButton('Portland')}
-                >
-                  <NavLink
-                    to={{
-                      pathname: "/tempchart",
-                      state: {
-                        monthlyData: this.state.monthlyData,
-                        city: 'Portland',
-                        api_city_id: 32,
-                        month: this.state.displayedMonth
-                      }
-                    }}>View Historical Data</NavLink>
-                </button>
+                <Geographies geography={oregonData}>
+                  {
+                    ({ geographies }) => {
+                      let j = -1
+                      return geographies.map(geo => {
+                        j += 1;
+                        return <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          fill={this.lightBlueColorScale(j % 10)}
+                        />
+                      })
+                    }
+                  }
+                </Geographies>
 
-                <button
-                  className="predictions-button"
-                  onClick={() => this.handlePredictionsButton('Portland')}
-                >
-                  View Predictions
-                </button>
+                <Marker coordinates={[-122.675, 45.45]}>
+                  <Popup
+                    trigger={<circle
+                      r={0.3}
+                      fill="red"
+                      className="circle-marker"
+                    ></circle>}
+                    position="left"
+                  >
+                    <div className="portland-popup">
 
-              </div>
-            </Popup>
+                      <button
+                        className="historical-data-button"
+                      // onClick={() => this.handleHistoricalButton('Portland')}
+                      >
+                        <NavLink
+                          to={{
+                            pathname: "/tempchart",
+                            search: "?city=portland",
+                            state: {
+                              monthlyData: this.state.monthlyData,
+                              city: 'Portland',
+                              api_city_id: 32,
+                              month: this.state.displayedMonth
+                            }
+                          }}>View Historical Data</NavLink>
+                      </button>
 
-            <text
-              className="displayed-temp"
-              textAnchor="left"
-              x="0.5"
-              y="0.25"
-              fill="black"
-            >
-              Portland: {
-                this.state.displayedTemp
-                ? `${Math.floor(this.state.displayedTemp * 10) / 10}${String.fromCharCode(176)}F`
-                : ''
-              }
-            </text>
+                      <button
+                        className="predictions-button"
+                        onClick={() => this.handlePredictionsButton('Portland')}
+                      >
+                        View Predictions
+                      </button>
 
-          </Marker>
+                    </div>
+                  </Popup>
 
-        </ComposableMap>
-      </div>
+                  <text
+                    className="displayed-temp"
+                    textAnchor="left"
+                    x="0.5"
+                    y="0.25"
+                    fill="black"
+                  >
+                    Portland: {
+                      this.state.displayedTemp
+                        ? `${Math.floor(this.state.displayedTemp * 10) / 10}${String.fromCharCode(176)}F`
+                        : ''
+                    }
+                  </text>
 
-      <div className="year-slider-grid">
-        <SliderYear
-          handleYearSlider={this.handleYearSlider}
-        />
-      </div>
+                </Marker>
 
-      <div className="temp-dropdown-container">
-        <select 
-          onChange={this.handleTempType}
-          className="temp-dropdown"
-        >
-          {
-            ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
-              return <option
-                key={temp}
-                value={temp}
-              >{temp}</option>
-            })
-          }
-        </select>
-      </div>
-    </div>
-  </div>
+              </ComposableMap>
+            </div>
 
-{/* ------------------------------------------------------------------------------------- */}
+            <div className="year-slider-grid">
+              <SliderYear
+                handleYearSlider={this.handleYearSlider}
+              />
+            </div>
 
-      <Footer />
+            <div className="temp-dropdown-container">
+              <select
+                onChange={this.handleTempType}
+                className="temp-dropdown"
+              >
+                {
+                  ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
+                    return <option
+                      key={temp}
+                      value={temp}
+                    >{temp}</option>
+                  })
+                }
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* ------------------------------------------------------------------------------------- */}
+
+        <Footer />
       </>
     )
   }

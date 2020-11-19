@@ -67,7 +67,7 @@ export default class ChartTemplate extends Component {
           Number(year.slice(0, 4)),
           data[year].avg
         ]);
-        
+
         return dataArr;
       }, [])
   }
@@ -110,84 +110,86 @@ export default class ChartTemplate extends Component {
     } = this.state;
 
     return (
-  
+
       <>
-      <div>
-        <Navigation />
-      </div>
+        <div>
+          <Navigation token={this.props.token}
+            username={this.props.username}
+            logOut={this.props.logOut} />
+        </div>
 
-      <Header />
+        <Header />
 
-      <div className="chart-container">
+        <div className="chart-container">
 
-        {
-          this.state.monthlyData.length === 0
-          ? 'Select some data to look at on the Map page!'
-          : <Line
-            data={
-              {
-                labels: [...Array(55).keys()].map(num => num + 1950),
-                datasets: [
+          {
+            this.state.monthlyData.length === 0
+              ? 'Select some data to look at on the Map page!'
+              : <Line
+                data={
                   {
-                    label: '°F',
-                    fill: false,
-                    lineTension: 0.5,
-                    backgroundColor: 'rgba(75,192,192,1)',
-                    borderColor: 'rgba(0,0,0,1)',
-                    borderWidth: 2,
-                    data: monthlyData.map(pair => pair[1]),
-                    yAxisID: 'y-axis-1'
-                  },
-                  {
-                    label: 'regression-line',
-                    fill: false,
-                    lineTension: 0.5,
-                    backgroundColor: 'rgba(75,192,192,1)',
-                    borderColor: 'rgba(0,0,0,1)',
-                    borderWidth: 2,
-                    data: regressionData.map(pair => pair[1]),
-                    yAxisID: 'y-axis-1'
-                  },
-                ]
-              }
-            }
-            options={{
-              title: {
-                display: true,
-                text: `${city}'s ${temp_type} temperature for ${month}`,
-                fontSize: 20
-              },
-              legend: {
-                display: false,
-                position: 'right'
-              },
-              scales: {
-                yAxes: [
-                  {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    id: 'y-axis-1',
-                  },
-                ],
-                xAxes: [{
-                  ticks: {
-                      autoSkip: true,
-                      maxTicksLimit: 10
+                    labels: [...Array(55).keys()].map(num => num + 1950),
+                    datasets: [
+                      {
+                        label: '°F',
+                        fill: false,
+                        lineTension: 0.5,
+                        backgroundColor: 'rgba(75,192,192,1)',
+                        borderColor: 'rgba(0,0,0,1)',
+                        borderWidth: 2,
+                        data: monthlyData.map(pair => pair[1]),
+                        yAxisID: 'y-axis-1'
+                      },
+                      {
+                        label: 'regression-line',
+                        fill: false,
+                        lineTension: 0.5,
+                        backgroundColor: 'rgba(75,192,192,1)',
+                        borderColor: 'rgba(0,0,0,1)',
+                        borderWidth: 2,
+                        data: regressionData.map(pair => pair[1]),
+                        yAxisID: 'y-axis-1'
+                      },
+                    ]
                   }
-                }]
-              }
-            }}
-          /> 
-        }
+                }
+                options={{
+                  title: {
+                    display: true,
+                    text: `${city}'s ${temp_type} temperature for ${month}`,
+                    fontSize: 20
+                  },
+                  legend: {
+                    display: false,
+                    position: 'right'
+                  },
+                  scales: {
+                    yAxes: [
+                      {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-axis-1',
+                      },
+                    ],
+                    xAxes: [{
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10
+                      }
+                    }]
+                  }
+                }}
+              />
+          }
 
         {
           this.handleSaveButton()
         }
 
-      </div>
+        </div>
 
-      <Footer />
+        <Footer />
 
       </>
     )
