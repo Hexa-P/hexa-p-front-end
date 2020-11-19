@@ -40,7 +40,10 @@ li {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #7cb891; 
+    background-image: url('./images/herman-io.jpg');
+    background-repeat: repeat-y;
+    width: 100%;
+ 
 }
 
 .container-fun:after {
@@ -57,17 +60,16 @@ li {
 .border {
     padding: 4px;
     overflow: auto;
-    /* display: flex;
-    justify-content: center;
-    flex-direction: row; */
-    border: black 2px solid
+    border: black 1px solid;
+    background-color: white;
+    border-radius: 3px
 }
 
 .gallery {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 16% 20% 20% 20% 24%;
     grid-template-rows: 25% 25% 50%;
-    grid-gap: 10px;
+    grid-gap: 15px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 15px;
     width:80%;
@@ -105,10 +107,6 @@ li {
     float: left;
 }
 
-/* .article-text {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-} */
-
 
 .flex-link-container {
     border: solid 1px black;
@@ -117,7 +115,7 @@ li {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
+    background-color: #b8bdbade;
 }
 
 .tinylink {
@@ -126,37 +124,58 @@ li {
 
 .my-tiny-link-wrapper {
     padding: 10px;
+    display: flex;
+    margin-left: 100px;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .action-center {
-    margin-top: 50px;
+    margin: 100px;
     width: 80%;
     display: grid;
-    justify-content: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    /* background-image: './action-center.jpg'; */
-    border: solid 1px red;
+    background-color: #b8bdbade;
+    border: solid 2px yellow;
     
 }
 
 .information {
-    font-size: 40px;
+    font-size: 60px;
     margin: 60px;
+}
+
+.chimney {
+    font-family: 'Bebas Neue';
+    font-size: 55px; 
+    text-align: center;  
 }
 
 .roof {
     font-family: 'Bebas Neue';
-    font-size: 33px;
-    display: flex;
-    
+    font-size: 40px; 
+    text-align: center;
+    color: red;
 }
 
 .house {
     margin-top: 50px;
     font-family: 'Bebas Neue';
     font-size: 20px;
-    display: flex;
-    flex-direction: row;
     text-align: center;
-    width: 80%;
+    margin-bottom: 50px;
+}
+
+.navy-link {
+    color: black;
+}
+
+.goods{
+    font-family: 'Bebas Neue';
+    font-size: 20px;
+    border: black 1px solid;
+}
+
+.arty-farty {
+    margin: 50px;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import TinyLinkContainer from './TinyLinkContainer.js';
 import './Article1.css';
 
@@ -9,10 +10,27 @@ export default class Article1 extends Component {
         return (
             <>
                 <div className="information">
-                    <h2>Welcome to the Oregon Environmental Data Initiative</h2>
+                    <div className="chimney">Welcome to the Oregon Environmental Data Initiative</div>
                     <div className="roof">Climate Data Matters And So Does Our Home</div>
                     {"\n"}
-                    <div className="house">“As the earth dies your spirit will bloom; as the world fades your soul will rise and glisten. Amongst the dehydrated crevices of a desert earth you will stumble upon your diamonds; in between the dry skulls and cracked bones you will find your sapphires.”</div> 
+                    <div className="house"><i>“As the earth dies your spirit will bloom; as the world fades your soul will rise and glisten. Amongst the dehydrated crevices of a desert earth you will stumble upon your diamonds; in between the dry skulls and cracked bones you will find your sapphires.”</i></div> 
+
+                    <article className="goods"> 
+                        <div className="arty-farty">
+                            We here at Hexa_p are a group of environmental activists and developers who are dedicated to a cleaner, healthier environment for ourselves, our families, our children and all of our futures. We believe that the world needs to be on board with a collective movement towards a more sustainable environment and lifestyles. We need everyone to be pushing at every corner, fighting against this invisible foe. We are losing our companion species at the rapid rate and bearing witness to a mass extinction. Our own species is suffering at an abominable rate from the already irreversible damage that has been caused by global warming. The future holds even more peril and unknowns to our survival due to simply not listening to the early warning signs we have been given. 
+                        </div>   
+
+                        <div className="arty-farty">
+                            We have developed the Oregon Environmental Data Initiative to help spread awareness of our alarming situation on this planet. We have provided current articles for environmental data and concerns to help you can become a better informed global citizen. 
+                        </div> 
+
+                        <div className="arty-farty">
+                            We have also created a tool that will help to expand your insight on the weather temperature changes directly affecting areas in and around Oregon. We believe this is vital information for people to grasp onto at an individual level. Global warming will eventually affect all of our families and lives. To use our temp. mapping application please head over to our map located here:<NavLink className="navy-link" to="/mapchart">Map</NavLink>
+                        </div>  
+                        <div className="arty-farty">
+                            For more information on what this map and where the data is coming from please visit our documentation. To save this data for later reference or to pass along to other people, please create an account with our site <NavLink className="navy-link" to="/signup">here</NavLink>. 
+                        </div>
+                    </article>
                 </div>
 
                 <div className="container-fun">
