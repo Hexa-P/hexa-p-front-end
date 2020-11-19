@@ -40,12 +40,17 @@ export default class OregonMap extends Component {
   }
 
   componentDidMount = async() => {     
-    const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.api_city_id}&month_param=01&year_range=1950:2005`);
 
-    await this.setState({ monthlyData: data.body.month });
+    try {
+      const data = await request
+        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.api_city_id}&month_param=01&year_range=1950:2005`);
 
-    this.setDisplayedTemp();
+      await this.setState({ monthlyData: data.body.month });
+
+      this.setDisplayedTemp();
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   setDisplayedTemp = async () => {
@@ -56,21 +61,6 @@ export default class OregonMap extends Component {
 
     this.setState({ displayedTemp })
   }
-
-  // handleYearClick = async (e) => {
-  //   await this.setState({ displayedYear: e.target.value })
-
-  //   this.setDisplayedTemp()
-  // }
-
-  // handleMonthClick = async (e) => {
-  //   const data = await request
-  //     .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${e.target.value}&year_range=1950:2005`);
-
-  //   await this.setState({ monthlyData: data.body.month });
-
-  //   this.setDisplayedTemp()
-  // }
 
   handleTempType = async (e) => {
     const tempConvert = {
@@ -103,12 +93,17 @@ export default class OregonMap extends Component {
     if (monthNumber > 9) monthNumber = String(monthNumber)
     else monthNumber = '0' + String(monthNumber)
 
-    const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=${monthNumber}&year_range=1950:2005`);
+    try {
+      const data = await request
+        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=${monthNumber}&year_range=1950:2005`);
 
-    await this.setState({ monthlyData: data.body.month, displayedMonth: month });
+      await this.setState({ monthlyData: data.body.month, displayedMonth: month });
 
-    this.setDisplayedTemp()
+      this.setDisplayedTemp()
+
+    } catch (e) {
+      console.log(e);
+    }
   }, 500)
 
   lightBlueColorScale = scaleQuantize()

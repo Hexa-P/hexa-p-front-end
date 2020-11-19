@@ -26,20 +26,21 @@ export default class ChartTemplate extends Component {
   }
 
   componentDidMount = async() => {
-    const data = this.props.location.state ?
+    const data = await this.props.location.state ?
       this.props.location.state.monthlyData
-      : [];
+      : request
+        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=01&year_range=1950:2005`)
 
     const monthlyData = this.getTwoDimData(data);
     const regressionData =  this.makeRegressionLineData(monthlyData);
 
     const city = this.props.location.state ?
       this.props.location.state.city
-      : '';
+      : 'Portland';
 
     const month = this.props.location.state ?
       this.props.location.state.month
-      : '';
+      : 'January';
 
     this.setState({ monthlyData, regressionData, city, month })
   }
@@ -72,17 +73,7 @@ export default class ChartTemplate extends Component {
       })
   }
 
-  feauxRequest = async () => {
-    const blah = await request
-      .get(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
-      .set('Authorization', localStorage.getItem('TOKEN'))
-
-    return blah
-  }
-
   render() {
-
-    console.log(this.feauxRequest());
 
     const { 
       city,
@@ -165,7 +156,7 @@ export default class ChartTemplate extends Component {
         }
 
         {
-          localStorage.getItem('TOKEN') ?
+          localStorage.getItem('TOKEN') && this.state.monthlyData.length !== 0 ?
           <button onClick={this.saveData}>Save This Data!</button>
           : ''
         }
