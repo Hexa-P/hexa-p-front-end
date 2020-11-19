@@ -43,7 +43,7 @@
 .map-container:after {
     content: "";
     display: block;
-    height: 200px;
+    margin-bottom: 200px;
 }
 
 .circle-marker:hover {
