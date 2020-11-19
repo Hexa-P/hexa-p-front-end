@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import regression from 'regression';
+import moment from 'moment';
 import Navigation from './Navigation.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
+import request from 'superagent';
 
 
 export default class ChartTemplate extends Component {
@@ -29,15 +31,15 @@ export default class ChartTemplate extends Component {
       : [];
 
     const monthlyData = this.getTwoDimData(data);
-    const regressionData =  this.makeRegressionLineData(data);
+    const regressionData =  this.makeRegressionLineData(monthlyData);
 
     const city = this.props.location.state ?
       this.props.location.state.city
       : '';
 
     const month = this.props.location.state ?
-    this.props.location.state.month
-    : '';
+      this.props.location.state.month
+      : '';
 
     this.setState({ monthlyData, regressionData, city, month })
   }
@@ -46,7 +48,7 @@ export default class ChartTemplate extends Component {
     return Object.keys(data)
       .reduce((dataArr, year) => {
         dataArr.push([
-          year.slice(0, 4),
+          Number(year.slice(0, 4)),
           data[year].avg
         ]);
         
@@ -55,11 +57,21 @@ export default class ChartTemplate extends Component {
   }
 
   makeRegressionLineData = (data) => {
-    const twoDimTempsData = this.getTwoDimData(data)
-
-    return regression.linear(twoDimTempsData).points
+    return regression.linear(data).points
   }
   
+  saveData = async () => {
+    const monthNumber = moment().month(this.state.month).format('MM');
+
+    await request
+      .post(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
+      .set('Authorization', localStorage.get('TOKEN'))
+      .send({ 
+        month_param: this.state.month,
+        city_api_id: 32
+      })
+  }
+
   render() {
 
     const { 
@@ -141,6 +153,8 @@ export default class ChartTemplate extends Component {
             }}
           /> 
         }
+
+        <button onClick={this.saveData}>Save This Data!</button>
 
       </div>
 

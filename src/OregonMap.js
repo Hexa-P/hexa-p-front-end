@@ -40,7 +40,7 @@ export default class OregonMap extends Component {
 
   componentDidMount = async() => {     
     const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=01&year_range=1950:2005`);
+      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=01&year_range=1950:2005`);
 
     await this.setState({ monthlyData: data.body.month });
 
@@ -103,7 +103,7 @@ export default class OregonMap extends Component {
     else monthNumber = '0' + String(monthNumber)
 
     const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?month_param=${monthNumber}&year_range=1950:2005`);
+      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=${monthNumber}&year_range=1950:2005`);
 
     await this.setState({ monthlyData: data.body.month, month });
 
@@ -203,6 +203,7 @@ export default class OregonMap extends Component {
                       state: {
                         monthlyData: this.state.monthlyData,
                         city: 'Portland',
+                        api_city_id: 32,
                         month: this.state.month
                       }
                     }}>View Historical Data</NavLink>
