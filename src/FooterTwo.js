@@ -20,8 +20,12 @@ export default class FooterTwo extends Component {
                     <div className="gitabove inblock">
                         Sam Formichella
                         <div className="git inblock">
+                        <a href="https://github.com/sformichella">
                             <img src={github1} alt='github'/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sam-formichella/">
                             <img src={linkedin} alt='linkedin'/>
+                            </a>
                         </div>
                     </div>
 
@@ -30,8 +34,12 @@ export default class FooterTwo extends Component {
                     <div className="gitabove inblock">
                         Andrew Bray
                         <div className="git inblock">
+                        <a href="https://github.com/Andrew-Bray">
                             <img src={github2} alt='github'/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/andrew-michael-bray/">
                             <img src={linkedin} alt='linkedin'/>
+                            </a>
                         </div>
                     </div>
 
@@ -40,8 +48,12 @@ export default class FooterTwo extends Component {
                     <div className="gitabove inblock">
                         Katie Berry
                         <div className="git inblock">
+                        <a href="https://github.com/KatieMBerry">
                             <img src={github3} alt='github'/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/katie-m-berry/">
                             <img src={linkedin} alt='linkedin'/>
+                            </a>
                         </div>
                     </div>
 
@@ -50,8 +62,12 @@ export default class FooterTwo extends Component {
                     <div className="gitabove inblock">
                         Richard Hillman
                         <div className="git inblock">
+                        <a href="https://github.com/Richard-Hillman">
                             <img src={github4} alt='github'/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/richard-hillman/">
                             <img src={linkedin} alt='linkedin'/>
+                            </a>
                         </div>
                     </div>
 
@@ -60,8 +76,12 @@ export default class FooterTwo extends Component {
                     <div className="gitabove inblock">
                         Ryan Carreras
                         <div className="git inblock">
+                        <a href="https://github.com/ryanleviathan">
                             <img src={github5} alt='github'/>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ryancarreras/">
                             <img src={linkedin} alt='linkedin'/>
+                            </a>
                         </div>
                     </div>
 
