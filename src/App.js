@@ -4,7 +4,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import OregonMap from './OregonMap.js';
 import Home from './Home.js';
 import ChartTemplate from './ChartTemplate.js';
@@ -44,7 +43,10 @@ export default class App extends Component {
       username: '',
       token: ''
     })
+    // const { history } = this.props;
+    // console.log(history);
 
+    // history.push('/')
   }
 
   // -----------------------------------------------------------------------------------
@@ -59,31 +61,31 @@ export default class App extends Component {
             <Route
               path="/"
               exact
-              render={(routerProps) => <Welcome {...routerProps} />}
+              render={(routerProps) => <Welcome {...routerProps} token={this.state.token} username={this.state.username} logOut={this.logOut} />}
             />
 
             <Route
               path="/Home"
               exact
-              render={(routerProps) => <Home {...routerProps} />}
+              render={(routerProps) => <Home {...routerProps} token={this.state.token} username={this.state.username} logOut={this.logOut} />}
             />
 
             <Route
               path="/userprofile"
               exact
-              render={(routerProps) => <UserProfile {...routerProps} />}
+              render={(routerProps) => <UserProfile {...routerProps} token={this.state.token} username={this.state.username} logOut={this.logOut} />}
             />
 
             <Route
               path="/mapchart"
               exact
-              render={(routerProps) => <OregonMap {...routerProps} />}
+              render={(routerProps) => <OregonMap {...routerProps} token={this.state.token} username={this.state.username} logOut={this.logOut} />}
             />
 
             <Route
               path="/tempchart"
               exact
-              render={(routerProps) => <ChartTemplate {...routerProps} />}
+              render={(routerProps) => <ChartTemplate {...routerProps} token={this.state.token} username={this.state.username} logOut={this.logOut} />}
             />
 
             <Route

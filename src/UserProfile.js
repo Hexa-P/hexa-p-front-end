@@ -50,12 +50,14 @@ export default class UserProfile extends Component {
         return (
             <>
 
-<Navigation />
+                <Navigation token={this.props.token}
+                    username={this.props.username}
+                    logOut={this.props.logOut} />
 
-{/* ------------------------------------------------ */}
+                {/* ------------------------------------------------ */}
 
                 {/* <img className="back-one" src={forestb} type='image' alt="forestlooking up" /> */}
-                <div className="overall-wrap"> 
+                <div className="overall-wrap">
 
                     <div className="left-wrapper">
 
@@ -76,7 +78,7 @@ export default class UserProfile extends Component {
                                     Email: {this.state.email}
                                 </div>
 
-                                <div className="about"> 
+                                <div className="about">
 
                                     
                                 </div>
@@ -87,11 +89,11 @@ export default class UserProfile extends Component {
 
                     </div>
 
-        {/* ----------------------------------------------------------------------------------- */}
+                    {/* ----------------------------------------------------------------------------------- */}
 
                     <div className="right-wrapper">
                         <div className="text-area">
-                            
+
                             <div className="new-york">
                                 {/* IMPORT FAVORITES  */}
                                 <h2>Cities:</h2>
@@ -119,7 +121,7 @@ export default class UserProfile extends Component {
 
                 </div>
 
-<FooterTwo />
+                <FooterTwo />
 
             </>
         )
