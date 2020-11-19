@@ -53,9 +53,6 @@ export default class App extends Component {
       <div className="body">
         <Router>
 
-          {/* ----------------------------------------------------------------------------------------- */}
-
-
           <Switch>
 
             <Route
@@ -113,9 +110,6 @@ export default class App extends Component {
             />
 
           </Switch>
-
-          {/* ------------------------------------------------------------------------------------------ */}
-
         </Router>
       </div >
     )
