@@ -99,6 +99,25 @@ li {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 } */
 
+
+.flex-link-container {
+    border: solid 4px yellowgreen;
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.tinylink {
+    margin-top: 10px;
+}
+
+.my-tiny-link-wrapper {
+    padding: 10px;
+}
+
 .action-center {
     width: 100%;
     display: grid;
