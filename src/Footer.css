@@ -1,0 +1,29 @@
+.footerFun {
+    padding: 20px;
+    text-align: center;
+    background-image: url('./images/pexels-brian-hackworth-3523519.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    color: white;
+    font-size: 18px;
+    height: 120px;
+    width: 100%;
+    border-top: black 1px solid;
+
+}
+
+.git {
+    width: 170px;
+}
+
+.gitabove {
+    width: 170px;
+}
+
+.gitabove img {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    
+}

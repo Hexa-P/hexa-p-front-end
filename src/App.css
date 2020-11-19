@@ -1,9 +1,55 @@
-body {
-  height: 1000px;
-  width: 1000px;
+* {
+  box-sizing: border-box;
 }
 
-.blah {
-  height: 1000px;
-  width: 1000px;
+
+/* CLASSES --------------------------------------------------------------- */
+
+
+.ohCaptainMyCaptain img {
+  height: 150px;
+  width: auto;
+  margin-right: 20px;
+  margin-top: -20px;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.justify { 
+  text-align: justify;
+}
+
+.block {
+  display: block;
+}
+
+.inblock {
+  display: inline-block;
+}
+
+.gutter-right {
+  margin-right: 20px;
+}
+
+.resets {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.chart-container {
+  width: 600px;
+  height: 400px;
+}
+
+/* animations-------------------------------------------------------------------- */

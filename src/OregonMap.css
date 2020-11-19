@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+}
+
+.oregon-map-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-wrapper {
+    height: 100%;
+    width: auto;
+
+    display: grid;
+    grid-template-columns: repeat(16, 50px);
+    grid-template-rows: repeat(10, 50px);
+}
+
+.map-container:after {
+    content: "";
+    display: block;
+    height: 200px;
+}
+
+.circle-marker:hover {
+    fill: red;
+    cursor: pointer;
+}
+
+.displayed-temp {
+    text-align: left;
+    font-size: 0.05em;
+}
+
+.month-slider-grid {
+    position: relative;
+
+    grid-row: 2 / 10;
+    grid-column: 1 / 3;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin: 50px 0;
+}
+
+.year-slider-grid {
+    grid-row: 10 / 12;
+    grid-column: 3 / 14;
+
+    margin: 0 100px;
+}
+
+.map-container {
+    grid-row: 2 / 10;
+    grid-column: 3 / 14;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+.temp-dropdown-container {
+    grid-row: 4 / 5;
+    grid-column: 14 / 17;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/* 
+.temp-dropdown {
+    max-width: 80%;
+} */
+
+.rsm-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.portland-popup {
+    background: rgba(56, 0, 58, 0.233);
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 5px black;
+
+    min-height: 50px;
+    min-width: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.historical-data-button {
+    font-style: normal;
+    font-size: 1em;
+    line-height: normal;
+
+    background-color: rgba(255, 255, 255, 0.800);
+    border-radius: 5%;
+
+    width: 90%;
+    height: 25%;
+
+    margin: 3px;
+}
+
+.predictions-button {
+    font-style: normal;
+    font-size: 1em;
+    line-height: normal;
+
+    background-color: rgba(255, 255, 255, 0.800);
+    border-radius: 5%;
+
+    width: 90%;
+    height: 25%;
+
+    margin: 3px;
+}

@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border: 2px solid #e9eaea;
+    color: #3e3e40;
+    font-size: 14px;
+    outline: none;
+    transform: all 0.5s ease;
+}
+
+input:focus {
+    border: 2px solid rgba(4, 80, 4, 0.733);
+}
+
+.button-sign {
+    width: 100%;
+    background: rgba(241, 255, 47, 0.425);
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+/* CLASSES ------------------------------ */
+
+.main-container{  
+    font-size: larger;
+    font-family: 'Bebas Neue';
+    user-select: none;
+    background-size: cover; 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;   
+}
+
+.container{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.signup,
+.login{
+    background-color:  rgba(255, 255, 255, 0.712);
+    width: 50%;
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue';
+    border: 1px solid white;
+    border-radius: 2px;
+}
+
+.active {
+    background-color: rgba(17, 114, 17, 0.678);
+}
+
+.signup-form,
+.login-form{
+    padding: 40px;
+    clear: both;
+    box-sizing: border-box;
+    height: 400px;
+    border: 1px solid white;
+    background: rgba(255, 255, 255, 0.712);
+    border-radius: 2px;
+    border-top: none;
+    width: 400px;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+}
+
+.bridged { 
+    z-index: -1;
+    width: 100%;
+    position: fixed
+}    
+

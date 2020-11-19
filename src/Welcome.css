@@ -1,0 +1,55 @@
+
+.earth {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    align-content: center;
+    z-index: -1;
+}    
+
+.topwrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}    
+
+.content {
+    display: grid;
+    position: fixed;
+    bottom: 15%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 75%;
+    padding: 20px;
+    font-size: 35px;
+    font-family: 'Bebas Neue';
+    border-radius: 25px;
+}
+
+.welcome-message {
+font-size: 30px;
+}
+
+.nav {
+    position: fixed;
+} 
+
+.title { 
+    font-size: 50px;
+    padding: 20px;
+}
+
+.button-fun {
+    display: grid;
+    justify-content: space-around;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.button-presser {
+    width: 200px;
+    border-radius: 5px;
+}

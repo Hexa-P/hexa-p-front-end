@@ -1,13 +1,139 @@
 import React, { Component } from 'react';
-import USMapChart from './USMapChart.js';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
+import OregonMap from './OregonMap.js';
+import Home from './Home.js';
+import ChartTemplate from './ChartTemplate.js';
+import SliderYear from './SliderYear.js'
+import SignUp from './SignUp.js';
+import Login from './Login.js';
+import Welcome from './Welcome.js';
+import ArticleTester from './ArticleTester.js'
+import UserProfile from './UserProfile.js';
+// -----------------------------------------------------------------------------------
 export default class App extends Component {
+
+  state = {
+    username: localStorage.getItem('USERNAME') || '',
+    token: localStorage.getItem('TOKEN') || '',
+  }
+
+  // -----------------------------------------------------------------------------------
+
+  setTokenAndName = (username, token) => {
+    localStorage.setItem('TOKEN', token);
+    localStorage.setItem('USERNAME', username);
+
+    this.setState({
+      username: username,
+      token: token
+    })
+  }
+
+  // -----------------------------------------------------------------------------------
+
+  logOut = () => {
+    localStorage.setItem('TOKEN', '');
+    localStorage.setItem('USERNAME', '');
+
+    this.setState({
+      username: '',
+      token: ''
+    })
+
+  }
+
+  // -----------------------------------------------------------------------------------
+
   render() {
     return (
-      <div className = "body">
-        <USMapChart/>
-      </div>
+      <div className="body">
+        <Router>
+
+          {/* ----------------------------------------------------------------------------------------- */}
+
+
+          <Switch>
+
+            <Route
+              path="/"
+              exact
+              render={(routerProps) => <Welcome {...routerProps} />}
+            />
+
+            <Route
+              path="/Home"
+              exact
+              render={(routerProps) => <Home {...routerProps} />}
+            />
+
+            <Route
+              path="/userprofile"
+              exact
+              render={(routerProps) => <UserProfile {...routerProps} />}
+            />
+
+            <Route
+              path="/mapchart"
+              exact
+              render={(routerProps) => <OregonMap {...routerProps} />}
+            />
+
+            <Route
+              path="/tempchart"
+              exact
+              render={(routerProps) => <ChartTemplate {...routerProps} />}
+            />
+
+            <Route
+              path="/slider"
+              exact
+              render={(routerProps) => <SliderYear {...routerProps} />}
+            />
+
+            {/* <Route
+              path="/articletest"
+              exact
+              render={(routerProps) => <ArticleTester {...routerProps} />}
+<<<<<<< HEAD
+<<<<<<< HEAD
+            />
+
+=======
+            /> */}
+>>>>>>> 9c10024a25e41245594534bba86fa14373868584
+=======
+            />
+
+>>>>>>> 8d64c0f1af634bed7dc129ddf42d3936ab7943eb
+            <Route
+              path='/signup'
+              exact
+              render={
+                (routerProps) =>
+                  <SignUp
+                    {...routerProps}
+                    setTokenAndName={this.setTokenAndName}
+                  />
+              }
+            />
+
+            <Route exact path='/login' render={(routerProps) =>
+              <Login {...routerProps}
+                setTokenAndName={this.setTokenAndName}
+              />}
+            />
+
+          </Switch>
+
+          {/* ------------------------------------------------------------------------------------------ */}
+
+        </Router>
+      </div >
     )
   }
 }
