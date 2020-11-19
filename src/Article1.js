@@ -141,16 +141,16 @@ export default class Article1 extends Component {
                         </ul>
 
                         <div>
-                            {/* <h6>A Plastic Ocean</h6>
-                            <Iframe
+                            {/* <h6>A Plastic Ocean</h6> */}
+                            {/* <Iframe
                                 url={"//www.youtube.com/watch?v=6zrn4-FfbXw"}
                                 width="450px"
                                 height="450px"
                                 id="myId"
                                 className="myClassname"
                                 display="initial"
-                                position="relative" */}
-                            {/* // frameborder="0"
+                                position="relative" 
+                             // frameborder="0"
                             // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             // allowfullscreen
                             /> */}
