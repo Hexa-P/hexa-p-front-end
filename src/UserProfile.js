@@ -43,7 +43,6 @@ export default class UserProfile extends Component {
     
 // -------------------------------------------------------------------------
 
-
     render() {
 
         console.log(this.state.userCityData);

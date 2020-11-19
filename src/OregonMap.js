@@ -39,7 +39,6 @@ export default class OregonMap extends Component {
     tempType: 'avg'
   }
 
-
   componentDidMount = async() => {     
 
     try {
@@ -139,7 +138,6 @@ export default class OregonMap extends Component {
 
   render() {
     return (
-
       <>
         <Navigation
           token={this.props.token}
@@ -216,7 +214,6 @@ export default class OregonMap extends Component {
                       >
                         View Predictions
                       </button>
-
                     </div>
                   </Popup>
 
