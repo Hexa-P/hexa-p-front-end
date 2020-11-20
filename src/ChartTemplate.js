@@ -30,8 +30,6 @@ export default class ChartTemplate extends Component {
 
   componentDidMount = async () => {
 
-    console.log(this.props.location.state);
-
     const month_param = await this.props.location.state ?
       this.props.location.state.month_param
       : '01';
@@ -55,7 +53,9 @@ export default class ChartTemplate extends Component {
     const monthlyData = this.getTwoDimData(unMungedData);
     const regressionData = this.makeRegressionLineData(monthlyData);
 
-    this.setState({ monthlyData, regressionData })
+    await this.setState({ monthlyData, regressionData })
+
+    this.getFavoriteData();
   }
 
   getAPIData = async () => {
@@ -63,6 +63,16 @@ export default class ChartTemplate extends Component {
       .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.city_api_id}&month_param=${this.state.month_param}&year_range=1950:2005`);
 
     return data.body.month;
+  }
+
+  getFavoriteData =  async () => {
+    const userCityData = await request
+      .get(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
+      .set('Authorization', localStorage.getItem('TOKEN'))
+
+    const found = userCityData.body.find(city => city.city === this.state.city && city.month_param === this.state.month_param)
+
+    this.setState({ dataIsSaved: Boolean(found)})
   }
 
   getTwoDimData = (data) => {
@@ -105,8 +115,6 @@ export default class ChartTemplate extends Component {
   }
 
   render() {
-
-    console.log(this.props.location.state);
 
     const {
       city,
