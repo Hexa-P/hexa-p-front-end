@@ -45,8 +45,8 @@ export default class OregonMap extends Component {
 
     try {
       const data = await request
-        .get(`localhost:3000/many_temps`)
         .send(this.state.cities)
+        .get(`https://multiple-markers.herokuapp.com/many_temps`)
     } catch (e) {
       console.log(e);
     }
