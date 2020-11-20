@@ -33,8 +33,9 @@ export default class OregonMap extends Component {
 
   state = {
     monthlyData: {},
-    api_city_id: 32,
+    city_api_id: 32,
     displayedMonth: 'January',
+    month_param: '01',
     displayedYear: '1950',
     tempType: 'avg'
   }
@@ -43,7 +44,7 @@ export default class OregonMap extends Component {
 
     try {
       const data = await request
-        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.api_city_id}&month_param=01&year_range=1950:2005`);
+        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.city_api_id}&month_param=01&year_range=1950:2005`);
 
       await this.setState({ monthlyData: data.body.month });
 
@@ -97,7 +98,7 @@ export default class OregonMap extends Component {
       const data = await request
         .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=${monthNumber}&year_range=1950:2005`);
 
-      await this.setState({ monthlyData: data.body.month, displayedMonth: month });
+      await this.setState({ monthlyData: data.body.month, displayedMonth: month, month_param: monthNumber });
 
       this.setDisplayedTemp()
 
@@ -198,21 +199,14 @@ export default class OregonMap extends Component {
                         <NavLink
                           to={{
                             pathname: "/tempchart",
-                            search: "?city=portland",
                             state: {
                               monthlyData: this.state.monthlyData,
                               city: 'Portland',
-                              api_city_id: 32,
+                              city_api_id: 32,
+                              month_param: this.state.month_param,
                               month: this.state.displayedMonth
                             }
                           }}>View Historical Data</NavLink>
-                      </button>
-
-                      <button
-                        className="predictions-button"
-                        onClick={() => this.handlePredictionsButton('Portland')}
-                      >
-                        View Predictions
                       </button>
                     </div>
                   </Popup>
