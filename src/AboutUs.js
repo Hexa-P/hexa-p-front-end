@@ -15,45 +15,45 @@ export default class AboutUs extends Component {
                 {/* -------------------------------------------------------- */}
 
                 <div>
-                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                    <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
-                        Katie Berry: 
+                        Katie Berry: Katie resides in Incline Village, NV (Lake Tahoe). Katie is a member of World Wildlife Fund and The Humane Society.
                     </p>
                 </div>
 
-{/* -------------------------------------------------------- */}
+                {/* -------------------------------------------------------- */}
 
-                <div> 
-                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                <div>
+                    <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
                         Ryan Carreras:
                     </p>
                 </div>
 
-{/* -------------------------------------------------------- */}
+                {/* -------------------------------------------------------- */}
 
-                <div> 
-                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                <div>
+                    <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
-                        Andrew Bray: 
+                        Andrew Bray:
                     </p>
                 </div>
 
-{/* -------------------------------------------------------- */}
+                {/* -------------------------------------------------------- */}
 
-                <div> 
-                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                <div>
+                    <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
                         Samuel Formichella:
                     </p>
                 </div>
 
-{/* -------------------------------------------------------- */}
+                {/* -------------------------------------------------------- */}
 
-                <div> 
-                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                <div>
+                    <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
-                        Richard Hillman: An alchemical software developer with mysterious magical powers. Richard has taken a blood oath to the enviornment and will be combustion engine free within five years. He has also vowed to go back to sustainable living, reducing the amount of single use plastic, and in general all plastic at every corner possible. He wishes to live back in the wilderness with his family of wild things and coding to save the world. 
+                        Richard Hillman: An alchemical software developer with mysterious magical powers. Richard has taken a blood oath to the enviornment and will be combustion engine free within five years. He has also vowed to go back to sustainable living, reducing the amount of single use plastic, and in general all plastic at every corner possible. He wishes to live back in the wilderness with his family of wild things and coding to save the world.
                     </p>
                 </div>
 

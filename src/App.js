@@ -14,7 +14,7 @@ import Welcome from './Welcome.js';
 import UserProfile from './UserProfile.js';
 import FactPopUp from './FactPopUp.js';
 import AboutUs from './AboutUs.js';
-import Docs from './Docs.js';
+// import Docs from './Docs.js';
 // -----------------------------------------------------------------------------------
 export default class App extends Component {
 
@@ -90,7 +90,7 @@ export default class App extends Component {
               render={(routerProps) => <ChartTemplate {...routerProps} token={this.state.token} username={this.state.username} logOut={this.logOut} />}
             />
 
-              <Route
+            <Route
               path="/aboutus"
               exact
               render={(routerProps) => <AboutUs {...routerProps} token={this.state.token} username={this.state.username} logOut={this.logOut} />}

@@ -1,3 +1,57 @@
+@media (max-width: 900px) {
+    .container-fun {
+        width: 75%;
+    }
+    .gallery {
+        margin-left: 10px !important;
+    }
+    .chimney {
+        font-size: 30px !important;
+    }
+    .roof {
+        font-size: 25px !important;
+    }
+    .house {
+        font-size: 20px !important;
+    }
+    .arty-farty {
+        font-size: 15px !important;
+        width: 100%;
+    }
+    .goods {
+        width: 600px;
+    }
+}
+
+  @media (max-width: 600px) {
+    .container-fun {
+        width: 75%;
+    }
+    .gallery {
+        margin-left: 40px !important;
+    }
+    .chimney {
+        font-size: 30px !important;
+    }
+    .roof {
+        font-size: 20px !important;
+    }
+    .house {
+        font-size: 15px !important;
+    }
+    .arty-farty {
+        font-size: 15px !important;
+        width: 100%;
+    }
+    .goods {
+        width: 500px;
+        margin-right: 50px;
+    }
+  }
+
+  /* @media (max-width: 400px) {
+    
+  } */
 
 * {
     box-sizing: border-box;
@@ -44,8 +98,6 @@ button {
     justify-content: center;
     background-image: url('./images/herman-io.jpg');
     background-repeat: repeat-y;
-    width: 100%;
- 
 }
 
 .container-fun:after {
@@ -108,7 +160,6 @@ button {
     object-fit: contain;
     float: left;
 }
-
 
 .flex-link-container {
     border: solid 1px black;

@@ -93,7 +93,7 @@ export default class Article1 extends Component {
                                 </div>
 
                                 <div className="article-text">
-                                    <p> While the ocean has been a buffer to humans on land from the full consequences of our emissions, the excess heat and carbon absorbed by the ocean are changing marine ecosystems to the detriment of the animals and plants in these systems and the people who rely on them.</p>
+                                    <p>While the ocean has been a buffer to humans on land from the full consequences of our emissions, the excess heat and carbon absorbed by the ocean are changing marine ecosystems to the detriment of the animals and plants in these systems and the people who rely on them.</p>
                                 </div>
 
                                 <div className="article-text">
@@ -127,7 +127,7 @@ export default class Article1 extends Component {
                                 </div>
 
                                 <div className="article-text">
-                                    <p>...A total of 1.8 trillion plastic pieces were estimated to be floating in the patch – a plastic count that is equivalent to 250 pieces of debris for every human in the world.</p>
+                                    <p>A total of 1.8 trillion plastic pieces were estimated to be floating in the patch – a plastic count that is equivalent to 250 pieces of debris for every human in the world.</p>
                                 </div>
 
                                 <div className="article-text">
