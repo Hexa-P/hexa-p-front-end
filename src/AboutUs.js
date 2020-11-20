@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import bamf from './images/bamf.jpg';
+import andrew_b from './images/andrew_b.png';
+import katie_b from './images/katie_b.PNG';
+import ryan_c from './images/ryan_c.png';
+import sam_f from './images/sam_f.png';
 // import bamf from './images/bamf.jpg';
 // import bamf from './images/bamf.jpg';
 // import bamf from './images/bamf.jpg';
@@ -23,12 +27,12 @@ export default class AboutUs extends Component {
                     {/* -------------------------------------------------------- */}
 
                     <div className="badass-container">
-                        <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                        <img className="profile-pic" src={andrew_b} type='image' alt="Richard and his cat" />
                         <div className="badass-name-text">
 
                             <h2 className="badass-name">Andrew Bray</h2>
                             <p className="about-text">
-                                As an activist, a storyteller, and a software engineer, Andrew devotes his pursuits to advocating for a sustainable future for ourselves, and our children. He lives in Portland and is grateful that he only needs to bike a few minutes away to frolic in the forest.
+                                As an activist, a storyteller, and a software engineer, Andrew devotes his pursuits to advocating for a sustainable future for ourselves, and our children. He lives in Portland and is grateful that he only needs to bike a few minutes away to frolic in the forest. And yes, he will truly frolic amongst the trees.
                     </p>
                         </div>
                     </div>
@@ -36,7 +40,7 @@ export default class AboutUs extends Component {
                     {/* -------------------------------------------------------- */}
 
                     <div className="badass-container">
-                        <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                        <img className="profile-pic" src={sam_f} type='image' alt="Richard and his cat" />
                         <div className="badass-name-text">
 
                             <h2 className="badass-name">Sam Formichella</h2>
@@ -49,7 +53,7 @@ export default class AboutUs extends Component {
                     {/* -------------------------------------------------------- */}
 
                     <div className="badass-container">
-                        <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                        <img className="profile-pic" src={katie_b} type='image' alt="Richard and his cat" />
                         <div className="badass-name-text">
 
                             <h2 className="badass-name">Katie Berry</h2>
@@ -62,7 +66,7 @@ export default class AboutUs extends Component {
                     {/* -------------------------------------------------------- */}
 
                     <div className="badass-container">
-                        <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
+                        <img className="profile-pic" src={ryan_c} type='image' alt="Richard and his cat" />
                         <div className="badass-name-text">
 
                             <h2 className="badass-name">Ryan Carreras</h2>
