@@ -28,7 +28,6 @@ export default class LinkItem extends Component {
     const favorite = {
       fav_url: booger
     };
-
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
       .set('Authorization', localStorage.getItem('TOKEN'))
@@ -38,8 +37,8 @@ export default class LinkItem extends Component {
   }
 
   render() {
-
     return (
+      // OUR TINY-REACT-LINK WRAPPER
       <div className="my-tiny-link-wrapper">
         <ReactTinyLink className="tinylink"
           cardSize="small"
@@ -50,6 +49,8 @@ export default class LinkItem extends Component {
           //proxyUrl="https://alchemy-anywhere.herokuapp.com/"
           url={this.props.url}
         />
+
+        {/* TERNARY IN A TERNARY TO SEE IF WE ARE SIGNED IN AND HAVE ALREADY PICKED A FAVE */}
         {
           !localStorage.getItem('TOKEN') ?
             ''
