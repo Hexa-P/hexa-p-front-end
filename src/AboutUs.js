@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import bamf from './images/bamf.jpg';
+// import bamf from './images/bamf.jpg';
+// import bamf from './images/bamf.jpg';
+// import bamf from './images/bamf.jpg';
+// import bamf from './images/bamf.jpg';
 import './AboutUs.css';
 
 
@@ -11,6 +15,7 @@ export default class AboutUs extends Component {
                 {/* -------------------------------------------------------- */}
 
                 <div>
+                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
                         Katie Berry: 
                     </p>
@@ -19,6 +24,7 @@ export default class AboutUs extends Component {
 {/* -------------------------------------------------------- */}
 
                 <div> 
+                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
                         Ryan Carreras:
                     </p>
@@ -27,6 +33,7 @@ export default class AboutUs extends Component {
 {/* -------------------------------------------------------- */}
 
                 <div> 
+                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
                         Andrew Bray: 
                     </p>
@@ -35,6 +42,7 @@ export default class AboutUs extends Component {
 {/* -------------------------------------------------------- */}
 
                 <div> 
+                <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
                         Samuel Formichella:
                     </p>
