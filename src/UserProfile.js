@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import include from './images/genderN.jpg';
 import './UserProfile.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ReactTinyLink } from "react-tiny-link";
 import Navigation from './Navigation.js';
 import FooterTwo from './FooterTwo';
@@ -37,7 +37,6 @@ export default class UserProfile extends Component {
             .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
             .set('Authorization', localStorage.getItem('TOKEN'))
         this.setState({ fav_url: faves.body })
-        console.log(faves.body);
     }
 
 
@@ -55,6 +54,9 @@ export default class UserProfile extends Component {
     // -------------------------------------------------------------------------
 
     render() {
+
+
+        console.log(this.state.userCityData);
 
         return (
             <>
@@ -110,16 +112,18 @@ export default class UserProfile extends Component {
 
                                 {
                                     this.state.userCityData.map(city => {
-                                        return <Link className="city-month-data"
-                                            to="/tempchart"
-                                            state={{
+                                        return <NavLink className="city-month-data"
+                                            to={{
+                                                pathname: '/tempchart',
+                                                state: {
                                                 month_param: city.month_param,
                                                 city_api_id: city.city_api_id,
                                                 city: city.city
+                                                }
                                             }}
                                         >
-                                            {`${city.city} - ${moment.months()[Number(city.month_param)]}`}
-                                        </Link>
+                                            {`${city.city} - ${moment.months()[Number(city.month_param - 1)]}`}
+                                        </NavLink>
                                     })
                                 }
 

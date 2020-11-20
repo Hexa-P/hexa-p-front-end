@@ -29,28 +29,33 @@ export default class ChartTemplate extends Component {
   }
 
   componentDidMount = async () => {
-    const month_param = this.props.location.state ?
+
+    console.log(this.props.location.state);
+
+    const month_param = await this.props.location.state ?
       this.props.location.state.month_param
       : '01';
 
-    const city_api_id = this.props.location.state ?
+    const city_api_id = await this.props.location.state ?
       this.props.location.state.city_api_id
       : '32';
 
-    const city = this.props.location.state ?
+    const city =  await this.props.location.state ?
       this.props.location.state.city
       : 'Portland';
 
-    const month = this.props.location.state ?
-      this.props.location.state.month
+    const month = await this.props.location.state ?
+      moment.months(Number(month_param) - 1)
       : 'January';
+
+    await this.setState({ city, month, month_param, city_api_id })
 
     const unMungedData = await this.getAPIData();
 
     const monthlyData = this.getTwoDimData(unMungedData);
     const regressionData = this.makeRegressionLineData(monthlyData);
 
-    this.setState({ monthlyData, regressionData, city, month, month_param, city_api_id })
+    this.setState({ monthlyData, regressionData })
   }
 
   getAPIData = async () => {
@@ -100,6 +105,8 @@ export default class ChartTemplate extends Component {
   }
 
   render() {
+
+    console.log(this.props.location.state);
 
     const {
       city,
