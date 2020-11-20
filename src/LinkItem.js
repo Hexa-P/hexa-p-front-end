@@ -10,9 +10,9 @@ export default class LinkItem extends Component {
   }
   //ON COMPONENT LOAD...
   componentDidMount = async () => {
-    if (this.props.token)
-      await this.fetchFavorites();
     console.log('fetching favorites');
+    if (localStorage.getItem('TOKEN')) await this.fetchFavorites();
+    console.log('fetched favorites');
 
   }
 
@@ -22,23 +22,26 @@ export default class LinkItem extends Component {
       .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
       .set('Authorization', localStorage.getItem('TOKEN'))
 
-    this.setState({ fav_url: response.fav_url.body })
+    //this.setState({ fav_url: response.body.fav_url })
+    return response.body;
+
   }
 
   handleFavorite = async (fav_url) => {
     const favorite = {
       fav_url: fav_url
     };
+    console.log(favorite);
+    // await request
+    //   .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+    //   .set('Authorization', localStorage.getItem('TOKEN'))
+    //   .send(favorite);
 
-    await request
-      .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
-      .set('Authorization', localStorage.getItem('TOKEN'))
-      .send(favorite);
-
-    await this.fetchFavorites();
+    // await this.fetchFavorites();
   }
 
   render() {
+    console.log(this.fetchFavorites());
     return (
       <div className="my-tiny-link-wrapper">
         <ReactTinyLink className="tinylink"
@@ -53,7 +56,7 @@ export default class LinkItem extends Component {
         {
           !localStorage.getItem('TOKEN') ?
             ''
-            : this.state.fav_url.find(favorite => favorite.url === this.props.url)
+            : this.state.fav_url.find(favorite => favorite.fav_url === this.props.url)
               ? <div>it's your favorite!</div>
               : <div style={{ cursor: 'pointer' }} onClick={() => this.handleFavorite(this.props.url)}>click to favorite this</div>
 
