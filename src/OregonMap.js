@@ -19,50 +19,56 @@ import Footer from './Footer.js';
 
 const oregonData = require('./tl_2010_41_county10.json')
 
-const debounce = (func, delay) => {
-  let inDebounce
-  return function () {
-    const context = this
-    const args = arguments
-    clearTimeout(inDebounce)
-    inDebounce = setTimeout(() => func.apply(context, args), delay)
-  }
-}
 
 export default class OregonMap extends Component {
 
   state = {
-    monthlyData: {},
-    api_city_id: 32,
     displayedMonth: 'January',
     displayedYear: '1950',
+    displayedTemps: [],
     tempType: 'avg',
-    cities: [32, 167, 213, 233],
-    citiesData: []
+    cities: [32, 167, 213, 751, 756, 934],
+    fetchData: [],
+    monthlyData: {}
   }
 
   componentDidMount = async() => {     
-
     try {
+
       const data = await request
         .post(`https://multiple-markers.herokuapp.com/many_temps`)
         .send({ city_ids: this.state.cities })
 
-      this.setState({ citiesData: data.body.data })
+      this.setState({ fetchData: data.body.data })
+
     } catch (e) {
+
       console.log(e);
+      
     }
 
-    try {
-      const data = await request
-        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.api_city_id}&month_param=01&year_range=1950:2005`);
+    const monthlyData = this.state.fetchData
+      .reduce((citiesObj, city) => {
+        const data = Object.keys(city.data)
+          .filter(date => date.slice(-2) === '01')
+          .reduce((dataObj, date) => {
+            dataObj[date.slice(0, 4)] = city.data[date];
+            return dataObj;
+          }, {})
 
-      await this.setState({ monthlyData: data.body.month });
+        const month = moment.months()[Number('01') - 1]
 
-      this.setDisplayedTemp();
-    } catch(e) {
-      console.log(e);
-    }
+        citiesObj[city.city] = {
+          city: city.city,
+          id: city.id,
+          month,
+          data
+        }
+
+        return citiesObj;
+    }, {})
+
+    this.setState({ monthlyData })
   }
 
   setDisplayedTemp = async () => {
@@ -94,29 +100,39 @@ export default class OregonMap extends Component {
 
   handleYearSlider = async (e) => {
     await this.setState({ displayedYear: String(e) })
-
-    this.setDisplayedTemp();
   }
 
-  handleMonthSlider = debounce(async (e) => {
+  handleMonthSlider = (e) => {
     let monthNumber = e + 1;
-    const month = moment.months()[e];
 
     if (monthNumber > 9) monthNumber = String(monthNumber)
     else monthNumber = '0' + String(monthNumber)
 
-    try {
-      const data = await request
-        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=${monthNumber}&year_range=1950:2005`);
+    const month_param = monthNumber;
+    const month = moment.months()[Number(monthNumber) - 1];
 
-      await this.setState({ monthlyData: data.body.month, displayedMonth: month });
+    const monthlyData = this.state.fetchData
+      .reduce((citiesObj, city) => {
+        const data = Object.keys(city.data)
+          .filter(date => date.slice(-2) === monthNumber)
+          .reduce((dataObj, date) => {
+            dataObj[date.slice(0, 4)] = city.data[date];
+            return dataObj;
+          }, {})
 
-      this.setDisplayedTemp()
+        citiesObj[city.city] = {
+          city: city.city,
+          id: city.id,
+          month,
+          data
+        }
 
-    } catch (e) {
-      console.log(e);
-    }
-  }, 500)
+        return citiesObj;
+    }, {})
+
+    this.setState({ monthlyData, displayedMonth: month, month_param })
+
+  }
 
   lightBlueColorScale = scaleQuantize()
     .domain([1, 10])
@@ -193,7 +209,7 @@ export default class OregonMap extends Component {
                 </Geographies>
 
                 {
-                  this.state.citiesData.map(city => {
+                  this.state.fetchData.map(city => {
                     return <Marker
                       key={city.id}
                       coordinates={[city.longitude, city.latitude]}>
@@ -206,7 +222,7 @@ export default class OregonMap extends Component {
                       position="left"
                     >
                       <div className="portland-popup">
-  
+                        <span>{city.city}</span>
                         <button
                           className="historical-data-button"
                         // onClick={() => this.handleHistoricalButton('Portland')}
@@ -215,19 +231,14 @@ export default class OregonMap extends Component {
                             to={{
                               pathname: "/tempchart",
                               state: {
-                                city: city.name,
-                                api_city_id: city.id,
-                                month: this.state.displayedMonth
+                                city: city.city,
+                                city_api_id: city.id,
+                                month: this.state.displayedMonth,
+                                month_param: this.state.month_param
                               }
                             }}>View Historical Data</NavLink>
                         </button>
   
-                        <button
-                          className="predictions-button"
-                          onClick={() => this.handlePredictionsButton(city.name)}
-                        >
-                          View Predictions
-                        </button>
                       </div>
                     </Popup>
   
@@ -238,9 +249,9 @@ export default class OregonMap extends Component {
                       y="0.25"
                       fill="black"
                     >
-                      {city.name}: {
-                        this.state.displayedTemp
-                          ? `${Math.floor(this.state.displayedTemp * 10) / 10}${String.fromCharCode(176)}F`
+                      {
+                        this.state.monthlyData[city.city]
+                          ? `${Math.floor(this.state.monthlyData[city.city].data[this.state.displayedYear][this.state.tempType] * 10) / 10}${String.fromCharCode(176)}F`
                           : ''
                       }
                     </text>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import regression from 'regression';
-import moment from 'moment';
 import Navigation from './Navigation.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
@@ -85,21 +84,21 @@ export default class ChartTemplate extends Component {
   }
   
   saveData = async () => {
-    const monthNumber = moment().month(this.state.month).format('MM');
-
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
       .set('Authorization', localStorage.getItem('TOKEN'))
       .send({
         city: this.state.city,
-        month_param: monthNumber,
-        city_api_id: 32
+        month_param: this.state.month_param,
+        city_api_id: this.state.city_api_id
       })
 
     this.setState({ dataIsSaved: true })
   }
 
   render() {
+
+    console.log(this.state);
 
     const { 
       city,
