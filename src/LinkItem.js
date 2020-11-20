@@ -18,19 +18,19 @@ export default class LinkItem extends Component {
   fetchFavorites = async () => {
     const response = await request
       .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
-      .set('Authorization', this.props.token)
+      .set('Authorization', localStorage.getItem('TOKEN'))
 
     this.setState({ fav_url: response.fav_url.body })
   }
 
   handleFavorite = async (fav_url) => {
     const favorite = {
-      url: fav_url
+      fav_url: fav_url
     };
 
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
-      .set('Authorization', this.props.token)
+      .set('Authorization', localStorage.getItem('TOKEN'))
       .send(favorite);
 
     await this.fetchFavorites();
@@ -49,12 +49,12 @@ export default class LinkItem extends Component {
           url={this.props.url}
         />
         {
-          this.props.token ?
-
-            this.state.fav_url.find(favorite => favorite.url === this.props.url)
+          !localStorage.getItem('TOKEN') ?
+            ''
+            : this.state.fav_url.find(favorite => favorite.url === this.props.url)
               ? <div>it's your favorite!</div>
               : <div style={{ cursor: 'pointer' }} onClick={() => this.handleFavorite(this.props.url)}>click to favorite this</div>
-            : ''
+
         }
       </div>
     )
