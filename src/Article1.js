@@ -194,6 +194,14 @@ export default class Article1 extends Component {
                                 showGraphic={true}
                                 maxLine={0}
                                 minLine={0}
+                                url="https://support.nwfactionfund.org/page/9675/action/1?ea.tracking.id=EML_WLC&utm_medium=email&utm_source=engagingnetworks&utm_campaign=welcomeseries&utm_content=20180901+ACT+WelcomeSeries+2&ea.url.id=264154&forwarded=true" />
+                            </li>
+
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={0}
+                                minLine={0}
                                 url="https://onetreeplanted.org/pages/individuals" />
                             </li>
 

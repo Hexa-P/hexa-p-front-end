@@ -37,7 +37,6 @@ export default class UserProfile extends Component {
             .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
             .set('Authorization', localStorage.getItem('TOKEN'))
         this.setState({ fav_url: faves.body })
-        console.log(faves.body);
     }
 
 

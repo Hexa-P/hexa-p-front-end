@@ -5,7 +5,7 @@ import './Navigation.css'
 export default class Navigation extends Component {
 
     handleLogOut = async () => {
-        console.log(this.props);
+
         await this.props.logOut();
         this.props.history.push('/');
     }
