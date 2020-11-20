@@ -183,14 +183,15 @@ export default class Article1 extends Component {
                     {/* ----------------------------------------------------------------------------------------------------------------------- */}
 
                     <div className="action-center">
-                        <h2>Action Center</h2>
+                        <h2>Action Center: Get Involved</h2>
+
                         <ul>
                             <li><ReactTinyLink
                                 cardSize="small"
                                 showGraphic={true}
                                 maxLine={2}
                                 minLine={1}
-                                url="https://support.worldwildlife.org/site/Advocacy?cmd=display&page=UserAction&id=1036" />
+                                url="https://theoceancleanup.com/" />
                             </li>
 
                             <li><ReactTinyLink
@@ -198,8 +199,7 @@ export default class Article1 extends Component {
                                 showGraphic={true}
                                 maxLine={2}
                                 minLine={1}
-                                url="https://www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/"
-                            />
+                                url="https://oceanworks.co/pages/oceanworks-social-impact" />
                             </li>
 
                             <li><ReactTinyLink
@@ -207,35 +207,27 @@ export default class Article1 extends Component {
                                 showGraphic={true}
                                 maxLine={2}
                                 minLine={1}
-                                url="https://www.4ocean.com/pages/our-impact"
-                            />
+                                url="https://www.greenpeace.org/usa/" />
                             </li>
 
-                            {/* <li><ReactTinyLink
+                            <li><ReactTinyLink
                                 cardSize="small"
                                 showGraphic={true}
                                 maxLine={2}
                                 minLine={1}
                                 url="https://www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/" />
-                            </li> */}
+                            </li>
+
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={0}
+                                minLine={0}
+                                url="https://support.worldwildlife.org/site/Advocacy?cmd=display&page=UserAction&id=1036" />
+                            </li>
+
                         </ul>
 
-                        <div>
-                            {/* <h6>A Plastic Ocean</h6> */}
-                            {/* <Iframe
-                                url={"//www.youtube.com/watch?v=6zrn4-FfbXw"}
-                                width="450px"
-                                height="450px"
-                                id="myId"
-                                className="myClassname"
-                                display="initial"
-                                position="relative" 
-                             // frameborder="0"
-                            // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            // allowfullscreen
-                            /> */}
-
-                        </div>
                     </div>
                 </div>
             </>
