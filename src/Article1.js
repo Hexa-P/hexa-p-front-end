@@ -173,17 +173,19 @@ export default class Article1 extends Component {
                         {/* ------------------------------------------------------ */}
 
                     </div>
-
+                    <h2 className="climate-change-title article-title-glow">Current Events: CLIMATE CHANGE</h2>
                     {/* ----------------------------------------------------------------------------------------------------------------------- */}
 
                     <div className="tiny-link-container">
+
                         <TinyLinkContainer />
                     </div>
 
                     {/* ----------------------------------------------------------------------------------------------------------------------- */}
 
                     <div className="action-center">
-                        <h2>Action Center: Get Involved</h2>
+
+                        <h2 className="article-title-glow">Action Center: Get Involved</h2>
 
                         <ul>
 
