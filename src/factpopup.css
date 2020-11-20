@@ -17,6 +17,20 @@
   animation: factscroll 15s ease-in-out;
 }
 
+.info-popup-container {
+  color: rgb(179, 255, 251);
+  text-shadow: 1px 3px 0 #1d1b1b, 1px 13px 5px #222020a1;;
+  font-size: 2rem;
+  width: 70%;
+  height: 100%;
+  animation: infoin 5s ease-in;
+}
+
+@keyframes infoin {
+  0%   {opacity:0%;}
+  100%  {opacity:100%;}
+
+}
 @keyframes factscroll {
   0%   {opacity:0%;}
   15%  {opacity:100%;}

@@ -1,41 +1,41 @@
 import React, { Component } from 'react';
-//import request from 'superagent';
+import request from 'superagent';
 import { ReactTinyLink } from "react-tiny-link";
 
 
 export default class LinkItem extends Component {
 
-  // state = {
-  //   fav_url: [],
-  // }
-  // ON COMPONENT LOAD...
-  // componentDidMount = async () => {
-  //   // if (this.props.token) 
-  //   await this.fetchFavorites();
+  state = {
+    fav_url: [],
+  }
+  //ON COMPONENT LOAD...
+  componentDidMount = async () => {
+    if (this.props.token)
+      await this.fetchFavorites();
 
-  // }
+  }
 
-  // //FETCH FAVORITE ARTICLES
-  // fetchFavorites = async () => {
-  //   const response = await request
-  //     .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
-  //     .set('Authorization', this.props.token)
+  //FETCH FAVORITE ARTICLES
+  fetchFavorites = async () => {
+    const response = await request
+      .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+      .set('Authorization', this.props.token)
 
-  //   this.setState({ fav_url: response.fav_url.body })
-  // }
+    this.setState({ fav_url: response.fav_url.body })
+  }
 
-  // handleFavorite = async (fav_url) => {
-  //   const favorite = {
-  //     url: fav_url
-  //   };
+  handleFavorite = async (fav_url) => {
+    const favorite = {
+      url: fav_url
+    };
 
-  //   await request
-  //     .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
-  //     .set('Authorization', this.props.token)
-  //     .send(favorite);
+    await request
+      .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+      .set('Authorization', this.props.token)
+      .send(favorite);
 
-  //   await this.fetchFavorites();
-  // }
+    await this.fetchFavorites();
+  }
 
   render() {
     return (
@@ -49,12 +49,14 @@ export default class LinkItem extends Component {
           //proxyUrl="https://alchemy-anywhere.herokuapp.com/"
           url={this.props.url}
         />
-        {/* {this.state.token ?
-          this.state.fav_url.find(favorite => favorite.url === this.props.url)
-            ? <div>it's your favorite!</div>
-            : <div style={{ cursor: 'pointer' }} onClick={() => this.handleFavorite(this.props.url)}>click to favorite this</div>
-          : ''
-        } */}
+        {
+          this.props.token ?
+
+            this.state.fav_url.find(favorite => favorite.url === this.props.url)
+              ? <div>it's your favorite!</div>
+              : <div style={{ cursor: 'pointer' }} onClick={() => this.handleFavorite(this.props.url)}>click to favorite this</div>
+            : ''
+        }
       </div>
     )
   }
