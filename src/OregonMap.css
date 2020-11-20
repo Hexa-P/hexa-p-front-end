@@ -1,23 +1,45 @@
 @media (max-width: 900px) {
-     .map-wrapper {
-        height: 45% !important;
-        width: auto !important;
+    .map-wrapper {
+        margin-top: 100px;
+        height: 75% !important;
+        width: 100% !important;
+    }
+    .footerFun {
+        margin-top: 65px;
+    }
+    .gitabove,
+    .git { 
+        width: 95px !important;
     }
   }
   
   @media (max-width: 600px) {
     .map-wrapper {
-        height: 45% !important;
-        width: auto !important;
+        margin-top: 100px;
+        height: 75% !important;
+        width: 100% !important;
     }
+    .headerFun {
+        
+    }
+
+    .footerFun {
+        width: 100% !important;
+        margin-top: 200px !important;
+    }
+    /* .gitabove,
+    .git { 
+        width: 85px !important;
+    } */
   }
 
   @media (max-width: 400px) {
-    /* .map-wrapper {
-        height: 100% !important;
-        width: auto !important;
-    } */
-  }
+    .map-wrapper {
+        margin-top: 120px;
+        height: 55% !important;
+        width: 100% !important;
+    }
+  } 
 
 * {
     box-sizing: border-box;
@@ -43,7 +65,7 @@
 .map-container:after {
     content: "";
     display: block;
-    height: 200px;
+    margin-bottom: 200px;
 }
 
 .circle-marker:hover {

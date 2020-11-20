@@ -1,8 +1,22 @@
+@media (max-width: 900px) {
+    .signup-form,
+    .login-form {
+        width: 350px !important;
+    }
+    .bridged {
+        margin-top: 100px;
+        height: 80%;
+  }
+}
 
   @media (max-width: 600px) {
     .signup-form,
     .login-form {
         width: 350px !important;
+    }
+    .bridged {
+        margin-top: 72px;
+        height: 80%;
     }
   }
 
@@ -10,6 +24,10 @@
     .signup-form,
     .login-form {
         width: 300px !important;
+    }
+    .bridged {
+        margin-top: 72px;
+        height: 80%;
     }
   }
 
@@ -84,8 +102,10 @@ input:focus {
     border-radius: 2px;
 }
 
-.active {
-    background-color: rgba(17, 114, 17, 0.678);
+.signup.active, 
+.login.active {
+    background: rgba(241, 255, 47, 0.425);
+    border: rgba(4, 80, 4, 0.733) 2px solid;
 }
 
 .signup-form,

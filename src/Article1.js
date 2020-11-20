@@ -93,7 +93,7 @@ export default class Article1 extends Component {
                                 </div>
 
                                 <div className="article-text">
-                                    <p> While the ocean has been a buffer to humans on land from the full consequences of our emissions, the excess heat and carbon absorbed by the ocean are changing marine ecosystems to the detriment of the animals and plants in these systems and the people who rely on them.</p>
+                                    <p>While the ocean has been a buffer to humans on land from the full consequences of our emissions, the excess heat and carbon absorbed by the ocean are changing marine ecosystems to the detriment of the animals and plants in these systems and the people who rely on them.</p>
                                 </div>
 
                                 <div className="article-text">
@@ -127,7 +127,7 @@ export default class Article1 extends Component {
                                 </div>
 
                                 <div className="article-text">
-                                    <p>...A total of 1.8 trillion plastic pieces were estimated to be floating in the patch – a plastic count that is equivalent to 250 pieces of debris for every human in the world.</p>
+                                    <p>A total of 1.8 trillion plastic pieces were estimated to be floating in the patch – a plastic count that is equivalent to 250 pieces of debris for every human in the world.</p>
                                 </div>
 
                                 <div className="article-text">
@@ -183,59 +183,52 @@ export default class Article1 extends Component {
                     {/* ----------------------------------------------------------------------------------------------------------------------- */}
 
                     <div className="action-center">
-                        <h2>Action Center</h2>
+                        <h2>Action Center: Get Involved</h2>
+
                         <ul>
+
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={0}
+                                minLine={0}
+                                url="https://onetreeplanted.org/pages/individuals" />
+                            </li>
+
                             <li><ReactTinyLink
                                 cardSize="small"
                                 showGraphic={true}
                                 maxLine={2}
                                 minLine={1}
+                                url="https://theoceancleanup.com/" />
+                            </li>
+
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={2}
+                                minLine={1}
+                                url="https://www.greenpeace.org/usa/" />
+                            </li>
+
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={2}
+                                minLine={1}
+                                url="https://oceanworks.co/pages/oceanworks-social-impact" />
+                            </li>
+
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={0}
+                                minLine={0}
                                 url="https://support.worldwildlife.org/site/Advocacy?cmd=display&page=UserAction&id=1036" />
                             </li>
 
-                            <li><ReactTinyLink
-                                cardSize="small"
-                                showGraphic={true}
-                                maxLine={2}
-                                minLine={1}
-                                url="https://www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/"
-                            />
-                            </li>
-
-                            <li><ReactTinyLink
-                                cardSize="small"
-                                showGraphic={true}
-                                maxLine={2}
-                                minLine={1}
-                                url="https://www.4ocean.com/pages/our-impact"
-                            />
-                            </li>
-
-                            {/* <li><ReactTinyLink
-                                cardSize="small"
-                                showGraphic={true}
-                                maxLine={2}
-                                minLine={1}
-                                url="https://www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/" />
-                            </li> */}
                         </ul>
 
-                        <div>
-                            {/* <h6>A Plastic Ocean</h6> */}
-                            {/* <Iframe
-                                url={"//www.youtube.com/watch?v=6zrn4-FfbXw"}
-                                width="450px"
-                                height="450px"
-                                id="myId"
-                                className="myClassname"
-                                display="initial"
-                                position="relative" 
-                             // frameborder="0"
-                            // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            // allowfullscreen
-                            /> */}
-
-                        </div>
                     </div>
                 </div>
             </>

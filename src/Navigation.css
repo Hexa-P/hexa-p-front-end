@@ -36,3 +36,22 @@
     margin-right: 20px;
     margin-top: -20px;
 }
+
+.logout { 
+    line-height: 2em;
+
+}
+
+.logged-in{ 
+    float: right;
+    margin-right: 50px;
+}
+
+.logout {
+    margin-top: 30px;
+}
+
+.righty-oh {
+    float: right;
+    margin-right: 50px;
+}
