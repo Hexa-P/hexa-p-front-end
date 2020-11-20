@@ -47,15 +47,15 @@ export default class LinkItem extends Component {
           maxLine={4}
           minLine={2}
           width={"45vw"}
-          proxyUrl="https://alchemy-anywhere.herokuapp.com/"
+          //proxyUrl="https://alchemy-anywhere.herokuapp.com/"
           url={this.props.url}
         />
         {
           !localStorage.getItem('TOKEN') ?
             ''
             : this.state.fav_url.find(favorite => favorite.fav_url === this.props.url)
-              ? <div>it's your favorite!</div>
-              : <div style={{ cursor: 'pointer' }} onClick={() => this.handleFavorite(this.props.url)}>click to favorite this</div>
+              ? <div>Saved!</div>
+              : <div style={{ cursor: 'pointer' }} onClick={() => this.handleFavorite(this.props.url)}>Save this Article</div>
 
         }
       </div>

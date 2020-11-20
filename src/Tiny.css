@@ -18,3 +18,30 @@
     grid-row:1/4;
     
 }
+
+.tiny-link-container {
+    margin-top: 60px;
+}
+
+.my-tiny-link-wrapper .react_tinylink_card {
+    height: 100px;
+    width: 400px;
+}
+
+.my-tiny-link-wrapper .react_tinylink_card_content_wrapper {
+    padding: 5px 5px;
+}
+
+.my-tiny-link-wrapper .react_tinylink_card_content_header_description {
+    font-size: .85em;
+}
+
+.my-tiny-link-wrapper .react_tinylink_card_content {
+    font-size: .8em;
+    line-height: 13px;
+}
+
+.my-tiny-link-wrapper .react_tinylink_card_footer_description {
+    font-size: .9em;
+    color: rgb(109, 85, 85);
+}

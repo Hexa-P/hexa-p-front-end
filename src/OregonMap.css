@@ -60,6 +60,7 @@
     display: grid;
     grid-template-columns: repeat(16, 50px);
     grid-template-rows: repeat(10, 50px);
+    background-color: rgb(251, 255, 248);
 }
 
 .map-container:after {
@@ -103,16 +104,18 @@
 }
 
 .temp-dropdown-container {
+    
     grid-row: 4 / 5;
     grid-column: 14 / 17;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-/* 
+
 .temp-dropdown {
-    max-width: 80%;
-} */
+    font-family: 'Bebas Neue';
+    letter-spacing: 1px;
+}
 
 .rsm-svg {
     width: 100%;

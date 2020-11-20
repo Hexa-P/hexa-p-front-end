@@ -119,76 +119,79 @@ export default class ChartTemplate extends Component {
         </div>
 
         <Header />
+        <div className="chart-page-content">
+          <div className="chart-container">
 
-        <div className="chart-container">
-
-          {
-            this.state.monthlyData.length === 0
-              ? 'Select some data to look at on the Map page!'
-              : <Line
-                data={
-                  {
-                    labels: [...Array(55).keys()].map(num => num + 1950),
-                    datasets: [
-                      {
-                        label: '°F',
-                        fill: false,
-                        lineTension: 0.5,
-                        backgroundColor: 'rgba(75,192,192,1)',
-                        borderColor: 'rgba(0,0,0,1)',
-                        borderWidth: 2,
-                        data: monthlyData.map(pair => pair[1]),
-                        yAxisID: 'y-axis-1'
-                      },
-                      {
-                        label: 'regression-line',
-                        fill: false,
-                        lineTension: 0.5,
-                        backgroundColor: 'rgba(75,192,192,1)',
-                        borderColor: 'rgba(0,0,0,1)',
-                        borderWidth: 2,
-                        data: regressionData.map(pair => pair[1]),
-                        yAxisID: 'y-axis-1'
-                      },
-                    ]
+            {
+              this.state.monthlyData.length === 0
+                ? 'Select some data to look at on the Map page!'
+                : <Line
+                  data={
+                    {
+                      labels: [...Array(55).keys()].map(num => num + 1950),
+                      datasets: [
+                        {
+                          label: '°F',
+                          fill: false,
+                          lineTension: 0.5,
+                          backgroundColor: 'rgba(75,192,192,1)',
+                          borderColor: 'rgba(0,0,0,1)',
+                          borderWidth: 2,
+                          data: monthlyData.map(pair => pair[1]),
+                          yAxisID: 'y-axis-1'
+                        },
+                        {
+                          label: 'regression-line',
+                          fill: false,
+                          lineTension: 0.5,
+                          backgroundColor: 'rgba(75,192,192,1)',
+                          borderColor: 'rgba(0,0,0,1)',
+                          borderWidth: 2,
+                          data: regressionData.map(pair => pair[1]),
+                          yAxisID: 'y-axis-1'
+                        },
+                      ]
+                    }
                   }
-                }
-                options={{
-                  title: {
-                    display: true,
-                    text: `${city}'s ${temp_type} temperature for ${month}`,
-                    fontSize: 20
-                  },
-                  legend: {
-                    display: false,
-                    position: 'right'
-                  },
-                  scales: {
-                    yAxes: [
-                      {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        id: 'y-axis-1',
-                      },
-                    ],
-                    xAxes: [{
-                      ticks: {
-                        autoSkip: true,
-                        maxTicksLimit: 10
-                      }
-                    }]
-                  }
-                }}
-              />
-          }
+                  options={{
+                    title: {
+                      display: true,
+                      text: `${city}'s ${temp_type} temperature for ${month} (°F)`,
+                      fontSize: 20
+                    },
+                    legend: {
+                      display: false,
+                      position: 'right'
+                    },
+                    scales: {
+                      yAxes: [
+                        {
+                          type: 'linear',
+                          display: true,
+                          position: 'left',
+                          id: 'y-axis-1',
+                        },
+                      ],
+                      xAxes: [{
+                        ticks: {
+                          autoSkip: true,
+                          maxTicksLimit: 10
+                        }
+                      }]
+                    }
+                  }}
+                />
+            }
 
-          {
-            this.handleSaveButton()
-          }
+            {
+              this.handleSaveButton()
+            }
 
+          </div>
+          <div className="chart-text">
+            Historic Climate Temperature data gives us a clear perspective of where we’ve come from… and where we are headed. <br></br>Unless we take a stand. <br></br>Data shows a clear increase in the temperatures over this extended time. We hope that viewing this personalized data will illuminate that Climate Change affects us, not only globally, but locally as well.
+          </div>
         </div>
-
         <Footer />
 
       </>
