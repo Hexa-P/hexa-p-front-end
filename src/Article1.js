@@ -188,12 +188,13 @@ export default class Article1 extends Component {
                         <h2 className="article-title-glow">Action Center: Get Involved</h2>
 
                         <ul>
+
                             <li><ReactTinyLink
                                 cardSize="small"
                                 showGraphic={true}
-                                maxLine={2}
-                                minLine={1}
-                                url="https://theoceancleanup.com/" />
+                                maxLine={0}
+                                minLine={0}
+                                url="https://onetreeplanted.org/pages/individuals" />
                             </li>
 
                             <li><ReactTinyLink
@@ -201,7 +202,7 @@ export default class Article1 extends Component {
                                 showGraphic={true}
                                 maxLine={2}
                                 minLine={1}
-                                url="https://oceanworks.co/pages/oceanworks-social-impact" />
+                                url="https://theoceancleanup.com/" />
                             </li>
 
                             <li><ReactTinyLink
@@ -217,7 +218,7 @@ export default class Article1 extends Component {
                                 showGraphic={true}
                                 maxLine={2}
                                 minLine={1}
-                                url="https://www.c2es.org/category/climate-solutions/reducing-your-carbon-footprint/" />
+                                url="https://oceanworks.co/pages/oceanworks-social-impact" />
                             </li>
 
                             <li><ReactTinyLink
