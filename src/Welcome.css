@@ -26,6 +26,9 @@
         font-size: 12px !important;
         margin-left: 5px !important;
     }
+    .content {
+        bottom: 18% !important;
+    }
   }
 
   @media (max-width: 400px) {
