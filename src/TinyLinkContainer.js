@@ -5,7 +5,6 @@ import './Tiny.css';
 
 //import articleUrls from './ArticleUrls.js'
 
-
 export default class TinyLinkContainer extends Component {
   state = {
     article_urls: [],
@@ -26,21 +25,15 @@ export default class TinyLinkContainer extends Component {
 
     return (
       <>
-
         <section className="choice-content">
-
           <div className="flex-link-container">
             {
               this.state.article_urls.map(url =>
                 <LinkItem
-                  url={url} />
-              )
+                  url={url} />)
             }
           </div>
-
         </section>
-
-
       </>
     )
   }

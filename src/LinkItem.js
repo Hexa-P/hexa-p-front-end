@@ -10,8 +10,8 @@ export default class LinkItem extends Component {
   }
   //ON COMPONENT LOAD...
   componentDidMount = async () => {
-    if (localStorage.getItem('TOKEN')) await this.fetchFavorites();
 
+    if (localStorage.getItem('TOKEN')) await this.fetchFavorites();
 
   }
 
