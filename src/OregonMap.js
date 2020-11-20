@@ -45,8 +45,10 @@ export default class OregonMap extends Component {
 
     try {
       const data = await request
-        .send(this.state.cities)
-        .get(`https://multiple-markers.herokuapp.com/many_temps`)
+        .post(`https://multiple-markers.herokuapp.com/many_temps`)
+        .send({ city_ids: this.state.cities })
+
+      this.setState({ citiesData: data.body.data })
     } catch (e) {
       console.log(e);
     }
@@ -191,9 +193,9 @@ export default class OregonMap extends Component {
                 </Geographies>
 
                 {
-                  this.state.cities.map(city => {
+                  this.state.citiesData.map(city => {
                     return <Marker
-                      key={city.city_api_id}
+                      key={city.id}
                       coordinates={[city.longitude, city.latitude]}>
                     <Popup
                       trigger={<circle
@@ -214,7 +216,7 @@ export default class OregonMap extends Component {
                               pathname: "/tempchart",
                               state: {
                                 city: city.name,
-                                api_city_id: city.city_api_id,
+                                api_city_id: city.id,
                                 month: this.state.displayedMonth
                               }
                             }}>View Historical Data</NavLink>
