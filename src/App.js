@@ -45,10 +45,6 @@ export default class App extends Component {
       username: '',
       token: ''
     })
-    // const { history } = this.props;
-    // console.log(history);
-
-    // history.push('/')
   }
 
   // -----------------------------------------------------------------------------------
