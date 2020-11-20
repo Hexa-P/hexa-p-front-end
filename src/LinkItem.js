@@ -10,8 +10,9 @@ export default class LinkItem extends Component {
   }
   //ON COMPONENT LOAD...
   componentDidMount = async () => {
-    if (this.props.token)
-      await this.fetchFavorites();
+
+    if (localStorage.getItem('TOKEN')) await this.fetchFavorites();
+
   }
 
   //FETCH FAVORITE ARTICLES
@@ -19,15 +20,15 @@ export default class LinkItem extends Component {
     const response = await request
       .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
       .set('Authorization', localStorage.getItem('TOKEN'))
+    this.setState({ fav_url: response.body })
 
-    this.setState({ fav_url: response.fav_url.body })
   }
 
-  handleFavorite = async (fav_url) => {
+  handleFavorite = async (booger) => {
     const favorite = {
-      fav_url: fav_url
+      fav_url: booger
     };
-
+    console.log(favorite);
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
       .set('Authorization', localStorage.getItem('TOKEN'))
@@ -37,6 +38,7 @@ export default class LinkItem extends Component {
   }
 
   render() {
+    console.log(this.state.fav_url);
     return (
       <div className="my-tiny-link-wrapper">
         <ReactTinyLink className="tinylink"
@@ -45,13 +47,13 @@ export default class LinkItem extends Component {
           maxLine={4}
           minLine={2}
           width={"45vw"}
-          //proxyUrl="https://alchemy-anywhere.herokuapp.com/"
+          proxyUrl="https://alchemy-anywhere.herokuapp.com/"
           url={this.props.url}
         />
         {
           !localStorage.getItem('TOKEN') ?
             ''
-            : this.state.fav_url.find(favorite => favorite.url === this.props.url)
+            : this.state.fav_url.find(favorite => favorite.fav_url === this.props.url)
               ? <div>it's your favorite!</div>
               : <div style={{ cursor: 'pointer' }} onClick={() => this.handleFavorite(this.props.url)}>click to favorite this</div>
 
