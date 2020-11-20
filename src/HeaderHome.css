@@ -1,3 +1,22 @@
+@media (max-width: 900px) {
+  .headerCrumb {
+    height: 300px !important;
+    margin-top: 75px !important;
+  }
+}
+
+  @media (max-width: 600px) {
+    .headerCrumb {
+        height: 200px !important;
+        margin-top: 65px !important;
+      }
+  }
+
+  @media (max-width: 400px) {
+    
+  }
+
+
 .headerCrumb {
     padding: 60px;
     text-align: center;
