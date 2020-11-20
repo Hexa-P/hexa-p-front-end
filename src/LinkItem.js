@@ -28,7 +28,7 @@ export default class LinkItem extends Component {
     const favorite = {
       fav_url: booger
     };
-    console.log(favorite);
+
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
       .set('Authorization', localStorage.getItem('TOKEN'))
@@ -38,7 +38,7 @@ export default class LinkItem extends Component {
   }
 
   render() {
-    console.log(this.state.fav_url);
+
     return (
       <div className="my-tiny-link-wrapper">
         <ReactTinyLink className="tinylink"
