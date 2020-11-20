@@ -10,14 +10,14 @@ import './AboutUs.css';
 export default class AboutUs extends Component {
     render() {
         return (
-            <div>
+            <div className="about-us">
                 <h1> ABOUT US </h1>
                 {/* -------------------------------------------------------- */}
 
                 <div>
                     <img className="profile-pic" src={bamf} type='image' alt="Richard and his cat" />
                     <p className="about-text">
-                        Katie Berry: Katie resides in Incline Village, NV (Lake Tahoe). Katie is a member of World Wildlife Fund and The Humane Society.
+                        Katie Berry: Katie resides in Incline Village, NV (Lake Tahoe). Katie is a member of World Wildlife Fund and The Humane Society, and a "Tree Ambassador" of One Tree Planted.
                     </p>
                 </div>
 

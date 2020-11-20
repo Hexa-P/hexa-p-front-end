@@ -12,8 +12,6 @@ export default class LinkItem extends Component {
   componentDidMount = async () => {
     if (this.props.token)
       await this.fetchFavorites();
-    console.log('fetching favorites');
-
   }
 
   //FETCH FAVORITE ARTICLES
