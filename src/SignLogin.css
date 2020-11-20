@@ -84,8 +84,10 @@ input:focus {
     border-radius: 2px;
 }
 
-.active {
-    background-color: rgba(17, 114, 17, 0.678);
+.signup.active, 
+.login.active {
+    background: rgba(241, 255, 47, 0.425);
+    border: rgba(4, 80, 4, 0.733) 2px solid;
 }
 
 .signup-form,
