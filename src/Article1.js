@@ -183,9 +183,9 @@ export default class Article1 extends Component {
 
                     {/* ----------------------------------------------------------------------------------------------------------------------- */}
 
-                    <div className="action-center">
+                    <h2 className="climate-change-title article-title-glow">Action Center: Get Involved</h2>
 
-                        <h2 className="article-title-glow">Action Center: Get Involved</h2>
+                    <div className="action-center">
 
                         <ul>
 

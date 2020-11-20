@@ -54,7 +54,7 @@ export default class AboutUs extends Component {
 
                             <h2 className="badass-name">Katie Berry</h2>
                             <p className="about-text">
-                                Katie resides in Incline Village, NV (Lake Tahoe). Katie is a member of World Wildlife Fund and The Humane Society.
+                                Katie resides in Incline Village, NV (Lake Tahoe). Katie is a member of World Wildlife Fund and The Humane Society. Don't mess with her chipmunks.
                     </p>
                         </div>
                     </div>
