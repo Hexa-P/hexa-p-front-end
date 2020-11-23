@@ -109,14 +109,19 @@ export default class UserProfile extends Component {
 
                                 {
                                     this.state.userCityData.map(city => {
+
+                                        console.log(city);
+
+                                        const chartData = {
+                                            cityName: city.city,
+                                            cityId: city.city_api_id,
+                                            monthString: city.month_param
+                                          }
+
                                         return <NavLink className="city-month-data"
                                             to={{
                                                 pathname: '/tempchart',
-                                                state: {
-                                                month_param: city.month_param,
-                                                city_api_id: city.city_api_id,
-                                                city: city.city
-                                                }
+                                                state: chartData
                                             }}
                                         >
                                             {`${city.city} - ${moment.months()[Number(city.month_param - 1)]}`}
