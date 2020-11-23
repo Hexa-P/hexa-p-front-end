@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import regression from 'regression';
+import moment from 'moment';
 import Navigation from './Navigation.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
@@ -17,50 +18,61 @@ export default class ChartTemplate extends Component {
   // }
   // --------------------------------------------------------------------------------------
   state = {
-    city: 'Portland',
-    temp_type: 'Average High',
+    cityName: 'Portland',
+    cityId: '32',
     month: 'January',
-    month_param: '01',
-    city_api_id: '32',
+    monthString: '01',
+    temp_type: 'Average High',
     monthlyData: [],
     regressionData: [],
     dataIsSaved: false
   }
 
   componentDidMount = async () => {
-    const month_param = this.props.location.state ?
-      this.props.location.state.month_param
+
+    // Get all of the data from chartData in props.location.state
+    const monthString = await this.props.location.state ?
+      this.props.location.state.monthString
       : '01';
 
-    const city_api_id = this.props.location.state ?
-      this.props.location.state.city_api_id
+    const cityId = await this.props.location.state ?
+      this.props.location.state.cityId
       : '32';
 
-    const city = this.props.location.state ?
-      this.props.location.state.city
+    const cityName = await this.props.location.state ?
+      this.props.location.state.cityName
       : 'Portland';
+  
+      
+    // Convert monthString to month name string thing
+    const month = moment.months()[Number(monthString) - 1];
 
-    const month = this.props.location.state ?
-      this.props.location.state.month
-      : 'January';
+    this.setState({ cityName, cityId, monthString, month })
 
-    const unMungedData = await this.getAPIData();
+    // grab API data by month for every from 1950 - 2005
+    const fetchData = await this.getAPIData();
 
-    const monthlyData = this.getTwoDimData(unMungedData);
+    // Turn fetchData into an array of arrays with two points:
+    // one for the year and one for the temp
+    const monthlyData = this.getTwoDimData(fetchData);
+
+    // Use the regression package to calculate a regression line
+    // for the fetchData
     const regressionData = this.makeRegressionLineData(monthlyData);
 
-    this.setState({ monthlyData, regressionData, city, month, month_param, city_api_id })
+    this.setState({ monthlyData, regressionData })
+
   }
 
   getAPIData = async () => {
     const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.city_api_id}&month_param=${this.state.month_param}&year_range=1950:2005`);
+      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.cityId}&month_param=${this.state.monthString}&year_range=1950:2005`);
 
     return data.body.month;
   }
 
   getTwoDimData = (data) => {
-    return Object.keys(data)
+    const twoDimData = Object.keys(data)
       .reduce((dataArr, year) => {
         dataArr.push([
           Number(year.slice(0, 4)),
@@ -69,6 +81,8 @@ export default class ChartTemplate extends Component {
 
         return dataArr;
       }, [])
+
+    return twoDimData;
   }
 
   makeRegressionLineData = (data) => {
@@ -88,9 +102,9 @@ export default class ChartTemplate extends Component {
       .post(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
       .set('Authorization', localStorage.getItem('TOKEN'))
       .send({
-        city: this.state.city,
-        month_param: this.state.month_param,
-        city_api_id: this.state.city_api_id
+        city: this.state.cityName,
+        month_param: this.state.monthString,
+        city_api_id: this.state.cityId
       })
 
     this.setState({ dataIsSaved: true })
@@ -99,7 +113,7 @@ export default class ChartTemplate extends Component {
   render() {
 
     const {
-      city,
+      cityName,
       month,
       temp_type,
       monthlyData,
@@ -153,7 +167,7 @@ export default class ChartTemplate extends Component {
                 options={{
                   title: {
                     display: true,
-                    text: `${city}'s ${temp_type} temperature for ${month}`,
+                    text: `${cityName}'s ${temp_type} temperature for ${month}`,
                     fontSize: 20
                   },
                   legend: {

@@ -12,12 +12,30 @@ import SliderYear from './SliderYear.js';
 import SliderMonth from './SliderMonth.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
-import CityMarker from './CityMarker';
+import CityMarker from './CityMarker.js';
 
 const oregonData = require('./tl_2010_41_county10.json')
 
 
 export default class OregonMap extends Component {
+
+  // 
+  // fetchData = [
+  //   {
+  //     id: 32,
+  //     city: 'Portland',
+  //     latitude: 45.52345,
+  //     longitude: -122.67621,
+  //     data: {
+  //       '1950-01': {
+  //          avg: 46.592641787199305,
+  //          max: 46.592641787199305,
+  //          min: 46.592641787199305
+  //       }, ...
+  //     }, ...
+  //   }
+  // ]
+  // 
 
   state = {
     fetchData: [],
@@ -25,7 +43,7 @@ export default class OregonMap extends Component {
     yearString: '1950',
     monthString: '01',
     tempType: 'avg',
-    decimalPoints: 1
+    decimalPoints: 2
   }
 
   componentDidMount = async() => {     
@@ -52,38 +70,54 @@ export default class OregonMap extends Component {
   }
 
   getCityTemp = (cityId, monthString, yearString) => {
+
+    // Get number of decimal points, dateString, and tempType from state
     const decimalPoints = this.state.decimalPoints;
     const dateString = yearString + '-' + monthString;
     const tempType = this.state.tempType;
 
+    // Grab the fetchData. If there is no fetchData, return 'No Fetch Data'
     const fetchData = this.state.fetchData;
     if (fetchData.length === 0) return 'No Fetch Data';
 
+    // Get the city object inside of fetchData that has an id prop of cityId
+    // If cityData is empty, return 'No city match'
     let cityData = fetchData.filter(cityObj => cityObj.id === cityId);
     if (cityData.length === 0) return 'No city match';
 
+    // This just gets the city data out of the filtered fetchData array
     cityData = cityData[0].data
 
-    const datum = cityData[dateString][tempType]
-    const roundedDatum = Math.floor(datum * (10 ** decimalPoints) ) / (10 ** decimalPoints);
+    // Get the temp data point out of cityData. Look at the fetchData model above
+    // for more detail. roundedTemp rounds temp to decimalPoints decimal points
+    const temp = cityData[dateString][tempType]
+    const roundedTemp = Math.floor(temp * (10 ** decimalPoints) ) / (10 ** decimalPoints);
 
-    return roundedDatum;
+    return roundedTemp;
   }
 
 
   handleTempType = async (e) => {
+
+    const dropdownString = e.target.value;
+
+    // tempConvert is used to convert from dropdownString to the
+    // 'avg', 'max', or 'min' since that's what's in fetchData
     const tempConvert = {
       'Average Temp': 'avg',
       'Average High Temp': 'max',
       'Average Low Temp': 'min'
     }
 
-    const tempType = tempConvert[e.target.value]
+    const tempType = tempConvert[dropdownString]
 
     await this.setState({ tempType })
   }
 
   handleYearSlider = (e) => {
+
+    // This function sets the yearString in state to the
+    // value of the year slider
     const yearNumber = e;
 
     const yearString = String(yearNumber)
@@ -92,9 +126,14 @@ export default class OregonMap extends Component {
   }
 
   handleMonthSlider = (e) => {
+
+    // This function sets the monthString in state to the
+    // value of the month slider
     const monthNumber = e + 1;
     let monthString = '';
 
+    // Here we convert a number 1 - 12 to a string in the format 'MM'
+    // e.g. 1 -> '01', 11 -> '11'
     if (monthNumber > 9) monthString = String(monthNumber)
     else monthString = '0' + String(monthNumber)
 
@@ -147,6 +186,7 @@ export default class OregonMap extends Component {
 
                 <Geographies geography={oregonData}>
                   {
+                    // This renders the Oregon map and all of the counties
                     ({ geographies }) => {
                       let j = -1
                       return geographies.map(geo => {
@@ -162,12 +202,15 @@ export default class OregonMap extends Component {
                 </Geographies>
 
                 {
+                  // This section renders all of the city markers
+                  // from fetchData
+
                   fetchData.map(city => {
+
                     const chartData = {
-                      city: city.city,
-                      city_api_id: city.id,
-                      month: this.state.displayedMonth,
-                      month_param: this.state.month_param
+                      cityName: city.city,
+                      cityId: city.id,
+                      monthString: this.state.monthString,
                     }
 
                     return <CityMarker
