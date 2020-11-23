@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import './OregonMap.css';
 import request from 'superagent';
-import { NavLink } from 'react-router-dom';
 import {
   ComposableMap,
   Geographies,
-  Geography,
-  Marker
+  Geography
 } from 'react-simple-maps';
-import { lightBlueGradient, redGradient } from './OregonMapUtils.js'
-import Popup from 'reactjs-popup';
+import { lightBlueGradient } from './OregonMapUtils.js'
 import Navigation from './Navigation.js';
 import SliderYear from './SliderYear.js';
 import SliderMonth from './SliderMonth.js';
@@ -165,7 +162,7 @@ export default class OregonMap extends Component {
                 </Geographies>
 
                 {
-                  this.state.fetchData.map(city => {
+                  fetchData.map(city => {
                     const chartData = {
                       city: city.city,
                       city_api_id: city.id,
