@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './OregonMap.css';
 import request from 'superagent';
-import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import {
   ComposableMap,
@@ -9,13 +8,14 @@ import {
   Geography,
   Marker
 } from 'react-simple-maps';
-import { scaleQuantize } from 'd3-scale';
+import { lightBlueGradient, redGradient } from './OregonMapUtils.js'
 import Popup from 'reactjs-popup';
 import Navigation from './Navigation.js';
 import SliderYear from './SliderYear.js';
 import SliderMonth from './SliderMonth.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
+import CityMarker from './CityMarker';
 
 const oregonData = require('./tl_2010_41_county10.json')
 
@@ -23,13 +23,12 @@ const oregonData = require('./tl_2010_41_county10.json')
 export default class OregonMap extends Component {
 
   state = {
-    displayedMonth: 'January',
-    displayedYear: '1950',
-    displayedTemps: [],
-    tempType: 'avg',
-    cities: [32, 167, 213, 751, 756, 934],
     fetchData: [],
-    monthlyData: {}
+    cities: [32, 167, 213, 751, 756, 934],
+    yearString: '1950',
+    monthString: '01',
+    tempType: 'avg',
+    decimalPoints: 1
   }
 
   componentDidMount = async() => {     
@@ -46,39 +45,34 @@ export default class OregonMap extends Component {
       console.log(e);
       
     }
-
-    const monthlyData = this.state.fetchData
-      .reduce((citiesObj, city) => {
-        const data = Object.keys(city.data)
-          .filter(date => date.slice(-2) === '01')
-          .reduce((dataObj, date) => {
-            dataObj[date.slice(0, 4)] = city.data[date];
-            return dataObj;
-          }, {})
-
-        const month = moment.months()[Number('01') - 1]
-
-        citiesObj[city.city] = {
-          city: city.city,
-          id: city.id,
-          month,
-          data
-        }
-
-        return citiesObj;
-    }, {})
-
-    this.setState({ monthlyData })
   }
 
-  setDisplayedTemp = async () => {
-    const displayedTempKey = Object.keys(this.state.monthlyData)
-      .filter(key => key.slice(0, 4) === this.state.displayedYear)
+  getTemp = (city) => {
+    const month = this.state.monthString;
+    const year = this.state.yearString;
 
-    const displayedTemp = this.state.monthlyData[displayedTempKey][this.state.tempType]
-
-    this.setState({ displayedTemp })
+    return this.getCityTemp(city, month, year);
   }
+
+  getCityTemp = (cityId, monthString, yearString) => {
+    const decimalPoints = this.state.decimalPoints;
+    const dateString = yearString + '-' + monthString;
+    const tempType = this.state.tempType;
+
+    const fetchData = this.state.fetchData;
+    if (fetchData.length === 0) return 'No Fetch Data';
+
+    let cityData = fetchData.filter(cityObj => cityObj.id === cityId);
+    if (cityData.length === 0) return 'No city match';
+
+    cityData = cityData[0].data
+
+    const datum = cityData[dateString][tempType]
+    const roundedDatum = Math.floor(datum * (10 ** decimalPoints) ) / (10 ** decimalPoints);
+
+    return roundedDatum;
+  }
+
 
   handleTempType = async (e) => {
     const tempConvert = {
@@ -90,81 +84,43 @@ export default class OregonMap extends Component {
     const tempType = tempConvert[e.target.value]
 
     await this.setState({ tempType })
-
-    this.setDisplayedTemp();
   }
 
-  handleHistoricalButton = (city) => {
-    this.props.history.push('/tempchart')
-  }
+  handleYearSlider = (e) => {
+    const yearNumber = e;
 
-  handleYearSlider = async (e) => {
-    await this.setState({ displayedYear: String(e) })
+    const yearString = String(yearNumber)
+
+    this.setState({ yearString });
   }
 
   handleMonthSlider = (e) => {
-    let monthNumber = e + 1;
+    const monthNumber = e + 1;
+    let monthString = '';
 
-    if (monthNumber > 9) monthNumber = String(monthNumber)
-    else monthNumber = '0' + String(monthNumber)
+    if (monthNumber > 9) monthString = String(monthNumber)
+    else monthString = '0' + String(monthNumber)
 
-    const month_param = monthNumber;
-    const month = moment.months()[Number(monthNumber) - 1];
-
-    const monthlyData = this.state.fetchData
-      .reduce((citiesObj, city) => {
-        const data = Object.keys(city.data)
-          .filter(date => date.slice(-2) === monthNumber)
-          .reduce((dataObj, date) => {
-            dataObj[date.slice(0, 4)] = city.data[date];
-            return dataObj;
-          }, {})
-
-        citiesObj[city.city] = {
-          city: city.city,
-          id: city.id,
-          month,
-          data
-        }
-
-        return citiesObj;
-    }, {})
-
-    this.setState({ monthlyData, displayedMonth: month, month_param })
-
+    this.setState({ monthString })
   }
 
-  lightBlueColorScale = scaleQuantize()
-    .domain([1, 10])
-    .range([
-      "#00B5E5",
-      "#00AAD9",
-      "#009FCD",
-      "#0094C1",
-      "#008AB5",
-      "#007FA9",
-      "#00749D",
-      "#006991",
-      "#005F85"
-    ]);
-
-  redColorScale = scaleQuantize()
-    .domain([1, 10])
-    .range([
-      "#FFB3BC",
-      "#FDA5AB",
-      "#FB979B",
-      "#F98A8B",
-      "#F87C7B",
-      "#F66E6B",
-      "#F4615B",
-      "#F2534B",
-      "#F1463B"
-    ]);
 
   // --------------------------------------------------------------------------------------
 
   render() {
+
+    const {
+      fetchData
+    } = this.state
+
+    const {
+      handleMonthSlider,
+      handleYearSlider,
+      handleTempType,
+      getTemp
+    } = this
+
+
     return (
       <>
         <Navigation
@@ -182,7 +138,7 @@ export default class OregonMap extends Component {
 
             <div className="month-slider-grid">
               <SliderMonth
-                handleMonthSlider={this.handleMonthSlider}
+                handleMonthSlider={handleMonthSlider}
               />
             </div>
 
@@ -201,7 +157,7 @@ export default class OregonMap extends Component {
                         return <Geography
                           key={geo.rsmKey}
                           geography={geo}
-                          fill={this.lightBlueColorScale(j % 10)}
+                          fill={ lightBlueGradient(j % 10) }
                         />
                       })
                     }
@@ -210,53 +166,23 @@ export default class OregonMap extends Component {
 
                 {
                   this.state.fetchData.map(city => {
-                    return <Marker
+                    const chartData = {
+                      city: city.city,
+                      city_api_id: city.id,
+                      month: this.state.displayedMonth,
+                      month_param: this.state.month_param
+                    }
+
+                    return <CityMarker
                       key={city.id}
-                      coordinates={[city.longitude, city.latitude]}>
-                    <Popup
-                      trigger={<circle
-                        r={0.3}
-                        fill="red"
-                        className="circle-marker"
-                      ></circle>}
-                      position="left"
-                    >
-                      <div className="portland-popup">
-                        <span>{city.city}</span>
-                        <button
-                          className="historical-data-button"
-                        // onClick={() => this.handleHistoricalButton('Portland')}
-                        >
-                          <NavLink
-                            to={{
-                              pathname: "/tempchart",
-                              state: {
-                                city: city.city,
-                                city_api_id: city.id,
-                                month: this.state.displayedMonth,
-                                month_param: this.state.month_param
-                              }
-                            }}>View Historical Data</NavLink>
-                        </button>
-  
-                      </div>
-                    </Popup>
-  
-                    <text
-                      className="displayed-temp"
-                      textAnchor="left"
-                      x="0.5"
-                      y="0.25"
-                      fill="black"
-                    >
-                      {
-                        this.state.monthlyData[city.city]
-                          ? `${Math.floor(this.state.monthlyData[city.city].data[this.state.displayedYear][this.state.tempType] * 10) / 10}${String.fromCharCode(176)}F`
-                          : ''
-                      }
-                    </text>
-  
-                  </Marker>
+                      chartData={chartData}
+                      cityId={city.id}
+                      cityName={city.city}
+                      lat={city.latitude}
+                      lon={city.longitude}
+                      isThereData={!!fetchData.length}
+                      getTemp={getTemp}
+                    ></CityMarker>
                   })
                 }
 
@@ -265,13 +191,13 @@ export default class OregonMap extends Component {
 
             <div className="year-slider-grid">
               <SliderYear
-                handleYearSlider={this.handleYearSlider}
+                handleYearSlider={handleYearSlider}
               />
             </div>
 
             <div className="temp-dropdown-container">
               <select
-                onChange={this.handleTempType}
+                onChange={handleTempType}
                 className="temp-dropdown"
               >
                 {
