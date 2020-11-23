@@ -173,19 +173,29 @@ export default class Article1 extends Component {
                         {/* ------------------------------------------------------ */}
 
                     </div>
-
+                    <h2 className="climate-change-title article-title-glow">Current Events: CLIMATE CHANGE</h2>
                     {/* ----------------------------------------------------------------------------------------------------------------------- */}
 
                     <div className="tiny-link-container">
+
                         <TinyLinkContainer />
                     </div>
 
                     {/* ----------------------------------------------------------------------------------------------------------------------- */}
 
+                    <h2 className="climate-change-title article-title-glow">Action Center: Get Involved</h2>
+
                     <div className="action-center">
-                        <h2>Action Center: Get Involved</h2>
 
                         <ul>
+
+                            <li><ReactTinyLink
+                                cardSize="small"
+                                showGraphic={true}
+                                maxLine={0}
+                                minLine={0}
+                                url="https://support.nwfactionfund.org/page/9675/action/1?ea.tracking.id=EML_WLC&utm_medium=email&utm_source=engagingnetworks&utm_campaign=welcomeseries&utm_content=20180901+ACT+WelcomeSeries+2&ea.url.id=264154&forwarded=true" />
+                            </li>
 
                             <li><ReactTinyLink
                                 cardSize="small"

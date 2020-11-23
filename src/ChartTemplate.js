@@ -71,6 +71,16 @@ export default class ChartTemplate extends Component {
     return data.body.month;
   }
 
+  getFavoriteData =  async () => {
+    const userCityData = await request
+      .get(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
+      .set('Authorization', localStorage.getItem('TOKEN'))
+
+    const found = userCityData.body.find(city => city.city === this.state.city && city.month_param === this.state.month_param)
+
+    this.setState({ dataIsSaved: Boolean(found)})
+  }
+
   getTwoDimData = (data) => {
     const twoDimData = Object.keys(data)
       .reduce((dataArr, year) => {
@@ -130,8 +140,8 @@ export default class ChartTemplate extends Component {
         </div>
 
         <Header />
-
-        <div className="chart-container">
+        <div className="chart-page-content">
+          <div className="chart-container">
 
           {
             this.state.monthlyData.length === 0
@@ -189,14 +199,20 @@ export default class ChartTemplate extends Component {
                         maxTicksLimit: 10
                       }
                     }]
-                  }
+                  },
                 }}
-              />
-          }
+                />
+            }
+          
+            {
+              this.handleSaveButton()
+            }
 
-          {
-            this.handleSaveButton()
-          }
+          </div>
+
+          <div className="chart-text">
+            Historic Climate Temperature data gives us a clear perspective of where we’ve come from… and where we are headed. <br></br>Unless we take a stand. <br></br>Data shows a clear increase in the temperatures over this extended time. We hope that viewing this personalized data will illuminate that Climate Change affects us, not only globally, but locally as well.
+          </div>
 
         </div>
 

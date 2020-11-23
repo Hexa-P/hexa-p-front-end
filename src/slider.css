@@ -28,6 +28,8 @@
 
 .year-thumb {
   position: absolute;
+  padding-top: 2px;
+  font-family: 'Bebas Neue';
   width: 40px;
   height: 18px;
   border: 1px inset rgb(216, 115, 154);
@@ -43,7 +45,7 @@
 
 .month-slider-container {
   margin: 0;
-
+  font-family: 'Bebas Neue';
   width: 50%;
   height: 90%;
 
@@ -74,7 +76,8 @@
 
 .month-thumb {
   position: absolute;
-
+  padding-top: 2px;
+  font-family: 'Bebas Neue';
   min-width: 75px;
   height: 20px;
   border: 1px inset rgb(216, 115, 154);

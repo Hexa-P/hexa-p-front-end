@@ -1,4 +1,57 @@
+.about-us-content {
+    font-family: 'Bebas Neue';
+    color: rgb(251, 255, 248);
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 5px rgba(30, 42, 49, 0.918);
+    width: 100%;
+    min-height:1000px;
+    background-color: rgba(100, 151, 122, 0.795);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+.about-us-content h1 {
+    font-size: 3rem;
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(17, 15, 15, 0.685);
+    text-align: center;
+}
+
+.about-us-content img {
+    display: block;
+    border-radius: 3%;
+    margin-left: 30px;
+    box-shadow: 25px, 25px, 50px, 0 rgb(0, 0, 0) inset;
+}
+
+.badass-name-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    
+}
+
+.badass-name {
+    font-size: 2.5rem;
+    margin-bottom: 15px ;
+    text-align: left;
+}
+
+.badass-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    max-width: 900px;
+}
+.about-text {
+    margin-left: 8px;
+    font-size: 1.5rem;
+}
 .profile-pic {
-    height: 400px;
-    width: 400px;
+    height: 225px;
+    width: 225px;
+
 }

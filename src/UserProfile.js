@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import include from './images/genderN.jpg';
 import './UserProfile.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { ReactTinyLink } from "react-tiny-link";
 import Navigation from './Navigation.js';
 import FooterTwo from './FooterTwo';
 import request from 'superagent';
@@ -14,6 +15,7 @@ export default class UserProfile extends Component {
         city: '',
         temp_type: '',
         month: '',
+        fav_url: [],
         monthlyData: [],
         regressionData: [],
         err: null,
@@ -30,6 +32,13 @@ export default class UserProfile extends Component {
     // componentDidMount = async () => {
     //     this.fetch();
     // }
+    fetchFaveUrls = async () => {
+        const faves = await request
+            .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+            .set('Authorization', localStorage.getItem('TOKEN'))
+        this.setState({ fav_url: faves.body })
+    }
+
 
     componentDidMount = async () => {
         const userCityData = await request
@@ -38,14 +47,13 @@ export default class UserProfile extends Component {
 
         this.setState({ userCityData: userCityData.body })
 
-        this.setState({ email: localStorage.getItem('USERNAME')})
+        this.setState({ email: localStorage.getItem('USERNAME') })
+        this.fetchFaveUrls();
     }
-    
-// -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
 
     render() {
-
-        console.log(this.state.userCityData);
 
         return (
             <>
@@ -81,7 +89,7 @@ export default class UserProfile extends Component {
 
                                 <div className="about">
 
-                                    
+
                                 </div>
 
                             </section>
@@ -101,19 +109,49 @@ export default class UserProfile extends Component {
 
                                 {
                                     this.state.userCityData.map(city => {
-                                        return <Link className="city-month-data"
-                                        to="/tempchart"
-                                        state={{
-                                            month_param: city.month_param,
-                                            city_api_id: city.city_api_id,
-                                            city: city.city
-                                        }}
+                                        return <NavLink className="city-month-data"
+                                            to={{
+                                                pathname: '/tempchart',
+                                                state: {
+                                                month_param: city.month_param,
+                                                city_api_id: city.city_api_id,
+                                                city: city.city
+                                                }
+                                            }}
                                         >
-                                            {`${city.city} - ${moment.months()[Number(city.month_param)]}`}
-                                        </Link>
+                                            {`${city.city} - ${moment.months()[Number(city.month_param - 1)]}`}
+                                        </NavLink>
                                     })
                                 }
-            
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="bottom-wrapper">
+                        <div className="text-area">
+                            <h2>Articles:</h2>
+                            <div className="articles-faved">
+                                {/* IMPORT FAVORITES  */}
+
+
+                                {
+                                    this.state.fav_url.map(url => {
+                                        return <div className="my-fave-link-wrapper">
+                                            <ReactTinyLink className="favelink"
+                                                cardSize="small"
+                                                showGraphic={true}
+                                                maxLine={1}
+                                                minLine={1}
+                                                width={"30vw"}
+                                                //proxyUrl="https://alchemy-anywhere.herokuapp.com/"
+                                                url={url.fav_url}
+                                            />
+                                        </div>
+                                    })
+                                }
+
                             </div>
 
                         </div>
