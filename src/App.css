@@ -43,8 +43,31 @@
 }
 
 .chart-container {
-  width: 600px;
+  min-width: 600px;
   height: 400px;
+  
 }
 
-/* animations-------------------------------------------------------------------- */
+.chart-page-content {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(251, 255, 248);
+}
+
+.chart-text {
+  font-family: 'Bebas Neue';
+  font-size: 1.4rem;
+  padding: 20px;
+  line-height: 1.9rem; 
+  min-width: 350px;
+  color: rgb(61, 80, 73);
+  /* max-width: 250px; */
+} 
+
+.headerFun {
+  font-family: 'Bebas Neue';
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 5px rgb(73, 72, 70)
+}
+/* animations--------------------------------------------------------------------*/

@@ -82,6 +82,7 @@ button {
     width: 100%;
     flex-direction: column;
     justify-content: space-between;
+    background-color: rgb(251, 255, 248);
 }
 
 .container-fun {
@@ -155,12 +156,23 @@ button {
 
 .flex-link-container {
     border: solid 1px black;
+    padding: 15px;
     width: 100%;
     min-height: 200px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background-color: #b8bdbade;
+}
+
+.article-title-glow {
+    text-shadow: 1px 1px 5px blanchedalmond;
+}
+
+.climate-change-title {
+    position: relative;
+    top: 60px;
+    font-size: 3rem;
 }
 
 .tinylink {
@@ -177,12 +189,15 @@ button {
 
 .action-center {
     margin: 100px;
-    width: 75%;
+    width: 90%;
     display: flex;
     flex-direction: row;
-    /* background-color: #b8bdbade; */
-    /* border: solid 2px black; */
     justify-content: center;
+}
+
+.action-center h2 {
+    font-size: 1.5rem;
+
 }
 
 .information {

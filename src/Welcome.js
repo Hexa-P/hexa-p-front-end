@@ -33,7 +33,7 @@ export default class Welcome extends Component {
                             <h1> Welcome to the Oregon Environmental Data Initiative </h1>
                         </div>
                         <div className='welcome-message'>
-                            With so much at stake, the world needs answers. Our planet is our one home, our one place to live, survive, thrive, love and to heal. What can we do to help our home heal? What can we do to make things right? What do we need to accomplish to allow for our children to enjoy a world as beautiful as the one that we have been given. These are the questions we are asking you and this is a place where we hope you can find some of those answers.
+                            With so much at stake, the world needs answers. Our planet is our one home, our one place to live, survive, thrive, love. What can we do to help our home heal? What can we do to make things right? What do we need to accomplish to allow for our children to enjoy a world as beautiful as the one that we have been given? These are the questions we are asking you and this is a place where we hope you can find some of those answers.
                         </div>
 
                         <div className="button-fun">
