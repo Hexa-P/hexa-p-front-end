@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
-import regression, { logarithmic } from 'regression';
+import regression from 'regression';
 import moment from 'moment';
 import Navigation from './Navigation.js';
 import Header from './Header.js';
