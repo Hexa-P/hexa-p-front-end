@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
-import regression from 'regression';
+import regression, { logarithmic } from 'regression';
 import moment from 'moment';
 import Navigation from './Navigation.js';
 import Header from './Header.js';
@@ -22,7 +22,8 @@ export default class ChartTemplate extends Component {
     cityId: '32',
     month: 'January',
     monthString: '01',
-    temp_type: 'Average High',
+    tempType: 'avg',
+    dropdownString: 'Average High',
     monthlyData: [],
     regressionData: [],
     dataIsSaved: false
@@ -53,12 +54,13 @@ export default class ChartTemplate extends Component {
     const fetchData = await this.getAPIData();
 
     // Turn fetchData into an array of arrays with two points:
-    // one for the year and one for the temp
-    const monthlyData = this.getTwoDimData(fetchData);
+    // one for the year and one for the temp. For monthlyData
+    // 
+    const monthlyData = this.getTwoDimData(fetchData).map(pair => pair[1]);
 
     // Use the regression package to calculate a regression line
     // for the fetchData
-    const regressionData = this.makeRegressionLineData(monthlyData);
+    const regressionData = this.getTwoDimData(fetchData);
 
     this.setState({ monthlyData, regressionData })
 
@@ -86,7 +88,7 @@ export default class ChartTemplate extends Component {
       .reduce((dataArr, year) => {
         dataArr.push([
           Number(year.slice(0, 4)),
-          data[year].avg
+          data[year]
         ]);
 
         return dataArr;
@@ -95,8 +97,17 @@ export default class ChartTemplate extends Component {
     return twoDimData;
   }
 
-  makeRegressionLineData = (data) => {
-    return regression.linear(data).points
+  makeRegressionLineData = (twoDimObjData) => {
+    const tempTypeData = twoDimObjData.map(pair => {
+      return [
+        pair[0],
+        pair[1][this.state.tempType]
+      ]
+    })
+
+    const twoDimRegressionData = regression.linear(tempTypeData).points;
+
+    return twoDimRegressionData.map(pair => pair[1]);
   }
 
   handleSaveButton = () => {
@@ -120,15 +131,38 @@ export default class ChartTemplate extends Component {
     this.setState({ dataIsSaved: true })
   }
 
+  handleTempType = async (e) => {
+
+    const dropdownString = e.target.value;
+
+    // tempConvert is used to convert from dropdownString to the
+    // 'avg', 'max', or 'min' since that's what's in fetchData
+    const tempConvert = {
+      'Average Temp': 'avg',
+      'Average High Temp': 'max',
+      'Average Low Temp': 'min'
+    }
+
+    const tempType = tempConvert[dropdownString]
+
+    this.setState({ tempType, dropdownString })
+  }
+
   render() {
 
     const {
       cityName,
       month,
-      temp_type,
+      dropdownString,
+      tempType,
       monthlyData,
       regressionData
     } = this.state;
+
+    const {
+      handleTempType,
+      makeRegressionLineData
+    } = this
 
     return (
 
@@ -158,7 +192,7 @@ export default class ChartTemplate extends Component {
                         backgroundColor: 'rgba(75,192,192,1)',
                         borderColor: 'rgba(0,0,0,1)',
                         borderWidth: 2,
-                        data: monthlyData.map(pair => pair[1]),
+                        data: monthlyData.map(obj => obj[tempType]),
                         yAxisID: 'y-axis-1'
                       },
                       {
@@ -168,7 +202,7 @@ export default class ChartTemplate extends Component {
                         backgroundColor: 'rgba(75,192,192,1)',
                         borderColor: 'rgba(0,0,0,1)',
                         borderWidth: 2,
-                        data: regressionData.map(pair => pair[1]),
+                        data: makeRegressionLineData(regressionData),
                         yAxisID: 'y-axis-1'
                       },
                     ]
@@ -177,7 +211,7 @@ export default class ChartTemplate extends Component {
                 options={{
                   title: {
                     display: true,
-                    text: `${cityName}'s ${temp_type} temperature for ${month}`,
+                    text: `${cityName}'s ${dropdownString} temperature for ${month}`,
                     fontSize: 20
                   },
                   legend: {
@@ -203,10 +237,27 @@ export default class ChartTemplate extends Component {
                 }}
                 />
             }
-          
-            {
-              this.handleSaveButton()
-            }
+            <div>
+              {
+                this.handleSaveButton()
+              }
+
+              <div className="temp-dropdown-container">
+                <select
+                  onChange={handleTempType}
+                  className="temp-dropdown"
+                >
+                  {
+                    ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
+                      return <option
+                        key={temp}
+                        value={temp}
+                      >{temp}</option>
+                    })
+                  }
+                </select>
+              </div>
+            </div>
 
           </div>
 

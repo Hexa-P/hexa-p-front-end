@@ -96,24 +96,6 @@ export default class OregonMap extends Component {
     return roundedTemp;
   }
 
-
-  handleTempType = async (e) => {
-
-    const dropdownString = e.target.value;
-
-    // tempConvert is used to convert from dropdownString to the
-    // 'avg', 'max', or 'min' since that's what's in fetchData
-    const tempConvert = {
-      'Average Temp': 'avg',
-      'Average High Temp': 'max',
-      'Average Low Temp': 'min'
-    }
-
-    const tempType = tempConvert[dropdownString]
-
-    await this.setState({ tempType })
-  }
-
   handleYearSlider = (e) => {
 
     // This function sets the yearString in state to the
@@ -152,7 +134,6 @@ export default class OregonMap extends Component {
     const {
       handleMonthSlider,
       handleYearSlider,
-      handleTempType,
       getTemp
     } = this
 
@@ -235,21 +216,7 @@ export default class OregonMap extends Component {
               />
             </div>
 
-            <div className="temp-dropdown-container">
-              <select
-                onChange={handleTempType}
-                className="temp-dropdown"
-              >
-                {
-                  ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
-                    return <option
-                      key={temp}
-                      value={temp}
-                    >{temp}</option>
-                  })
-                }
-              </select>
-            </div>
+            
           </div>
         </div>
 
