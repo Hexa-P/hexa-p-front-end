@@ -1,143 +1,143 @@
 import React, { Component } from 'react';
 import './OregonMap.css';
 import request from 'superagent';
-import moment from 'moment';
-import { NavLink } from 'react-router-dom';
 import {
   ComposableMap,
   Geographies,
-  Geography,
-  Marker
+  Geography
 } from 'react-simple-maps';
-import { scaleQuantize } from 'd3-scale';
-import Popup from 'reactjs-popup';
+import { lightBlueGradient } from './OregonMapUtils.js'
 import Navigation from './Navigation.js';
 import SliderYear from './SliderYear.js';
 import SliderMonth from './SliderMonth.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
+import CityMarker from './CityMarker.js';
 
 const oregonData = require('./tl_2010_41_county10.json')
 
-const debounce = (func, delay) => {
-  let inDebounce
-  return function () {
-    const context = this
-    const args = arguments
-    clearTimeout(inDebounce)
-    inDebounce = setTimeout(() => func.apply(context, args), delay)
-  }
-}
 
 export default class OregonMap extends Component {
 
+  // 
+  // fetchData = [
+  //   {
+  //     id: 32,
+  //     city: 'Portland',
+  //     latitude: 45.52345,
+  //     longitude: -122.67621,
+  //     data: {
+  //       '1950-01': {
+  //          avg: 46.592641787199305,
+  //          max: 46.592641787199305,
+  //          min: 46.592641787199305
+  //       }, ...
+  //     }, ...
+  //   }
+  // ]
+  // 
+
   state = {
-    monthlyData: {},
-    city_api_id: 32,
-    displayedMonth: 'January',
-    month_param: '01',
-    displayedYear: '1950',
-    tempType: 'avg'
+    fetchData: [],
+    cities: [32, 167, 213, 751, 756, 934],
+    yearString: '1950',
+    monthString: '01',
+    tempType: 'avg',
+    decimalPoints: 2
   }
 
   componentDidMount = async() => {     
-
     try {
+
       const data = await request
-        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.city_api_id}&month_param=01&year_range=1950:2005`);
+        .post(`https://multiple-markers.herokuapp.com/many_temps`)
+        .send({ city_ids: this.state.cities })
 
-      await this.setState({ monthlyData: data.body.month });
-
-      this.setDisplayedTemp();
-    } catch(e) {
-      console.log(e);
-    }
-  }
-
-  setDisplayedTemp = async () => {
-    const displayedTempKey = Object.keys(this.state.monthlyData)
-      .filter(key => key.slice(0, 4) === this.state.displayedYear)
-
-    const displayedTemp = this.state.monthlyData[displayedTempKey][this.state.tempType]
-
-    this.setState({ displayedTemp })
-  }
-
-  handleTempType = async (e) => {
-    const tempConvert = {
-      'Average Temp': 'avg',
-      'Average High Temp': 'max',
-      'Average Low Temp': 'min'
-    }
-
-    const tempType = tempConvert[e.target.value]
-
-    await this.setState({ tempType })
-
-    this.setDisplayedTemp();
-  }
-
-  handleHistoricalButton = (city) => {
-    this.props.history.push('/tempchart')
-  }
-
-  handleYearSlider = async (e) => {
-    await this.setState({ displayedYear: String(e) })
-
-    this.setDisplayedTemp();
-  }
-
-  handleMonthSlider = debounce(async (e) => {
-    let monthNumber = e + 1;
-    const month = moment.months()[e];
-
-    if (monthNumber > 9) monthNumber = String(monthNumber)
-    else monthNumber = '0' + String(monthNumber)
-
-    try {
-      const data = await request
-        .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=32&month_param=${monthNumber}&year_range=1950:2005`);
-
-      await this.setState({ monthlyData: data.body.month, displayedMonth: month, month_param: monthNumber });
-
-      this.setDisplayedTemp()
+      this.setState({ fetchData: data.body.data })
 
     } catch (e) {
+
       console.log(e);
+      
     }
-  }, 500)
+  }
 
-  lightBlueColorScale = scaleQuantize()
-    .domain([1, 10])
-    .range([
-      "#00B5E5",
-      "#00AAD9",
-      "#009FCD",
-      "#0094C1",
-      "#008AB5",
-      "#007FA9",
-      "#00749D",
-      "#006991",
-      "#005F85"
-    ]);
+  getTemp = (city) => {
+    const month = this.state.monthString;
+    const year = this.state.yearString;
 
-  redColorScale = scaleQuantize()
-    .domain([1, 10])
-    .range([
-      "#FFB3BC",
-      "#FDA5AB",
-      "#FB979B",
-      "#F98A8B",
-      "#F87C7B",
-      "#F66E6B",
-      "#F4615B",
-      "#F2534B",
-      "#F1463B"
-    ]);
+    return this.getCityTemp(city, month, year);
+  }
+
+  getCityTemp = (cityId, monthString, yearString) => {
+
+    // Get number of decimal points, dateString, and tempType from state
+    const decimalPoints = this.state.decimalPoints;
+    const dateString = yearString + '-' + monthString;
+    const tempType = this.state.tempType;
+
+    // Grab the fetchData. If there is no fetchData, return 'No Fetch Data'
+    const fetchData = this.state.fetchData;
+    if (fetchData.length === 0) return 'No Fetch Data';
+
+    // Get the city object inside of fetchData that has an id prop of cityId
+    // If cityData is empty, return 'No city match'
+    let cityData = fetchData.filter(cityObj => cityObj.id === cityId);
+    if (cityData.length === 0) return 'No city match';
+
+    // This just gets the city data out of the filtered fetchData array
+    cityData = cityData[0].data
+
+    // Get the temp data point out of cityData. Look at the fetchData model above
+    // for more detail. roundedTemp rounds temp to decimalPoints decimal points
+    const temp = cityData[dateString][tempType]
+    const roundedTemp = Math.floor(temp * (10 ** decimalPoints) ) / (10 ** decimalPoints);
+
+    return roundedTemp;
+  }
+
+  handleYearSlider = (e) => {
+
+    // This function sets the yearString in state to the
+    // value of the year slider
+    const yearNumber = e;
+
+    const yearString = String(yearNumber)
+
+    this.setState({ yearString });
+  }
+
+  handleMonthSlider = (e) => {
+
+    // This function sets the monthString in state to the
+    // value of the month slider
+    const monthNumber = e + 1;
+    let monthString = '';
+
+    // Here we convert a number 1 - 12 to a string in the format 'MM'
+    // e.g. 1 -> '01', 11 -> '11'
+    if (monthNumber > 9) monthString = String(monthNumber)
+    else monthString = '0' + String(monthNumber)
+
+    this.setState({ monthString })
+  }
+
 
   // --------------------------------------------------------------------------------------
 
   render() {
+
+    const {
+      fetchData
+    } = this.state
+
+    const {
+      handleMonthSlider,
+      handleYearSlider,
+      getTemp
+    } = this
+
+
     return (
       <>
         <Navigation
@@ -155,7 +155,7 @@ export default class OregonMap extends Component {
 
             <div className="month-slider-grid">
               <SliderMonth
-                handleMonthSlider={this.handleMonthSlider}
+                handleMonthSlider={handleMonthSlider}
               />
             </div>
 
@@ -167,6 +167,7 @@ export default class OregonMap extends Component {
 
                 <Geographies geography={oregonData}>
                   {
+                    // This renders the Oregon map and all of the counties
                     ({ geographies }) => {
                       let j = -1
                       return geographies.map(geo => {
@@ -174,83 +175,48 @@ export default class OregonMap extends Component {
                         return <Geography
                           key={geo.rsmKey}
                           geography={geo}
-                          fill={this.lightBlueColorScale(j % 10)}
+                          fill={ lightBlueGradient(j % 10) }
                         />
                       })
                     }
                   }
                 </Geographies>
 
-                <Marker coordinates={[-122.675, 45.45]}>
-                  <Popup
-                    trigger={<circle
-                      r={0.3}
-                      fill="red"
-                      className="circle-marker"
-                    ></circle>}
-                    position="left"
-                  >
-                    <div className="portland-popup">
+                {
+                  // This section renders all of the city markers
+                  // from fetchData
 
-                      <button
-                        className="historical-data-button"
-                      // onClick={() => this.handleHistoricalButton('Portland')}
-                      >
-                        <NavLink
-                          to={{
-                            pathname: "/tempchart",
-                            state: {
-                              monthlyData: this.state.monthlyData,
-                              city: 'Portland',
-                              city_api_id: 32,
-                              month_param: this.state.month_param,
-                              month: this.state.displayedMonth
-                            }
-                          }}>View Historical Data</NavLink>
-                      </button>
-                    </div>
-                  </Popup>
+                  fetchData.map(city => {
 
-                  <text
-                    className="displayed-temp"
-                    textAnchor="left"
-                    x="0.5"
-                    y="0.25"
-                    fill="black"
-                  >
-                    Portland: {
-                      this.state.displayedTemp
-                        ? `${Math.floor(this.state.displayedTemp * 10) / 10}${String.fromCharCode(176)}F`
-                        : ''
+                    const chartData = {
+                      cityName: city.city,
+                      cityId: city.id,
+                      monthString: this.state.monthString,
                     }
-                  </text>
 
-                </Marker>
+                    return <CityMarker
+                      key={city.id}
+                      chartData={chartData}
+                      cityId={city.id}
+                      cityName={city.city}
+                      lat={city.latitude}
+                      lon={city.longitude}
+                      isThereData={!!fetchData.length}
+                      getTemp={getTemp}
+                    ></CityMarker>
+                  })
+                }
 
               </ComposableMap>
             </div>
 
             <div className="year-slider-grid">
               <SliderYear
-                handleYearSlider={this.handleYearSlider}
+                handleYearSlider={handleYearSlider}
               />
             </div>
 
-            <div className="temp-dropdown-container">
-              <select
-                onChange={this.handleTempType}
-                className="temp-dropdown"
-              >
-                {
-                  ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
-                    return <option
-                      key={temp}
-                      value={temp}
-                    >{temp}</option>
-                  })
-                }
-              </select>
-            </div>
+            
           </div>
         </div>
 

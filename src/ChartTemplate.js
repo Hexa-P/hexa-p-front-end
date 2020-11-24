@@ -18,11 +18,12 @@ export default class ChartTemplate extends Component {
   // }
   // --------------------------------------------------------------------------------------
   state = {
-    city: 'Portland',
-    temp_type: 'Average High',
+    cityName: 'Portland',
+    cityId: '32',
     month: 'January',
-    month_param: '01',
-    city_api_id: '32',
+    monthString: '01',
+    tempType: 'avg',
+    dropdownString: 'Average High',
     monthlyData: [],
     regressionData: [],
     dataIsSaved: false
@@ -30,37 +31,44 @@ export default class ChartTemplate extends Component {
 
   componentDidMount = async () => {
 
-    const month_param = await this.props.location.state ?
-      this.props.location.state.month_param
+    // Get all of the data from chartData in props.location.state
+    const monthString = await this.props.location.state ?
+      this.props.location.state.monthString
       : '01';
 
-    const city_api_id = await this.props.location.state ?
-      this.props.location.state.city_api_id
+    const cityId = await this.props.location.state ?
+      this.props.location.state.cityId
       : '32';
 
-    const city =  await this.props.location.state ?
-      this.props.location.state.city
+    const cityName = await this.props.location.state ?
+      this.props.location.state.cityName
       : 'Portland';
+  
+      
+    // Convert monthString to month name string thing
+    const month = moment.months()[Number(monthString) - 1];
 
-    const month = await this.props.location.state ?
-      moment.months(Number(month_param) - 1)
-      : 'January';
+    this.setState({ cityName, cityId, monthString, month })
 
-    await this.setState({ city, month, month_param, city_api_id })
+    // grab API data by month for every from 1950 - 2005
+    const fetchData = await this.getAPIData();
 
-    const unMungedData = await this.getAPIData();
+    // Turn fetchData into an array of arrays with two points:
+    // one for the year and one for the temp. For monthlyData
+    // 
+    const monthlyData = this.getTwoDimData(fetchData).map(pair => pair[1]);
 
-    const monthlyData = this.getTwoDimData(unMungedData);
-    const regressionData = this.makeRegressionLineData(monthlyData);
+    // Use the regression package to calculate a regression line
+    // for the fetchData
+    const regressionData = this.getTwoDimData(fetchData);
 
-    await this.setState({ monthlyData, regressionData })
+    this.setState({ monthlyData, regressionData })
 
-    this.getFavoriteData();
   }
 
   getAPIData = async () => {
     const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.city_api_id}&month_param=${this.state.month_param}&year_range=1950:2005`);
+      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.cityId}&month_param=${this.state.monthString}&year_range=1950:2005`);
 
     return data.body.month;
   }
@@ -76,19 +84,30 @@ export default class ChartTemplate extends Component {
   }
 
   getTwoDimData = (data) => {
-    return Object.keys(data)
+    const twoDimData = Object.keys(data)
       .reduce((dataArr, year) => {
         dataArr.push([
           Number(year.slice(0, 4)),
-          data[year].avg
+          data[year]
         ]);
 
         return dataArr;
       }, [])
+
+    return twoDimData;
   }
 
-  makeRegressionLineData = (data) => {
-    return regression.linear(data).points
+  makeRegressionLineData = (twoDimObjData) => {
+    const tempTypeData = twoDimObjData.map(pair => {
+      return [
+        pair[0],
+        pair[1][this.state.tempType]
+      ]
+    })
+
+    const twoDimRegressionData = regression.linear(tempTypeData).points;
+
+    return twoDimRegressionData.map(pair => pair[1]);
   }
 
   handleSaveButton = () => {
@@ -100,29 +119,50 @@ export default class ChartTemplate extends Component {
   }
 
   saveData = async () => {
-    const monthNumber = moment().month(this.state.month).format('MM');
-
     await request
       .post(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
       .set('Authorization', localStorage.getItem('TOKEN'))
       .send({
-        city: this.state.city,
-        month_param: monthNumber,
-        city_api_id: 32
+        city: this.state.cityName,
+        month_param: this.state.monthString,
+        city_api_id: this.state.cityId
       })
 
     this.setState({ dataIsSaved: true })
   }
 
+  handleTempType = async (e) => {
+
+    const dropdownString = e.target.value;
+
+    // tempConvert is used to convert from dropdownString to the
+    // 'avg', 'max', or 'min' since that's what's in fetchData
+    const tempConvert = {
+      'Average Temp': 'avg',
+      'Average High Temp': 'max',
+      'Average Low Temp': 'min'
+    }
+
+    const tempType = tempConvert[dropdownString]
+
+    this.setState({ tempType, dropdownString })
+  }
+
   render() {
 
     const {
-      city,
+      cityName,
       month,
-      temp_type,
+      dropdownString,
+      tempType,
       monthlyData,
       regressionData
     } = this.state;
+
+    const {
+      handleTempType,
+      makeRegressionLineData
+    } = this
 
     return (
 
@@ -137,76 +177,96 @@ export default class ChartTemplate extends Component {
         <div className="chart-page-content">
           <div className="chart-container">
 
-            {
-              this.state.monthlyData.length === 0
-                ? 'Select some data to look at on the Map page!'
-                : <Line
-                  data={
-                    {
-                      labels: [...Array(55).keys()].map(num => num + 1950),
-                      datasets: [
-                        {
-                          label: '°F',
-                          fill: false,
-                          lineTension: 0.5,
-                          backgroundColor: 'rgba(75,192,192,1)',
-                          borderColor: 'rgba(0,0,0,1)',
-                          borderWidth: 2,
-                          data: monthlyData.map(pair => pair[1]),
-                          yAxisID: 'y-axis-1'
-                        },
-                        {
-                          label: 'regression-line',
-                          fill: false,
-                          lineTension: 0.5,
-                          backgroundColor: 'rgba(75,192,192,1)',
-                          borderColor: 'rgba(0,0,0,1)',
-                          borderWidth: 2,
-                          data: regressionData.map(pair => pair[1]),
-                          yAxisID: 'y-axis-1'
-                        },
-                      ]
-                    }
+          {
+            this.state.monthlyData.length === 0
+              ? 'Select some data to look at on the Map page!'
+              : <Line
+                data={
+                  {
+                    labels: [...Array(55).keys()].map(num => num + 1950),
+                    datasets: [
+                      {
+                        label: '°F',
+                        fill: false,
+                        lineTension: 0.5,
+                        backgroundColor: 'rgba(75,192,192,1)',
+                        borderColor: 'rgba(0,0,0,1)',
+                        borderWidth: 2,
+                        data: monthlyData.map(obj => obj[tempType]),
+                        yAxisID: 'y-axis-1'
+                      },
+                      {
+                        label: 'regression-line',
+                        fill: false,
+                        lineTension: 0.5,
+                        backgroundColor: 'rgba(75,192,192,1)',
+                        borderColor: 'rgba(0,0,0,1)',
+                        borderWidth: 2,
+                        data: makeRegressionLineData(regressionData),
+                        yAxisID: 'y-axis-1'
+                      },
+                    ]
                   }
-                  options={{
-                    title: {
-                      display: true,
-                      text: `${city}'s ${temp_type} temperature for ${month} (°F)`,
-                      fontSize: 20
-                    },
-                    legend: {
-                      display: false,
-                      position: 'right'
-                    },
-                    scales: {
-                      yAxes: [
-                        {
-                          type: 'linear',
-                          display: true,
-                          position: 'left',
-                          id: 'y-axis-1',
-                        },
-                      ],
-                      xAxes: [{
-                        ticks: {
-                          autoSkip: true,
-                          maxTicksLimit: 10
-                        }
-                      }]
-                    }
-                  }}
+                }
+                options={{
+                  title: {
+                    display: true,
+                    text: `${cityName}'s ${dropdownString} temperature for ${month}`,
+                    fontSize: 20
+                  },
+                  legend: {
+                    display: false,
+                    position: 'right'
+                  },
+                  scales: {
+                    yAxes: [
+                      {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-axis-1',
+                      },
+                    ],
+                    xAxes: [{
+                      ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10
+                      }
+                    }]
+                  },
+                }}
                 />
             }
+            <div>
+              {
+                this.handleSaveButton()
+              }
 
-            {
-              this.handleSaveButton()
-            }
+              <div className="temp-dropdown-container">
+                <select
+                  onChange={handleTempType}
+                  className="temp-dropdown"
+                >
+                  {
+                    ['Average Temp', 'Average High Temp', 'Average Low Temp'].map(temp => {
+                      return <option
+                        key={temp}
+                        value={temp}
+                      >{temp}</option>
+                    })
+                  }
+                </select>
+              </div>
+            </div>
 
           </div>
+
           <div className="chart-text">
             Historic Climate Temperature data gives us a clear perspective of where we’ve come from… and where we are headed. <br></br>Unless we take a stand. <br></br>Data shows a clear increase in the temperatures over this extended time. We hope that viewing this personalized data will illuminate that Climate Change affects us, not only globally, but locally as well.
           </div>
+
         </div>
+
         <Footer />
 
       </>
