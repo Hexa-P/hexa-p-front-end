@@ -53,9 +53,12 @@ export default class App extends Component {
     return (
       <div className="body">
         <Router>
-
+          {/* seems like this should live here rather than on every page, then do a little logic to selectively show or ignore the username, etc */}
+          <Navigation className='nav'
+              token={this.props.token}
+              username={this.props.username}
+              logOut={this.props.logOut} />
           <Switch>
-
             <Route
               path="/"
               exact

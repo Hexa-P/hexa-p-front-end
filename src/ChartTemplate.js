@@ -7,7 +7,7 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import request from 'superagent';
 
-
+import { URL } from './constants.js'
 export default class ChartTemplate extends Component {
 
   // Data is intended to be in this format for the functions below:
@@ -68,14 +68,14 @@ export default class ChartTemplate extends Component {
 
   getAPIData = async () => {
     const data = await request
-      .get(`https://serene-temple-06405.herokuapp.com/temps?city_api_id=${this.state.cityId}&month_param=${this.state.monthString}&year_range=1950:2005`);
+      .get(`${URL}/temps?city_api_id=${this.state.cityId}&month_param=${this.state.monthString}&year_range=1950:2005`);
 
     return data.body.month;
   }
 
   getFavoriteData =  async () => {
     const userCityData = await request
-      .get(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
+      .get(`${URL}/api/user_profile`)
       .set('Authorization', localStorage.getItem('TOKEN'))
 
     const found = userCityData.body.find(city => city.city === this.state.city && city.month_param === this.state.month_param)
@@ -120,7 +120,7 @@ export default class ChartTemplate extends Component {
 
   saveData = async () => {
     await request
-      .post(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
+      .post(`${URL}/api/user_profile`)
       .set('Authorization', localStorage.getItem('TOKEN'))
       .send({
         city: this.state.cityName,
@@ -167,11 +167,6 @@ export default class ChartTemplate extends Component {
     return (
 
       <>
-        <div>
-          <Navigation token={this.props.token}
-            username={this.props.username}
-            logOut={this.props.logOut} />
-        </div>
 
         <Header />
         <div className="chart-page-content">

@@ -8,6 +8,8 @@ import Navigation from './Navigation.js';
 import FooterTwo from './FooterTwo';
 import request from 'superagent';
 
+import { URL } from './constants.js'
+
 export default class UserProfile extends Component {
 
     state = {
@@ -23,7 +25,7 @@ export default class UserProfile extends Component {
     }
 
     // fetch = async () => {
-    //     const response = await request.get(`https://serene-temple-06405.herokuapp.com/api/userprofile/${charts}`)
+    //     const response = await request.get(`${URL}/api/userprofile/${charts}`)
     //     .set('Authorization', this.props.token)
 
     //     this.setState({ charts: response.body })
@@ -34,7 +36,7 @@ export default class UserProfile extends Component {
     // }
     fetchFaveUrls = async () => {
         const faves = await request
-            .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+            .get(`${URL}/api/fav_url`)
             .set('Authorization', localStorage.getItem('TOKEN'))
         this.setState({ fav_url: faves.body })
     }
@@ -42,7 +44,7 @@ export default class UserProfile extends Component {
 
     componentDidMount = async () => {
         const userCityData = await request
-            .get(`https://serene-temple-06405.herokuapp.com/api/user_profile`)
+            .get(`${URL}/api/user_profile`)
             .set('Authorization', localStorage.getItem('TOKEN'))
 
         this.setState({ userCityData: userCityData.body })
@@ -57,12 +59,6 @@ export default class UserProfile extends Component {
 
         return (
             <>
-
-                <Navigation token={this.props.token}
-                    username={this.props.username}
-                    logOut={this.props.logOut}
-                    history={this.props.history} />
-
                 {/* ------------------------------------------------ */}
 
                 {/* <img className="back-one" src={forestb} type='image' alt="forestlooking up" /> */}

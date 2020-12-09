@@ -4,7 +4,9 @@ import request from 'superagent';
 import './Tiny.css';
 
 //import articleUrls from './ArticleUrls.js'
+import { URL } from './constants.js'
 
+// awesome component! this could be made reusable if it took the articles or endpoint url in as a prop?
 export default class TinyLinkContainer extends Component {
   state = {
     article_urls: [],
@@ -17,7 +19,7 @@ export default class TinyLinkContainer extends Component {
   // Grabs articles from our news API
   loadArticles = async () => {
     const response = await request
-      .get(`https://serene-temple-06405.herokuapp.com/articles`);
+      .get(`${URL}/articles`);
     await this.setState({ article_urls: response.body.map(item => item.url) });
   }
 

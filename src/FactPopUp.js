@@ -20,9 +20,9 @@ export default class FactPopUp extends Component {
             WHAT DOES A GLOBAL TEMPERATURE INCREASE EVEN MEAN?
             Barring any unexpected innovation beyond our scope of imagination, even the best case climate models forecast a 2.5 degree fahrenheit increase of our temperature, globally.
 
-
+            
+            {/* haha almost there! */}
             Lorem ip summdfgljksdfglijbxfdlkjbdxflbjxldfkgjbxldfkgjbnxdlkfgjblxdkjfg
-
 
 
 

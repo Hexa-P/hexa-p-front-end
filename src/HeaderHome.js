@@ -6,6 +6,7 @@ export default class Header extends Component {
         return (
 
         <>
+        {/* seems like this could go? */}
             <header className='headerCrumb'>
                 <div></div>
             </header>

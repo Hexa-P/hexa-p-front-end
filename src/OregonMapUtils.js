@@ -1,5 +1,6 @@
 import { scaleQuantize } from 'd3-scale';
 
+// whoooah, cool!
 export const lightBlueGradient = scaleQuantize()
     .domain([1, 10])
     .range([
