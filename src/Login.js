@@ -6,6 +6,8 @@ import './reset.css'
 import './SignLogin.css';
 import bridge from './images/signlog.jpg';
 
+import { URL } from './constants.js'
+
 export default class Login extends Component {
     state = {
         email: '',
@@ -22,7 +24,7 @@ export default class Login extends Component {
         this.setState({ loading: true })
         try {
             const user = await request
-                .post('https://serene-temple-06405.herokuapp.com/auth/signin')
+                .post(`${URL}/auth/signin`)
                 .send(this.state);
 
 
@@ -45,9 +47,6 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <Navigation />
-                </div>
 
                 <img className="bridged" src={bridge} type='image' alt="forest bridge" />
 

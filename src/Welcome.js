@@ -17,12 +17,6 @@ export default class Welcome extends Component {
 
         return (
             <div>
-                <div>
-                    <Navigation className='nav'
-                        token={this.props.token}
-                        username={this.props.username}
-                        logOut={this.props.logOut} />
-                </div>
                 <section className='topwrapper'>
                     <video autoPlay muted loop className='earth'>
                         <source src={forest} type='video/mp4' />

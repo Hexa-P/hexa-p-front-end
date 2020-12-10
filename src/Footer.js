@@ -13,7 +13,7 @@ export default class Footer extends Component {
 {/* -------------------------------------------------------------------------------- */}
             
                 <div className="footer-left left">
-
+                    {/* seems like this data could have lived in an array to be mapped over to prevent code duplication */}
                     <div className="gitabove inblock">
                         Sam Formichella
                         <div className="git inblock">

@@ -18,11 +18,11 @@ export default class AboutUs extends Component {
     render() {
         return (
             <div>
-                <Navigation />
                 <video autoPlay muted loop className='earth'>
                     <source src={forest} type='video/mp4' />
                 </video>
                 <div className="about-us-content">
+                    {/* this data should probably live in some json, to be loopsed over to prevent code duplication */}
 
                     {/* -------------------------------------------------------- */}
 

@@ -13,15 +13,15 @@ export default class Navigation extends Component {
     render() {
         return (
             <div>
-                {
-                    this.props.token
-                        ?
-                        <div className="navbar">
+                <div className="navbar">
                             <NavLink className="link" to="/Home">Home</NavLink>
                             <NavLink className="link" to="/mapchart">Map</NavLink>
                             <NavLink className="link" to="/tempchart">Chart</NavLink>
                             <NavLink className="link" to="/aboutUs">About the Developers</NavLink>
-
+                    {  
+                    this.props.token
+                        ?
+                        // I might be missing something, but it seems like this is the only stuff that actually hinges on the token
                             <div className="logged-in">
                                 <NavLink className="link" to="/userprofile">User Profile</NavLink>
                                 <span className="logout">
@@ -29,22 +29,12 @@ export default class Navigation extends Component {
                                 </span>
                             </div>
 
-                        </div>
-                        :
-                        <div className="navbar">
-                            <NavLink className="link" to="/Home">Home</NavLink>
-                            <NavLink className="link" to="/mapchart">Map</NavLink>
-                            <NavLink className="link" to="/tempchart">Your Chart</NavLink>
-                            <NavLink className="link" to="/aboutUs">About the Developers</NavLink>
-
-                            <div className="righty-oh">
-                                <NavLink className="link" to="/signup">Sign Up</NavLink>
-                                <NavLink className="link" to="/login">Login</NavLink>
-                            </div>
-                        </div>
-
+                        : <div className="righty-oh">
+                        <NavLink className="link" to="/signup">Sign Up</NavLink>
+                        <NavLink className="link" to="/login">Login</NavLink>
+                    </div>
                 }
-
+                </div>
             </div>
         )
     }

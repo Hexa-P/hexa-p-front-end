@@ -21,6 +21,7 @@ export default class CityMarker extends Component {
         key={cityId}
         coordinates={[lon, lat]}
       >
+        {/* nice work combing through the docs to figure this stuff out! */}
       <Popup
         trigger={<circle
           r={0.3}
@@ -55,6 +56,7 @@ export default class CityMarker extends Component {
         fill="black"
       >
         {
+          // great variable name!
           isThereData ?
           getTemp(cityId)
           : ''

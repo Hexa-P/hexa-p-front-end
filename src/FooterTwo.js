@@ -12,6 +12,7 @@ export default class FooterTwo extends Component {
         return (
             <>
             <footer className="footerBun">
+                {/* is this FooterTwo necessary? */}
 
 {/* -------------------------------------------------------------------------------- */}
 

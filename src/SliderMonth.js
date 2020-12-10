@@ -5,7 +5,7 @@ import './slider.css'
 
 export default class SliderYear extends Component {
 
-  months = moment.months();
+  months = moment.months(); // nice!!!
 
   render() {
     return (

@@ -140,11 +140,6 @@ export default class OregonMap extends Component {
 
     return (
       <>
-        <Navigation
-          token={this.props.token}
-          username={this.props.username}
-          logOut={this.props.logOut} />
-
         <div>
           <Header />
         </div>
