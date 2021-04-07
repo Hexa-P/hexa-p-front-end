@@ -6,6 +6,8 @@ import './reset.css'
 import './SignLogin.css';
 import bridge from './images/signlog.jpg';
 
+import BACK_END_URL from './constants/constants';
+
 export default class Login extends Component {
     state = {
         email: '',
@@ -22,7 +24,7 @@ export default class Login extends Component {
         this.setState({ loading: true })
         try {
             const user = await request
-                .post('https://serene-temple-06405.herokuapp.com/auth/signin')
+                .post(`${BACK_END_URL}/auth/signin`)
                 .send(this.state);
 
 

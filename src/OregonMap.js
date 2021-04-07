@@ -14,6 +14,8 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import CityMarker from './CityMarker.js';
 
+import BACK_END_URL from './constants/constants';
+
 const oregonData = require('./tl_2010_41_county10.json')
 
 
@@ -50,7 +52,7 @@ export default class OregonMap extends Component {
     try {
 
       const data = await request
-        .post(`https://multiple-markers.herokuapp.com/many_temps`)
+        .post(`${BACK_END_URL}/many_temps`)
         .send({ city_ids: this.state.cities })
 
       this.setState({ fetchData: data.body.data })

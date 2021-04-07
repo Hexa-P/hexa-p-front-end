@@ -7,7 +7,7 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import request from 'superagent';
 
-import BACK_END_URL from './constants';
+import BACK_END_URL from './constants/constants';
 
 
 export default class ChartTemplate extends Component {
