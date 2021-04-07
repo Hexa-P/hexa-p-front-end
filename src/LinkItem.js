@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { ReactTinyLink } from "react-tiny-link";
 
+import BACK_END_URL from './constants/constants';
+
 
 export default class LinkItem extends Component {
 
@@ -18,7 +20,7 @@ export default class LinkItem extends Component {
   //FETCH FAVORITE ARTICLES
   fetchFavorites = async () => {
     const response = await request
-      .get(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+      .get(`${BACK_END_URL}/api/fav_url`)
       .set('Authorization', localStorage.getItem('TOKEN'))
     this.setState({ fav_url: response.body })
 
@@ -29,7 +31,7 @@ export default class LinkItem extends Component {
       fav_url: booger
     };
     await request
-      .post(`https://serene-temple-06405.herokuapp.com/api/fav_url`)
+      .post(`${BACK_END_URL}/api/fav_url`)
       .set('Authorization', localStorage.getItem('TOKEN'))
       .send(favorite);
 

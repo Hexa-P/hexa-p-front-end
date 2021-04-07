@@ -3,6 +3,8 @@ import LinkItem from './LinkItem';
 import request from 'superagent';
 import './Tiny.css';
 
+import BACK_END_URL from './constants/constants';
+
 //import articleUrls from './ArticleUrls.js'
 
 export default class TinyLinkContainer extends Component {
@@ -17,7 +19,7 @@ export default class TinyLinkContainer extends Component {
   // Grabs articles from our news API
   loadArticles = async () => {
     const response = await request
-      .get(`https://serene-temple-06405.herokuapp.com/articles`);
+      .get(`${BACK_END_URL}/articles`);
     await this.setState({ article_urls: response.body.map(item => item.url) });
   }
 
